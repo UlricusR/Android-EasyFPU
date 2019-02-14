@@ -9,4 +9,8 @@
     <string name="carbs_unit">g</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Food not saved because data are missing.</string>
+    <string name="newfood_error_carbsorcalbelowzero">Calories as well as carbs must not be negative for food</string>
+    <string name="newfood_error_calslargercarbs1">Cannot save new food</string>
+    <string name="newfood_error_calslargercarbs2">: Calories from carbs (1g ~ 4kcal) of</string>
+    <string name="newfood_error_calslargercarbs3">larger than total calories of</string>
 </resources>

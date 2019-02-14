@@ -39,12 +39,14 @@ public class NewFoodActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent replyIntent = new Intent();
+
                 if (
                         TextUtils.isEmpty(mFoodName.getText()) ||
                         TextUtils.isEmpty(mCalories.getText()) ||
                         TextUtils.isEmpty(mCarbs.getText())
                 ) {
                     setResult(RESULT_CANCELED, replyIntent);
+                    finish();
                 } else {
                     String foodName = mFoodName.getText().toString();
                     boolean favorite = mFavorite.isChecked();
@@ -52,33 +54,36 @@ public class NewFoodActivity extends AppCompatActivity {
                     double carbs = Double.parseDouble(mCarbs.getText().toString());
 
                     // Check if all numbers are positive
-                    if (calories < 0 || carbs < 0) { // TODO Localize error message
-                        String errMsg = "Calories as well as carbs must not be negative for food " + foodName;
-                        Snackbar.make(findViewById(R.id.new_food),
-                                errMsg, Snackbar.LENGTH_LONG).show();
-                        setResult(RESULT_CANCELED, replyIntent);
+                    if (calories < 0 || carbs < 0) {
+                        String errMsg = getResources().getString(R.string.newfood_error_carbsorcalbelowzero) + " " + foodName;
+                        Toast.makeText(
+                                getApplicationContext(),
+                                errMsg,
+                                Toast.LENGTH_LONG).show();
+                    } else if (carbs * 4 > calories) {
+                        // Do a consistency check: Calories from carbs cannot be more than
+                        // total calories; 1g of carbs has 4 kcal
+                        String errMsg =
+                                getResources().getString(R.string.newfood_error_calslargercarbs1) + " "
+                                + foodName
+                                + getResources().getString(R.string.newfood_error_calslargercarbs2) + " "
+                                + (carbs * 4) + " " + getResources().getString(R.string.newfood_error_calslargercarbs3)
+                                + " " + calories;
+                        Toast.makeText(
+                                getApplicationContext(),
+                                errMsg,
+                                Toast.LENGTH_LONG).show();
+                    } else {
+
+                        replyIntent.putExtra(EXTRA_REPLY_NAME, foodName);
+                        replyIntent.putExtra(EXTRA_REPLY_FAVORITE, favorite);
+                        replyIntent.putExtra(EXTRA_REPLY_CALORIES, calories);
+                        replyIntent.putExtra(EXTRA_REPLY_CARBS, carbs);
+
+                        setResult(RESULT_OK, replyIntent);
+                        finish();
                     }
-
-                    // Do a consistency check: Calories from carbs cannot be more than
-                    // total calories; 1g of carbs has 4 kcal
-                    if (carbs * 4 > calories) { // TODO Localize error message
-                        String errMsg = "Cannot construct new food " + foodName
-                                + ": Calories from carbs (1g ~ 4kcal) of "
-                                + (carbs * 4) + " larger than total calories of "
-                                + calories;
-                        Snackbar.make(findViewById(R.id.new_food),
-                                errMsg, Snackbar.LENGTH_LONG).show();
-                        setResult(RESULT_CANCELED, replyIntent);
-                    }
-
-                    replyIntent.putExtra(EXTRA_REPLY_NAME, foodName);
-                    replyIntent.putExtra(EXTRA_REPLY_FAVORITE, favorite);
-                    replyIntent.putExtra(EXTRA_REPLY_CALORIES, calories);
-                    replyIntent.putExtra(EXTRA_REPLY_CARBS, carbs);
-
-                    setResult(RESULT_OK, replyIntent);
                 }
-                finish();
             }
         });
     }
