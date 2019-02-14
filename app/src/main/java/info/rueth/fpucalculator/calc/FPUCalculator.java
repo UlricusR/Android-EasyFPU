@@ -2,20 +2,20 @@ package info.rueth.fpucalculator.calc;
 
 public class FPUCalculator {
 
-	public static void main(String[] args) {
-		// Create absorption scheme
-		AbsorptionScheme absorptionScheme = new AbsorptionScheme();
-		
-		// Add absorption blocks - unsorted on purpose to test sorting!
-		absorptionScheme.addBlock(2, 4);
-		absorptionScheme.addBlock(3, 5);
-		absorptionScheme.addBlock(6, 8);
-		absorptionScheme.addBlock(1, 3);
-		absorptionScheme.addBlock(4, 6);
-		
-		System.out.println(absorptionScheme.toString());
+    public static void main(String[] args) {
+        // Create absorption scheme
+        AbsorptionScheme absorptionScheme = new AbsorptionScheme();
 
-		// Create new food with calories from carbs being higher than total calories
+        // Add absorption blocks - unsorted on purpose to test sorting!
+        absorptionScheme.addBlock(2, 4);
+        absorptionScheme.addBlock(3, 5);
+        absorptionScheme.addBlock(6, 8);
+        absorptionScheme.addBlock(1, 3);
+        absorptionScheme.addBlock(4, 6);
+
+        System.out.println(absorptionScheme.toString());
+
+        // Create new food with calories from carbs being higher than total calories
         try {
             Food strangeFood = new Food("Strange Food", 100.5, 30.1);
         } catch (Exception e) {
