@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">FPU Calculator</string>
     <string name="action_settings">Settings</string>
-    <string name="label_food">Name</string>
-    <string name="label_favorite">Favorite</string>
-    <string name="label_calories">Calories per 100g</string>
-    <string name="label_calories_unit">kcal</string>
-    <string name="label_carbs">Carbs per 100g</string>
-    <string name="label_carbs_unit">g</string>
+    <string name="foodname_label">Name</string>
+    <string name="favorite_label">Favorite</string>
+    <string name="calories_label">Calories per 100g</string>
+    <string name="calories_unit">kcal</string>
+    <string name="carbs_label">Carbs per 100g</string>
+    <string name="carbs_unit">g</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Food not saved because data are missing.</string>
 </resources>
