@@ -8,6 +8,7 @@
     <string name="carbs_label">Carbs per 100g</string>
     <string name="carbs_unit">g</string>
     <string name="button_save">Save</string>
+    <string name="button_cancel">Save</string>
     <string name="empty_not_saved">Food not saved because data are missing.</string>
     <string name="newfood_error_carbsorcalbelowzero">Calories as well as carbs must not be negative for food</string>
     <string name="newfood_error_calslargercarbs1">Cannot save new food</string>

@@ -1,105 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/new_food"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/activity_vertical_padding"
+    android:paddingEnd="@dimen/activity_horizontal_padding"
+    android:paddingStart="@dimen/activity_horizontal_padding"
+    android:paddingTop="@dimen/activity_vertical_padding"
+    android:columnCount="3">
 
-    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/foodname_label"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:columnCount="3">
+        android:layout_gravity="fill_horizontal"
+        android:text="@string/foodname_label" />
 
-        <TextView
-            android:id="@+id/foodname_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal"
-            android:text="@string/foodname_label" />
+    <EditText
+        android:id="@+id/foodname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill_horizontal"
+        android:fontFamily="sans-serif-light"
+        android:importantForAutofill="no"
+        android:inputType="textAutoComplete"
+        android:padding="@dimen/small_padding"
+        android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/foodname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnSpan="2"
-            android:layout_gravity="fill_horizontal"
-            android:fontFamily="sans-serif-light"
-            android:importantForAutofill="no"
-            android:inputType="textAutoComplete"
-            android:padding="@dimen/small_padding"
-            android:textSize="18sp" />
+    <TextView
+        android:id="@+id/favorite_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:text="@string/favorite_label" />
 
-        <TextView
-            android:id="@+id/favorite_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal"
-            android:text="@string/favorite_label" />
+    <Switch
+        android:id="@+id/favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill_horizontal" />
 
-        <Switch
-            android:id="@+id/favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnSpan="2"
-            android:layout_gravity="fill_horizontal" />
+    <TextView
+        android:id="@+id/calories_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:text="@string/calories_label" />
 
-        <TextView
-            android:id="@+id/calories_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal"
-            android:text="@string/calories_label" />
+    <EditText
+        android:id="@+id/calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:fontFamily="sans-serif-light"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        android:padding="@dimen/small_padding"
+        android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/calories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal"
-            android:fontFamily="sans-serif-light"
-            android:importantForAutofill="no"
-            android:inputType="numberDecimal"
-            android:padding="@dimen/small_padding"
-            android:textSize="18sp" />
+    <TextView
+        android:id="@+id/calories_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="@string/calories_unit" />
 
-        <TextView
-            android:id="@+id/calories_unit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:text="@string/calories_unit" />
+    <TextView
+        android:id="@+id/carbs_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/carbs_label" />
 
-        <TextView
-            android:id="@+id/carbs_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/carbs_label" />
+    <EditText
+        android:id="@+id/carbs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:fontFamily="sans-serif-light"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        android:padding="@dimen/small_padding"
+        android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/carbs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill_horizontal"
-            android:fontFamily="sans-serif-light"
-            android:importantForAutofill="no"
-            android:inputType="numberDecimal"
-            android:padding="@dimen/small_padding"
-            android:textSize="18sp" />
+    <TextView
+        android:id="@+id/carbs_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="@string/carbs_unit" />
 
-        <TextView
-            android:id="@+id/carbs_unit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:text="@string/carbs_unit" />
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_columnSpan="3"
+        android:layout_gravity="fill_horizontal"
+        android:background="@color/colorPrimary"
+        android:text="@string/button_save"
+        android:textColor="@color/buttonLabel" />
 
-        <Button
-            android:id="@+id/button_save"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_columnSpan="3"
-            android:layout_gravity="fill_horizontal"
-            android:background="@color/colorPrimary"
-            android:text="@string/button_save"
-            android:textColor="@color/buttonLabel" />
+    <Button
+        android:id="@+id/button_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_columnSpan="3"
+        android:layout_gravity="fill_horizontal"
+        android:background="@color/colorPrimary"
+        android:text="@string/button_cancel"
+        android:textColor="@color/buttonLabel" />
 
-    </GridLayout>
-</android.support.design.widget.CoordinatorLayout>
+</GridLayout>

@@ -33,9 +33,10 @@ public class NewFoodActivity extends AppCompatActivity {
         mFavorite = findViewById(R.id.favorite);
         mCalories = findViewById(R.id.calories);
         mCarbs = findViewById(R.id.carbs);
-
-        final Button button = findViewById(R.id.button_save);
-        button.setOnClickListener(new View.OnClickListener() {
+        
+        // Save button
+        final Button saveButton = findViewById(R.id.button_save);
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent replyIntent = new Intent();
@@ -84,6 +85,17 @@ public class NewFoodActivity extends AppCompatActivity {
                         finish();
                     }
                 }
+            }
+        });
+        
+        // Cancel button
+        final Button cancelButton = findViewById(R.id.button_cancel);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent replyIntent = new Intent();
+                setResult(RESULT_OK, replyIntent);
+                finish();
             }
         });
     }
