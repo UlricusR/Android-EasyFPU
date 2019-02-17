@@ -46,8 +46,11 @@ public class NewFoodActivity extends AppCompatActivity {
                         TextUtils.isEmpty(mCalories.getText()) ||
                         TextUtils.isEmpty(mCarbs.getText())
                 ) {
-                    setResult(RESULT_CANCELED, replyIntent);
-                    finish();
+                    String errMsg = getResources().getString(R.string.newfood_error_datamissing);
+                    Toast.makeText(
+                            getApplicationContext(),
+                            errMsg,
+                            Toast.LENGTH_LONG).show();
                 } else {
                     String foodName = mFoodName.getText().toString();
                     boolean favorite = mFavorite.isChecked();
@@ -56,7 +59,7 @@ public class NewFoodActivity extends AppCompatActivity {
 
                     // Check if all numbers are positive
                     if (calories < 0 || carbs < 0) {
-                        String errMsg = getResources().getString(R.string.newfood_error_carbsorcalbelowzero) + " " + foodName;
+                        String errMsg = getResources().getString(R.string.newfood_error_carbsorcalbelowzero) + foodName;
                         Toast.makeText(
                                 getApplicationContext(),
                                 errMsg,
@@ -65,11 +68,11 @@ public class NewFoodActivity extends AppCompatActivity {
                         // Do a consistency check: Calories from carbs cannot be more than
                         // total calories; 1g of carbs has 4 kcal
                         String errMsg =
-                                getResources().getString(R.string.newfood_error_calslargercarbs1) + " "
+                                getResources().getString(R.string.newfood_error_calslargercarbs1)
                                 + foodName
-                                + getResources().getString(R.string.newfood_error_calslargercarbs2) + " "
-                                + (carbs * 4) + " " + getResources().getString(R.string.newfood_error_calslargercarbs3)
-                                + " " + calories;
+                                + getResources().getString(R.string.newfood_error_calslargercarbs2)
+                                + (carbs * 4) + getResources().getString(R.string.newfood_error_calslargercarbs3)
+                                + calories;
                         Toast.makeText(
                                 getApplicationContext(),
                                 errMsg,
@@ -94,7 +97,7 @@ public class NewFoodActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent replyIntent = new Intent();
-                setResult(RESULT_OK, replyIntent);
+                setResult(RESULT_CANCELED, replyIntent);
                 finish();
             }
         });

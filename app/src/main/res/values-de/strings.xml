@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FPE-Rechner</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="foodname_label">Name:</string>
+    <string name="favorite_label">Favorit:</string>
+    <string name="calories_label">Kalorien pro 100g:</string>
+    <string name="calories_unit">kcal</string>
+    <string name="carbs_label">Kohlenhydrate pro 100g:</string>
+    <string name="carbs_unit">g</string>
+    <string name="button_save">Speichern</string>
+    <string name="button_cancel">Abbrechen</string>
+    <string name="newfood_error_datamissing">Es fehlen Daten.</string>
+    <string name="newfood_error_carbsorcalbelowzero">Angaben für Kalorien und Kohlenhydrate dürfen nicht negativ sein für Essen\u0020</string>
+    <string name="newfood_error_calslargercarbs1">Kann Essen\u0020</string>
+    <string name="newfood_error_calslargercarbs2">\u0020nicht speichern: Kalorien aus Kohlenhydraten (1g ~ 4kcal) ist mit\u0020</string>
+    <string name="newfood_error_calslargercarbs3">\u0020größer als die Gesamtkalorien von\u0020</string>
+</resources>

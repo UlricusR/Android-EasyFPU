@@ -87,11 +87,6 @@ public class MainActivity extends AppCompatActivity {
             double carbs = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_CARBS, 0);
             Food food = new Food(name, favorite, calories, carbs);
             mDataViewModel.insert(food);
-        } else {
-            Toast.makeText(
-                    getApplicationContext(),
-                    R.string.empty_not_saved,
-                    Toast.LENGTH_LONG).show();
         }
     }
 }
