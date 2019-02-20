@@ -54,7 +54,14 @@ public class SwipeController extends ItemTouchHelper.Callback {
                             float dX, float dY,
                             int actionState, boolean isCurrentlyActive) {
         if (actionState == ACTION_STATE_SWIPE) {
-            setTouchListener(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            if (buttonShowedState != ButtonState.GONE) {
+                if (buttonShowedState == ButtonState.LEFT_VISIBLE) dX = Math.max(dX, buttonWidth);
+                if (buttonShowedState == ButtonState.RIGHT_VISIBLE) dX = Math.min(dX, -buttonWidth);
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
+            else {
+                setTouchListener(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
         }
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
         drawButtons(c, viewHolder);
@@ -104,7 +111,7 @@ public class SwipeController extends ItemTouchHelper.Callback {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    SwipeController.super.onChildDraw(c, recyclerView, viewHolder, 0F, dY, actionState, isCurrentlyActive);
+                    SwipeController.super.onChildDraw(c, recyclerView, viewHolder, 0f, dY, actionState, isCurrentlyActive);
                     recyclerView.setOnTouchListener(new View.OnTouchListener() {
                         @Override
                         public boolean onTouch(View v, MotionEvent event) {
@@ -128,7 +135,7 @@ public class SwipeController extends ItemTouchHelper.Callback {
 
     private void drawButtons(Canvas c, RecyclerView.ViewHolder viewHolder) {
         float buttonWidthWithoutPadding = buttonWidth - 20;
-        float corners = 16;
+        float corners = 0;
 
         View itemView = viewHolder.itemView;
         Paint p = new Paint();
