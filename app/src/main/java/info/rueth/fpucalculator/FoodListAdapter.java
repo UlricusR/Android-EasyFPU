@@ -39,7 +39,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
             holder.foodItemView.setText(current.getName());
         } else {
             // Covers the case of data not being ready yet.
-            holder.foodItemView.setText("No food found yet");
+            holder.foodItemView.setText(mInflater.getContext().getString(R.string.hint_nofoodfound));
         }
     }
 

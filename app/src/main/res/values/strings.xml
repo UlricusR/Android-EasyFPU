@@ -14,4 +14,5 @@
     <string name="newfood_error_calslargercarbs1">Cannot save new food\u0020</string>
     <string name="newfood_error_calslargercarbs2">: Calories from carbs (1g ~ 4kcal) of\u0020</string>
     <string name="newfood_error_calslargercarbs3">\u0020larger than total calories of\u0020</string>
+    <string name="hint_nofoodfound">No food found yet</string>
 </resources>
