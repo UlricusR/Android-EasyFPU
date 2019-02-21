@@ -48,6 +48,10 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
         notifyDataSetChanged();
     }
 
+    List<Food> getAllFood() {
+        return allFood;
+    }
+
     // getItemCount() is called many times, and when it is first called,
     // allFood has not been updated (means initially, it's null, and we can't return null)
     @Override

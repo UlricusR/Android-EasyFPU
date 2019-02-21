@@ -17,11 +17,16 @@ enum ButtonState {
 
 public class SwipeController extends ItemTouchHelper.Callback {
 
+    private final SwipeControllerActions buttonActions;
     private boolean swipeBack = false;
     private RectF buttonInstance = null;
     private RecyclerView.ViewHolder currentItemViewHolder = null;
     private ButtonState buttonShowedState = ButtonState.GONE;
     private static final float buttonWidth = 200;
+
+    public SwipeController(SwipeControllerActions buttonActions) {
+        this.buttonActions = buttonActions;
+    }
 
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
@@ -120,7 +125,16 @@ public class SwipeController extends ItemTouchHelper.Callback {
                     });
                     setItemsClickable(recyclerView, true);
                     swipeBack = false;
+
+                    if (buttonActions != null && buttonInstance != null && buttonInstance.contains(event.getX(), event.getY())) {
+                        if (buttonShowedState == ButtonState.LEFT_VISIBLE) {
+                            buttonActions.onLeftClicked(viewHolder.getAdapterPosition());
+                        } else if (buttonShowedState == ButtonState.RIGHT_VISIBLE) {
+                            buttonActions.onRightClicked(viewHolder.getAdapterPosition());
+                        }
+                    }
                     buttonShowedState = ButtonState.GONE;
+                    currentItemViewHolder = null;
                 }
                 return false;
             }

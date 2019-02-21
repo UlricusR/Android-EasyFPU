@@ -41,7 +41,20 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Create swipe controller and attach to recycler view
-        final SwipeController swipeController = new SwipeController();
+        final SwipeController swipeController = new SwipeController(new SwipeControllerActions() {
+            @Override
+            public void onLeftClicked(int position) {
+                super.onLeftClicked(position);
+            }
+
+            @Override
+            public void onRightClicked(int position) {
+                adapter.getAllFood().remove(position);
+                adapter.notifyItemRemoved(position);
+                adapter.notifyItemRangeChanged(position, adapter.getItemCount());
+            }
+        });
+
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
         itemTouchHelper.attachToRecyclerView(recyclerView);
         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
