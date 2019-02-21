@@ -48,8 +48,13 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
         notifyDataSetChanged();
     }
 
-    List<Food> getAllFood() {
-        return allFood;
+    Food deleteFood(int position) {
+        Food foodToDelete = allFood.get(position);
+        allFood.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, getItemCount());
+
+        return foodToDelete;
     }
 
     // getItemCount() is called many times, and when it is first called,

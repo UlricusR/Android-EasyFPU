@@ -23,4 +23,8 @@ public class DataViewModel extends AndroidViewModel {
     public void insert(Food food) {
         dataRepository.insert(food);
     }
+
+    public void delete(Food food) {
+        dataRepository.delete(food);
+    }
 }

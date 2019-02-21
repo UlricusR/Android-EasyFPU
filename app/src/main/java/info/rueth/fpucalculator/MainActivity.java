@@ -49,9 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onRightClicked(int position) {
-                adapter.getAllFood().remove(position);
-                adapter.notifyItemRemoved(position);
-                adapter.notifyItemRangeChanged(position, adapter.getItemCount());
+                Food food = adapter.deleteFood(position);
+                mDataViewModel.delete(food);
             }
         });
 
