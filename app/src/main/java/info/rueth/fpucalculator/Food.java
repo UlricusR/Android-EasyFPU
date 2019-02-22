@@ -46,4 +46,20 @@ public class Food {
     public double getCarbs() {
         return carbs;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
+    public void setCalories(double calories) {
+        this.calories = calories;
+    }
+
+    public void setCarbs(double carbs) {
+        this.carbs = carbs;
+    }
 }

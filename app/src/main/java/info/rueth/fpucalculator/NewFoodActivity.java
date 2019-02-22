@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class NewFoodActivity extends AppCompatActivity {
 
+    public static final String FOOD_POSITION = "foodposition";
     public static final String EXTRA_REPLY_NAME = "info.rueth.fpucalculator.foodlistsql.REPLY_NAME";
     public static final String EXTRA_REPLY_FAVORITE = "info.rueth.fpucalculator.foodlistsql.REPLY_FAVORITE";
     public static final String EXTRA_REPLY_CALORIES = "info.rueth.fpucalculator.foodlistsql.REPLY_CALORIES";
@@ -24,6 +26,8 @@ public class NewFoodActivity extends AppCompatActivity {
     private EditText mCalories;
     private EditText mCarbs;
 
+    private int foodPosition = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +35,22 @@ public class NewFoodActivity extends AppCompatActivity {
 
         mFoodName = findViewById(R.id.foodname);
         mFavorite = findViewById(R.id.favorite);
-        mCalories = findViewById(R.id.calories);
         mCarbs = findViewById(R.id.carbs);
+        mCalories = findViewById(R.id.calories);
+
+        // Fill data if food is edited
+        String name = getIntent().getStringExtra(EXTRA_REPLY_NAME);
+        if (name != null) {
+            foodPosition = getIntent().getIntExtra(FOOD_POSITION, -1);
+            boolean favorite = getIntent().getBooleanExtra(EXTRA_REPLY_FAVORITE, false);
+            double carbs = getIntent().getDoubleExtra(EXTRA_REPLY_CARBS, 0f);
+            double calories = getIntent().getDoubleExtra(EXTRA_REPLY_CALORIES, 0f);
+
+            mFoodName.setText(name);
+            mFavorite.setChecked(favorite);
+            mCalories.setText(String.valueOf(calories), TextView.BufferType.EDITABLE);
+            mCarbs.setText(String.valueOf(carbs));
+        }
         
         // Save button
         final Button saveButton = findViewById(R.id.button_save);
@@ -79,6 +97,7 @@ public class NewFoodActivity extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
                     } else {
 
+                        replyIntent.putExtra(FOOD_POSITION, foodPosition);
                         replyIntent.putExtra(EXTRA_REPLY_NAME, foodName);
                         replyIntent.putExtra(EXTRA_REPLY_FAVORITE, favorite);
                         replyIntent.putExtra(EXTRA_REPLY_CALORIES, calories);

@@ -20,11 +20,19 @@ public class DataViewModel extends AndroidViewModel {
         return allFood;
     }
 
+    Food getFood(int position) {
+        return allFood.getValue().get(position);
+    }
+
     public void insert(Food food) {
         dataRepository.insert(food);
     }
 
     public void delete(Food food) {
         dataRepository.delete(food);
+    }
+
+    public void update(Food food) {
+        dataRepository.update(food);
     }
 }

@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private DataViewModel mDataViewModel;
     public static final int NEW_FOOD_ACTIVITY_REQUEST_CODE = 1;
+    public static final int EDIT_FOOD_ACTIVITY_REQUEST_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,14 @@ public class MainActivity extends AppCompatActivity {
         final SwipeController swipeController = new SwipeController(new SwipeControllerActions() {
             @Override
             public void onLeftClicked(int position) {
-                super.onLeftClicked(position);
+                Food food = adapter.getFood(position);
+                Intent intent = new Intent(MainActivity.this, NewFoodActivity.class);
+                intent.putExtra(NewFoodActivity.FOOD_POSITION, position);
+                intent.putExtra(NewFoodActivity.EXTRA_REPLY_NAME, food.getName());
+                intent.putExtra(NewFoodActivity.EXTRA_REPLY_FAVORITE, food.isFavorite());
+                intent.putExtra(NewFoodActivity.EXTRA_REPLY_CALORIES, food.getCalories());
+                intent.putExtra(NewFoodActivity.EXTRA_REPLY_CARBS, food.getCarbs());
+                startActivityForResult(intent, EDIT_FOOD_ACTIVITY_REQUEST_CODE);
             }
 
             @Override
@@ -115,6 +123,18 @@ public class MainActivity extends AppCompatActivity {
             double carbs = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_CARBS, 0);
             Food food = new Food(name, favorite, calories, carbs);
             mDataViewModel.insert(food);
+        } else if (requestCode == EDIT_FOOD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            int position = data.getIntExtra(NewFoodActivity.FOOD_POSITION, -1);
+            String name = data.getStringExtra(NewFoodActivity.EXTRA_REPLY_NAME);
+            boolean favorite = data.getBooleanExtra(NewFoodActivity.EXTRA_REPLY_FAVORITE, false);
+            double calories = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_CALORIES, 0);
+            double carbs = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_CARBS, 0);
+            Food food = mDataViewModel.getFood(position);
+            food.setName(name);
+            food.setFavorite(favorite);
+            food.setCalories(calories);
+            food.setCarbs(carbs);
+            mDataViewModel.update(food);
         }
     }
 }

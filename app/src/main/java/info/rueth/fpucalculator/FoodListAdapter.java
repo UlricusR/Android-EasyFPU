@@ -48,6 +48,10 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
         notifyDataSetChanged();
     }
 
+    Food getFood(int position) {
+        return allFood.get(position);
+    }
+
     Food deleteFood(int position) {
         Food foodToDelete = allFood.get(position);
         allFood.remove(position);
