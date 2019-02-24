@@ -28,7 +28,6 @@ public class SwipeController extends ItemTouchHelper.Callback {
     private RecyclerView.ViewHolder currentItemViewHolder = null;
     private ButtonState buttonShowedState = ButtonState.GONE;
     private static final float buttonWidth = 100;
-    private static final int marginBottom = 12; // TODO get margin from resources or completely redesign
 
 
     public SwipeController(Resources resources, SwipeControllerActions buttonActions) {
@@ -159,13 +158,13 @@ public class SwipeController extends ItemTouchHelper.Callback {
         View itemView = viewHolder.itemView;
         Paint p = new Paint();
 
-        RectF leftButton = new RectF(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + buttonWidth, itemView.getBottom() - marginBottom);
+        RectF leftButton = new RectF(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + buttonWidth, itemView.getBottom());
         p.setColor(Color.BLUE);
         c.drawRect(leftButton, p);
         //drawText("EDIT", c, leftButton, p);
         drawSymbol(resources.getDrawable(R.drawable.ic_edit_white_24dp, null), c, leftButton, p);
 
-        RectF rightButton = new RectF(itemView.getRight() - buttonWidth, itemView.getTop(), itemView.getRight(), itemView.getBottom() - marginBottom);
+        RectF rightButton = new RectF(itemView.getRight() - buttonWidth, itemView.getTop(), itemView.getRight(), itemView.getBottom());
         p.setColor(Color.RED);
         c.drawRect(rightButton, p);
         //drawText("DELETE", c, rightButton, p);

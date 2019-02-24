@@ -15,6 +15,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import java.util.List;
@@ -80,12 +81,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        // New food FAB
+        FloatingActionButton fabAdd = findViewById(R.id.fab_add);
+        fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, NewFoodActivity.class);
                 startActivityForResult(intent, NEW_FOOD_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
+        // New meal FAB
+        FloatingActionButton fabMeal = findViewById(R.id.fab_meal);
+        fabMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NewMealActivity.class);
+                startActivity(intent);
             }
         });
     }

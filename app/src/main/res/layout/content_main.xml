@@ -13,6 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/darker_gray"
-        tools:listitem="@layout/recyclerview_item" />
+        tools:listitem="@layout/food_item" />
 
 </android.support.constraint.ConstraintLayout>
