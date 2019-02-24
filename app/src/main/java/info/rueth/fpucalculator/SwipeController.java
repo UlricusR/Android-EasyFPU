@@ -1,13 +1,17 @@
 package info.rueth.fpucalculator;
 
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
 
 import static android.support.v7.widget.helper.ItemTouchHelper.*;
 
@@ -20,11 +24,15 @@ public class SwipeController extends ItemTouchHelper.Callback {
     private final SwipeControllerActions buttonActions;
     private boolean swipeBack = false;
     private RectF buttonInstance = null;
+    private Resources resources;
     private RecyclerView.ViewHolder currentItemViewHolder = null;
     private ButtonState buttonShowedState = ButtonState.GONE;
-    private static final float buttonWidth = 200;
+    private static final float buttonWidth = 100;
+    private static final int marginBottom = 12; // TODO get margin from resources or completely redesign
 
-    public SwipeController(SwipeControllerActions buttonActions) {
+
+    public SwipeController(Resources resources, SwipeControllerActions buttonActions) {
+        this.resources = resources;
         this.buttonActions = buttonActions;
     }
 
@@ -148,21 +156,20 @@ public class SwipeController extends ItemTouchHelper.Callback {
     }
 
     private void drawButtons(Canvas c, RecyclerView.ViewHolder viewHolder) {
-        float buttonWidthWithoutPadding = buttonWidth - 20;
-        float corners = 0;
-
         View itemView = viewHolder.itemView;
         Paint p = new Paint();
 
-        RectF leftButton = new RectF(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + buttonWidthWithoutPadding, itemView.getBottom());
+        RectF leftButton = new RectF(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + buttonWidth, itemView.getBottom() - marginBottom);
         p.setColor(Color.BLUE);
-        c.drawRoundRect(leftButton, corners, corners, p);
-        drawText("EDIT", c, leftButton, p);
+        c.drawRect(leftButton, p);
+        //drawText("EDIT", c, leftButton, p);
+        drawSymbol(resources.getDrawable(R.drawable.ic_edit_white_24dp, null), c, leftButton, p);
 
-        RectF rightButton = new RectF(itemView.getRight() - buttonWidthWithoutPadding, itemView.getTop(), itemView.getRight(), itemView.getBottom());
+        RectF rightButton = new RectF(itemView.getRight() - buttonWidth, itemView.getTop(), itemView.getRight(), itemView.getBottom() - marginBottom);
         p.setColor(Color.RED);
-        c.drawRoundRect(rightButton, corners, corners, p);
-        drawText("DELETE", c, rightButton, p);
+        c.drawRect(rightButton, p);
+        //drawText("DELETE", c, rightButton, p);
+        drawSymbol(resources.getDrawable(R.drawable.ic_delete_white_24dp, null), c, rightButton, p);
 
         buttonInstance = null;
         if (buttonShowedState == ButtonState.LEFT_VISIBLE) {
@@ -180,6 +187,17 @@ public class SwipeController extends ItemTouchHelper.Callback {
 
         float textWidth = p.measureText(text);
         c.drawText(text, button.centerX() - (textWidth/2), button.centerY() + (textSize/2), p);
+    }
+
+    private void drawSymbol(Drawable symbol,Canvas c, RectF button, Paint p) {
+        float dX = button.centerX() - symbol.getIntrinsicWidth() / 2;
+        float dY = button.centerY() - symbol.getIntrinsicHeight() / 2;
+        symbol.setBounds(0, 0, symbol.getIntrinsicWidth(), symbol.getIntrinsicHeight());
+        c.translate(dX, dY);
+        symbol.draw(c);
+
+        // Reset dX and dY
+        c.translate(-dX, -dY);
     }
 
     public void onDraw(Canvas c) {

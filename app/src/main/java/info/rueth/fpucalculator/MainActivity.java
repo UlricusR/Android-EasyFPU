@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Create swipe controller and attach to recycler view
-        final SwipeController swipeController = new SwipeController(new SwipeControllerActions() {
+        final SwipeController swipeController = new SwipeController(getResources(), new SwipeControllerActions() {
             @Override
             public void onLeftClicked(int position) {
                 Food food = adapter.getFood(position);
