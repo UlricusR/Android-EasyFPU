@@ -15,4 +15,7 @@
     <string name="newfood_error_calslargercarbs2">: Calories from carbs (1g ~ 4kcal) of\u0020</string>
     <string name="newfood_error_calslargercarbs3">\u0020larger than total calories of\u0020</string>
     <string name="hint_nofoodfound">No food found yet</string>
+    <string name="edit_amount_message">How much grams will you eat?</string>
+    <string name="confirm_amount_button">Add</string>
+    <string name="cancel_amount_button">Cancel</string>
 </resources>

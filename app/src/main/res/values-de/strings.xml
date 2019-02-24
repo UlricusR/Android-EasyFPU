@@ -16,4 +16,7 @@
     <string name="newfood_error_calslargercarbs2">\u0020nicht speichern: Kalorien aus Kohlenhydraten (1g ~ 4kcal) ist mit\u0020</string>
     <string name="newfood_error_calslargercarbs3">\u0020größer als die Gesamtkalorien von\u0020</string>
     <string name="hint_nofoodfound">Noch kein Essen vorhanden</string>
+    <string name="edit_amount_message">Wieviel Gramm isst Du?</string>
+    <string name="confirm_amount_button">Hinzufügen</string>
+    <string name="cancel_amount_button">Abbrechen</string>
 </resources>
