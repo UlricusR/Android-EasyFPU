@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // New food FAB
-        FloatingActionButton fabAdd = findViewById(R.id.fab_add);
+        FloatingActionButton fabAdd = findViewById(R.id.fab_new);
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

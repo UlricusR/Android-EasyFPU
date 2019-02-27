@@ -1,6 +1,8 @@
 package info.rueth.fpucalculator;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckedTextView;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.List;
@@ -32,22 +35,56 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
         }
 
         @Override
-        public void onClick(View view) {
-            int adapterPosition = getAdapterPosition();
-            if (!itemStateArray.get(adapterPosition, false)) {
+        public void onClick(final View view) {
+            final int adapterPosition = getAdapterPosition();
+            if (!itemStateArray.get(adapterPosition, false)) { // The food is selected
                 foodItemView.setChecked(true);
                 itemStateArray.put(adapterPosition, true);
-            } else {
+
+                // Open the AlertDialog to enter the carbs
+                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                // Set the message
+                builder.setMessage(R.string.edit_amount_message);
+
+                // Get the layout
+                builder.setView(R.layout.edit_amount);
+
+                // Add buttons
+                builder.setPositiveButton(R.string.confirm_amount_button, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        Food selectedFood = getFood(adapterPosition);
+                        EditText mAmount = view.findViewById(R.id.food_amount);
+                        double amount = Double.parseDouble(mAmount.getText().toString());
+                        meal.add(selectedFood, amount);
+                    }
+                });
+
+                builder.setNegativeButton(R.string.cancel_amount_button, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog, so we need to unset the food checkbox
+                        foodItemView.setChecked(false);
+                        itemStateArray.put(adapterPosition, false);
+                    }
+                });
+
+                // Create alert dialog object
+                AlertDialog dialog = builder.create();
+
+                // Avoid using the Android back button or clicking outside
+                dialog.setCancelable(false);
+                dialog.setCanceledOnTouchOutside(false);
+
+                // Show the dialog
+                dialog.show();
+            } else { // The food is unselected
                 foodItemView.setChecked(false);
                 itemStateArray.put(adapterPosition, false);
-            }
 
-            // Check if at least one is checked
-            if (isAtLeastOneChecked()) {
-                FloatingActionButton fabMeal = parent.getRootView().findViewById(R.id.fab_meal);
-                FloatingActionButton fabNew = parent.getRootView().findViewById(R.id.fab_add);
-                fabNew.setVisibility(View.GONE);
-                fabMeal.setVisibility(View.VISIBLE);
+                // We need to remove the food from the meal
+                Food unselectedFood = getFood(adapterPosition);
+                meal.remove(unselectedFood);
             }
         }
     }
@@ -55,15 +92,16 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
     private final LayoutInflater mInflater;
     private List<Food> allFood; // Cached copy of all food items
     SparseBooleanArray itemStateArray = new SparseBooleanArray();
-    private ViewGroup parent;
+    private Context context;
+    private Meal meal;
 
     FoodListAdapter(Context context) {
+        this.context = context;
         mInflater = LayoutInflater.from(context);
     }
 
     @Override
     public FoodViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        this.parent = parent;
         View itemView = mInflater.inflate(R.layout.food_item, parent, false);
         return new FoodViewHolder(itemView);
     }

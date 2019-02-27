@@ -23,7 +23,7 @@
     <include layout="@layout/content_main" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_add"
+        android:id="@+id/fab_new"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -35,10 +35,11 @@
         android:id="@+id/fab_meal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_gravity="top|end"
+        android:layout_marginBottom="80dp"
         android:backgroundTint="@color/colorAccent"
-        android:visibility="gone"
-        app:srcCompat="@drawable/ic_local_dining_black_24dp" />
+        app:srcCompat="@drawable/ic_local_dining_black_24dp"
+        app:layout_anchor="@id/fab_new"
+        app:layout_anchorGravity="top" />
 
 </android.support.design.widget.CoordinatorLayout>
