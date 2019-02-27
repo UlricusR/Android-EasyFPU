@@ -5,8 +5,10 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,9 +18,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import info.rueth.fpucalculator.calc.FoodCalc;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -96,8 +102,25 @@ public class MainActivity extends AppCompatActivity {
         fabMeal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, NewMealActivity.class);
-                startActivity(intent);
+                // Check if any food is selected
+                if (!adapter.isAtLeastOneSelected()) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            getString(R.string.err_select_at_least_one_food),
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    // Create new FoodCalc list and pass to Meal activity
+                    ArrayList<FoodCalc> foodCalcs = new ArrayList<FoodCalc>();
+                    ArrayList<Food> selectedFood = adapter.getSelectedFood();
+                    for (int i = 0; i < selectedFood.size(); i++) {
+                        Food food = selectedFood.get(i);
+                        foodCalcs.add(new FoodCalc(food.getName(), food.getCalories(), food.getCarbs()));
+                    }
+
+                    Intent intent = new Intent(MainActivity.this, NewMealActivity.class);
+                    intent.putParcelableArrayListExtra("FoodList", foodCalcs);
+                    startActivity(intent);
+                }
             }
         });
     }

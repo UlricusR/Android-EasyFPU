@@ -19,4 +19,5 @@
     <string name="edit_amount_message">Wieviel Gramm isst Du?</string>
     <string name="confirm_amount_button">Hinzufügen</string>
     <string name="cancel_amount_button">Abbrechen</string>
+    <string name="err_select_at_least_one_food">Bitte mindestens ein Essen auswählen!</string>
 </resources>

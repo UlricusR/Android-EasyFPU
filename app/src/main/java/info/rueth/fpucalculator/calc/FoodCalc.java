@@ -1,10 +1,15 @@
 package info.rueth.fpucalculator.calc;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Represents a certain food.
  */
-public class Food {
-    // Food name
+public class FoodCalc implements Parcelable {
+    private int mData;
+
+    // FoodCalc name
     private String name;
 
     // Calories per 100g in kcal
@@ -14,28 +19,14 @@ public class Food {
     private double carbsPer100g;
 
     /**
-     * Constructs a new Food.
+     * Constructs a new FoodCalc.
      *
      * @param name            The name of the food
      * @param caloriesPer100g The calories per 100g in kcal
      * @param carbsPer100g    The carbs per 100g in g
      * @throws Exception If calories or carbs are negative and if calories from carbs > total calories
      */
-    Food(String name, double caloriesPer100g, double carbsPer100g) throws Exception {
-        // Check if all numbers are positive
-        if (caloriesPer100g < 0 || carbsPer100g < 0) {
-            throw new Exception("Calories as well as carbs must not be negative for food " + name);
-        }
-
-        // Do a consistency check: Calories from carbs cannot be more than
-        // total calories; 1g of carbs has 4 kcal
-        if (carbsPer100g * 4 > caloriesPer100g) {
-            throw new Exception("Cannot construct new food " + name
-                    + ": Calories from carbs (1g ~ 4kcal) of "
-                    + (carbsPer100g * 4) + " larger than total calories of "
-                    + caloriesPer100g);
-        }
-
+    public FoodCalc(String name, double caloriesPer100g, double carbsPer100g) {
         this.name = name;
         this.caloriesPer100g = caloriesPer100g;
         this.carbsPer100g = carbsPer100g;
@@ -69,5 +60,28 @@ public class Food {
 
         // Create and return the FPU object
         return new FPU(fpus, absorptionScheme.getAbsorptionTime(fpus));
+    }
+
+    public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeInt(mData);
+    }
+
+    public static final Parcelable.Creator<FoodCalc> CREATOR
+            = new Parcelable.Creator<FoodCalc>() {
+        public FoodCalc createFromParcel(Parcel in) {
+            return new FoodCalc(in);
+        }
+
+        public FoodCalc[] newArray(int size) {
+            return new FoodCalc[size];
+        }
+    };
+
+    private FoodCalc(Parcel in) {
+        mData = in.readInt();
     }
 }

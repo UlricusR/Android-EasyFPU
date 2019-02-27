@@ -17,15 +17,15 @@ public class FPUCalculator {
 
         // Create new food with calories from carbs being higher than total calories
         try {
-            Food strangeFood = new Food("Strange Food", 100.5, 30.1);
+            FoodCalc strangeFoodCalc = new FoodCalc("Strange FoodCalc", 100.5, 30.1);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("--> Everything fine, exception was intended!");
         }
 
-        Food pizza;
+        FoodCalc pizza;
         try {
-            pizza = new Food("Pizza", 229, 24);
+            pizza = new FoodCalc("Pizza", 229, 24);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Uups! That shouldn't have happened!");

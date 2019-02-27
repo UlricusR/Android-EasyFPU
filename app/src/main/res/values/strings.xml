@@ -18,4 +18,5 @@
     <string name="edit_amount_message">How much grams will you eat?</string>
     <string name="confirm_amount_button">Add</string>
     <string name="cancel_amount_button">Cancel</string>
+    <string name="err_select_at_least_one_food">Select at least one food!</string>
 </resources>

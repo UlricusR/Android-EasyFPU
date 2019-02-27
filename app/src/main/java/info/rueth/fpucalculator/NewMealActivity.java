@@ -1,4 +1,6 @@
 package info.rueth.fpucalculator;
 
-class NewMealActivity {
+import android.support.v7.app.AppCompatActivity;
+
+public class NewMealActivity extends AppCompatActivity {
 }
