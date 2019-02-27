@@ -2,11 +2,17 @@ package info.rueth.fpucalculator;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 @Entity(tableName = "food_table")
-public class Food {
+public class Food implements Parcelable {
+    @Ignore
+    private int mData;
+
     @PrimaryKey(autoGenerate = true)
     public int id;
 
@@ -61,5 +67,29 @@ public class Food {
 
     public void setCarbs(double carbs) {
         this.carbs = carbs;
+    }
+
+    // Implementation of Parcelable
+    public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeInt(mData);
+    }
+
+    public static final Parcelable.Creator<Food> CREATOR
+            = new Parcelable.Creator<Food>() {
+        public Food createFromParcel(Parcel in) {
+            return new Food(in);
+        }
+
+        public Food[] newArray(int size) {
+            return new Food[size];
+        }
+    };
+
+    private Food(Parcel in) {
+        mData = in.readInt();
     }
 }

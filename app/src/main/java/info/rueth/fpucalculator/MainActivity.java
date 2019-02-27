@@ -109,16 +109,9 @@ public class MainActivity extends AppCompatActivity {
                             getString(R.string.err_select_at_least_one_food),
                             Toast.LENGTH_LONG).show();
                 } else {
-                    // Create new FoodCalc list and pass to Meal activity
-                    ArrayList<FoodCalc> foodCalcs = new ArrayList<FoodCalc>();
-                    ArrayList<Food> selectedFood = adapter.getSelectedFood();
-                    for (int i = 0; i < selectedFood.size(); i++) {
-                        Food food = selectedFood.get(i);
-                        foodCalcs.add(new FoodCalc(food.getName(), food.getCalories(), food.getCarbs()));
-                    }
-
+                    // Pass all selected food to NewMealActivity
                     Intent intent = new Intent(MainActivity.this, NewMealActivity.class);
-                    intent.putParcelableArrayListExtra("FoodList", foodCalcs);
+                    intent.putParcelableArrayListExtra("FoodList", adapter.getSelectedFood());
                     startActivity(intent);
                 }
             }
