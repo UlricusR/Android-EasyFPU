@@ -8,7 +8,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-@Database(entities = {Food.class}, version = 1)
+@Database(entities = {Food.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract FoodDao foodDao();
     private static volatile AppDatabase INSTANCE;
@@ -18,7 +18,9 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, "app_database").addCallback(sRoomDatabaseCallback)
+                            AppDatabase.class, "app_database")
+                            .addCallback(sRoomDatabaseCallback)
+                            .addMigrations(MIGRATION_1_2)
                             .build();
                 }
             }
@@ -54,3 +56,14 @@ public abstract class AppDatabase extends RoomDatabase {
         }
     }
 }
+
+static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+    @Override
+    public void migrate(SupportSQLiteDatabase database) {
+        database.execSQL("ALTER TABLE food_table ADD "
+                + " amount_small DOUBLE"
+                + " amount_medium DOUBLE"
+                + " amount_large DOUBLE");
+    }
+};
+

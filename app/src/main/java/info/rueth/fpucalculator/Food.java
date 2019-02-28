@@ -29,6 +29,15 @@ public class Food implements Parcelable {
     @ColumnInfo(name = "carbs")
     private double carbs;
 
+    @ColumnInfo(name = "amount_small")
+    private double amountSmall;
+
+    @ColumnInfo(name = "amount_medium")
+    private double amountMedium;
+
+    @ColumnInfo(name = "amount_large")
+    private double amountLarge;
+
     public Food(String name, boolean favorite, double calories, double carbs) {
         this.name = name;
         this.favorite = favorite;
@@ -53,6 +62,18 @@ public class Food implements Parcelable {
         return carbs;
     }
 
+    public double getAmountSmall() {
+        return amountSmall;
+    }
+
+    public double getAmountMedium() {
+        return amountMedium;
+    }
+
+    public double getAmountLarge() {
+        return amountLarge;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -67,6 +88,18 @@ public class Food implements Parcelable {
 
     public void setCarbs(double carbs) {
         this.carbs = carbs;
+    }
+
+    public void setAmountSmall(double amount) {
+        this.amountSmall = amount;
+    }
+
+    public void setAmountMedium(double amount) {
+        this.amountMedium = amount;
+    }
+
+    public void setAmountLarge(double amount) {
+        this.amountLarge = amount;
     }
 
     // Implementation of Parcelable
