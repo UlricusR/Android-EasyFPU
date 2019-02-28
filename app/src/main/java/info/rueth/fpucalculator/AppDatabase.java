@@ -4,12 +4,25 @@ import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
 @Database(entities = {Food.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
+
+
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE food_table ADD "
+                    + " amount_small DOUBLE,"
+                    + " amount_medium DOUBLE,"
+                    + " amount_large DOUBLE");
+        }
+    };
+
     public abstract FoodDao foodDao();
     private static volatile AppDatabase INSTANCE;
 
@@ -48,7 +61,7 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(final Void... params) {
             mDao.deleteAll();
-            Food food = new Food("Pizza", true, 229, 24);
+            Food food = new Food("Pizza", false, 229, 24);
             mDao.insert(food);
             food = new Food("Spaghetti", true, 162, 32.6);
             mDao.insert(food);
@@ -57,13 +70,4 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 }
 
-static final Migration MIGRATION_1_2 = new Migration(1, 2) {
-    @Override
-    public void migrate(SupportSQLiteDatabase database) {
-        database.execSQL("ALTER TABLE food_table ADD "
-                + " amount_small DOUBLE"
-                + " amount_medium DOUBLE"
-                + " amount_large DOUBLE");
-    }
-};
 
