@@ -104,6 +104,12 @@ public class NewFoodActivity extends AppCompatActivity {
                     boolean favorite = mFavorite.isChecked();
                     double calories = Double.parseDouble(mCalories.getText().toString());
                     double carbs = Double.parseDouble(mCarbs.getText().toString());
+                    double amoutSmall = Double.parseDouble(mAmountSmall.getText().toString());
+                    double amoutMedium = Double.parseDouble(mAmountMedium.getText().toString());
+                    double amoutLarge = Double.parseDouble(mAmountLarge.getText().toString());
+                    String commentSmall = mCommentSmall.getText().toString();
+                    String commentMedium = mCommentMedium.getText().toString();
+                    String commentLarge = mCommentLarge.getText().toString();
 
                     // Check if all numbers are positive
                     if (calories < 0 || carbs < 0) {
@@ -132,6 +138,12 @@ public class NewFoodActivity extends AppCompatActivity {
                         replyIntent.putExtra(EXTRA_REPLY_FAVORITE, favorite);
                         replyIntent.putExtra(EXTRA_REPLY_CALORIES, calories);
                         replyIntent.putExtra(EXTRA_REPLY_CARBS, carbs);
+                        replyIntent.putExtra(EXTRA_REPLY_AMOUNTSMALL, amoutSmall);
+                        replyIntent.putExtra(EXTRA_REPLY_AMOUNTMEDIUM, amoutMedium);
+                        replyIntent.putExtra(EXTRA_REPLY_AMOUNTLARGE, amoutLarge);
+                        replyIntent.putExtra(EXTRA_REPLY_COMMENTSMALL, commentSmall);
+                        replyIntent.putExtra(EXTRA_REPLY_COMMENTMEDIUM, commentMedium);
+                        replyIntent.putExtra(EXTRA_REPLY_COMMENTLARGE, commentLarge);
 
                         setResult(RESULT_OK, replyIntent);
                         finish();
