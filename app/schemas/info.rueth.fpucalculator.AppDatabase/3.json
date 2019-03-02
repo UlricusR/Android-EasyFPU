@@ -1,0 +1,93 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 3,
+    "identityHash": "d52a6670bc865678e8ee8bed5151e7d7",
+    "entities": [
+      {
+        "tableName": "food_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `favorite` INTEGER NOT NULL, `calories` REAL NOT NULL, `carbs` REAL NOT NULL, `amount_small` REAL NOT NULL, `amount_medium` REAL NOT NULL, `amount_large` REAL NOT NULL, `comment_small` TEXT, `comment_medium` TEXT, `comment_large` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "favorite",
+            "columnName": "favorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "calories",
+            "columnName": "calories",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "carbs",
+            "columnName": "carbs",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amountSmall",
+            "columnName": "amount_small",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amountMedium",
+            "columnName": "amount_medium",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amountLarge",
+            "columnName": "amount_large",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "commentSmall",
+            "columnName": "comment_small",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "commentMedium",
+            "columnName": "comment_medium",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "commentLarge",
+            "columnName": "comment_large",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"d52a6670bc865678e8ee8bed5151e7d7\")"
+    ]
+  }
+}
