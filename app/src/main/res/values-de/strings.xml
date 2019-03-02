@@ -20,4 +20,10 @@
     <string name="confirm_amount_button">Hinzufügen</string>
     <string name="cancel_amount_button">Abbrechen</string>
     <string name="err_select_at_least_one_food">Bitte mindestens ein Essen auswählen!</string>
+    <string name="amountsmall_label">Klein</string>
+    <string name="amountmedium_label">Mittel</string>
+    <string name="amountlarge_label">Groß</string>
+    <string name="amounttypical_label">Typische Portionsgrößen in Gramm</string>
+    <string name="amount_label">Menge</string>
+    <string name="comment_label">Bemerkung</string>
 </resources>

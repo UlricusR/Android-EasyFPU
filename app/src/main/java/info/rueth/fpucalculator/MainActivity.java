@@ -59,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(NewFoodActivity.EXTRA_REPLY_FAVORITE, food.isFavorite());
                 intent.putExtra(NewFoodActivity.EXTRA_REPLY_CALORIES, food.getCalories());
                 intent.putExtra(NewFoodActivity.EXTRA_REPLY_CARBS, food.getCarbs());
+                intent.putExtra(NewFoodActivity.EXTRA_REPLY_AMOUNTSMALL, food.getAmountSmall());
+                intent.putExtra(NewFoodActivity.EXTRA_REPLY_AMOUNTMEDIUM, food.getAmountMedium());
+                intent.putExtra(NewFoodActivity.EXTRA_REPLY_AMOUNTLARGE, food.getAmountLarge());
+                intent.putExtra(NewFoodActivity.EXTRA_REPLY_COMMENTSMALL, food.getCommentSmall());
+                intent.putExtra(NewFoodActivity.EXTRA_REPLY_COMMENTMEDIUM, food.getCommentMedium());
+                intent.putExtra(NewFoodActivity.EXTRA_REPLY_COMMENTLARGE, food.getCommentLarge());
                 startActivityForResult(intent, EDIT_FOOD_ACTIVITY_REQUEST_CODE);
             }
 
@@ -145,24 +151,39 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_FOOD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            String name = data.getStringExtra(NewFoodActivity.EXTRA_REPLY_NAME);
-            boolean favorite = data.getBooleanExtra(NewFoodActivity.EXTRA_REPLY_FAVORITE, false);
-            double calories = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_CALORIES, 0);
-            double carbs = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_CARBS, 0);
-            Food food = new Food(name, favorite, calories, carbs);
+            Food food = new Food();
+            fillFood(food, data);
             mDataViewModel.insert(food);
+
         } else if (requestCode == EDIT_FOOD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             int position = data.getIntExtra(NewFoodActivity.FOOD_POSITION, -1);
-            String name = data.getStringExtra(NewFoodActivity.EXTRA_REPLY_NAME);
-            boolean favorite = data.getBooleanExtra(NewFoodActivity.EXTRA_REPLY_FAVORITE, false);
-            double calories = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_CALORIES, 0);
-            double carbs = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_CARBS, 0);
             Food food = mDataViewModel.getFood(position);
-            food.setName(name);
-            food.setFavorite(favorite);
-            food.setCalories(calories);
-            food.setCarbs(carbs);
+            fillFood(food, data);
             mDataViewModel.update(food);
         }
+    }
+
+    private void fillFood(Food food, Intent data) {
+        String name = data.getStringExtra(NewFoodActivity.EXTRA_REPLY_NAME);
+        boolean favorite = data.getBooleanExtra(NewFoodActivity.EXTRA_REPLY_FAVORITE, false);
+        double calories = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_CALORIES, 0);
+        double carbs = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_CARBS, 0);
+        double amountSmall = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_AMOUNTSMALL, 0);
+        double amountMedium = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_AMOUNTMEDIUM, 0);
+        double amountLarge = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_AMOUNTLARGE, 0);
+        String commentSmall = data.getStringExtra(NewFoodActivity.EXTRA_REPLY_COMMENTSMALL);
+        String commentMedium = data.getStringExtra(NewFoodActivity.EXTRA_REPLY_COMMENTMEDIUM);
+        String commentLarge = data.getStringExtra(NewFoodActivity.EXTRA_REPLY_COMMENTLARGE);
+
+        food.setName(name);
+        food.setFavorite(favorite);
+        food.setCalories(calories);
+        food.setCarbs(carbs);
+        food.setAmountSmall(amountSmall);
+        food.setAmountMedium(amountMedium);
+        food.setAmountLarge(amountLarge);
+        food.setCommentSmall(commentSmall);
+        food.setCommentMedium(commentMedium);
+        food.setCommentLarge(commentLarge);
     }
 }

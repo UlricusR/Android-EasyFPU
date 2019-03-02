@@ -9,17 +9,25 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-@Database(entities = {Food.class}, version = 2)
+@Database(entities = {Food.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
 
 
     static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
-            database.execSQL("ALTER TABLE food_table ADD "
-                    + " amount_small DOUBLE,"
-                    + " amount_medium DOUBLE,"
-                    + " amount_large DOUBLE");
+            database.execSQL("ALTER TABLE food_table ADD amount_small DOUBLE");
+            database.execSQL("ALTER TABLE food_table ADD amount_medium DOUBLE");
+            database.execSQL("ALTER TABLE food_table ADD amount_large DOUBLE");
+        }
+    };
+
+    static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE food_table ADD comment_small VARCHAR(20)");
+            database.execSQL("ALTER TABLE food_table ADD comment_medium VARCHAR(20)");
+            database.execSQL("ALTER TABLE food_table ADD comment_large VARCHAR(20)");
         }
     };
 
@@ -33,7 +41,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, "app_database")
                             .addCallback(sRoomDatabaseCallback)
-                            .addMigrations(MIGRATION_1_2)
+                            .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                             .build();
                 }
             }
@@ -61,9 +69,26 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(final Void... params) {
             mDao.deleteAll();
-            Food food = new Food("Pizza", false, 229, 24);
+            Food food = new Food();
+            food.setName("Pizza");
+            food.setFavorite(false);
+            food.setCalories(229);
+            food.setCarbs(24);
+            food.setAmountSmall(160);
+            food.setAmountMedium(220);
+            food.setAmountLarge(320);
+            food.setCommentSmall("1/2 kleine");
+            food.setCommentMedium("1/2 große");
+            food.setCommentLarge("Ganze kleine");
             mDao.insert(food);
-            food = new Food("Spaghetti", true, 162, 32.6);
+            food = new Food();
+            food.setName("Spaghetti");
+            food.setFavorite(true);
+            food.setCalories(162);
+            food.setCarbs(32.6);
+            food.setAmountSmall(0f);
+            food.setAmountMedium(0f);
+            food.setAmountLarge(0f);
             mDao.insert(food);
             return null;
         }

@@ -7,6 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 @Entity(tableName = "food_table")
 public class Food implements Parcelable {
@@ -38,12 +39,16 @@ public class Food implements Parcelable {
     @ColumnInfo(name = "amount_large")
     private double amountLarge;
 
-    public Food(String name, boolean favorite, double calories, double carbs) {
-        this.name = name;
-        this.favorite = favorite;
-        this.calories = calories;
-        this.carbs = carbs;
-    }
+    @ColumnInfo(name = "comment_small")
+    private String commentSmall;
+
+    @ColumnInfo(name = "comment_medium")
+    private String commentMedium;
+
+    @ColumnInfo(name = "comment_large")
+    private String commentLarge;
+
+    public Food() {}
 
     @NonNull
     public String getName() {
@@ -62,18 +67,6 @@ public class Food implements Parcelable {
         return carbs;
     }
 
-    public double getAmountSmall() {
-        return amountSmall;
-    }
-
-    public double getAmountMedium() {
-        return amountMedium;
-    }
-
-    public double getAmountLarge() {
-        return amountLarge;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -90,6 +83,30 @@ public class Food implements Parcelable {
         this.carbs = carbs;
     }
 
+    public double getAmountSmall() {
+        return amountSmall;
+    }
+
+    public double getAmountMedium() {
+        return amountMedium;
+    }
+
+    public double getAmountLarge() {
+        return amountLarge;
+    }
+
+    public String getCommentSmall() {
+        return commentSmall;
+    }
+
+    public String getCommentMedium() {
+        return commentMedium;
+    }
+
+    public String getCommentLarge() {
+        return commentLarge;
+    }
+
     public void setAmountSmall(double amount) {
         this.amountSmall = amount;
     }
@@ -100,6 +117,18 @@ public class Food implements Parcelable {
 
     public void setAmountLarge(double amount) {
         this.amountLarge = amount;
+    }
+
+    public void setCommentSmall(String comment) {
+        this.commentSmall = comment;
+    }
+
+    public void setCommentMedium(String comment) {
+        this.commentMedium = comment;
+    }
+
+    public void setCommentLarge(String comment) {
+        this.commentLarge = comment;
     }
 
     // Implementation of Parcelable

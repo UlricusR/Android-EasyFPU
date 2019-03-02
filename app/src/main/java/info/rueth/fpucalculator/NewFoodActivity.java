@@ -20,11 +20,23 @@ public class NewFoodActivity extends AppCompatActivity {
     public static final String EXTRA_REPLY_FAVORITE = "info.rueth.fpucalculator.foodlistsql.REPLY_FAVORITE";
     public static final String EXTRA_REPLY_CALORIES = "info.rueth.fpucalculator.foodlistsql.REPLY_CALORIES";
     public static final String EXTRA_REPLY_CARBS = "info.rueth.fpucalculator.foodlistsql.REPLY_CARBS";
+    public static final String EXTRA_REPLY_AMOUNTSMALL = "info.rueth.fpucalculator.foodlistsql.REPLY_AMOUNTSMALL";
+    public static final String EXTRA_REPLY_AMOUNTMEDIUM = "info.rueth.fpucalculator.foodlistsql.REPLY_AMOUNTMEDIUM";
+    public static final String EXTRA_REPLY_AMOUNTLARGE = "info.rueth.fpucalculator.foodlistsql.REPLY_AMOUNTLARGE";
+    public static final String EXTRA_REPLY_COMMENTSMALL = "info.rueth.fpucalculator.foodlistsql.REPLY_COMMENTSMALL";
+    public static final String EXTRA_REPLY_COMMENTMEDIUM = "info.rueth.fpucalculator.foodlistsql.REPLY_COMMENTMEDIUM";
+    public static final String EXTRA_REPLY_COMMENTLARGE = "info.rueth.fpucalculator.foodlistsql.REPLY_COMMENTLARGE";
 
     private EditText mFoodName;
     private Switch mFavorite;
     private EditText mCalories;
     private EditText mCarbs;
+    private EditText mAmountSmall;
+    private EditText mAmountMedium;
+    private EditText mAmountLarge;
+    private EditText mCommentSmall;
+    private EditText mCommentMedium;
+    private EditText mCommentLarge;
 
     private int foodPosition = -1;
 
@@ -37,6 +49,12 @@ public class NewFoodActivity extends AppCompatActivity {
         mFavorite = findViewById(R.id.favorite);
         mCarbs = findViewById(R.id.carbs);
         mCalories = findViewById(R.id.calories);
+        mAmountSmall = findViewById(R.id.amountsmall);
+        mAmountMedium = findViewById(R.id.amountmedium);
+        mAmountLarge = findViewById(R.id.amountlarge);
+        mCommentSmall = findViewById(R.id.amountsmall_comment);
+        mCommentMedium = findViewById(R.id.amountmedium_comment);
+        mCommentLarge = findViewById(R.id.amountlarge_comment);
 
         // Fill data if food is edited
         String name = getIntent().getStringExtra(EXTRA_REPLY_NAME);
@@ -45,11 +63,23 @@ public class NewFoodActivity extends AppCompatActivity {
             boolean favorite = getIntent().getBooleanExtra(EXTRA_REPLY_FAVORITE, false);
             double carbs = getIntent().getDoubleExtra(EXTRA_REPLY_CARBS, 0f);
             double calories = getIntent().getDoubleExtra(EXTRA_REPLY_CALORIES, 0f);
+            double amountSmall = getIntent().getDoubleExtra(EXTRA_REPLY_AMOUNTSMALL, 0f);
+            double amountMedium = getIntent().getDoubleExtra(EXTRA_REPLY_AMOUNTMEDIUM, 0f);
+            double amountLarge = getIntent().getDoubleExtra(EXTRA_REPLY_AMOUNTLARGE, 0f);
+            String commentSmall = getIntent().getStringExtra(EXTRA_REPLY_COMMENTSMALL);
+            String commentMedium = getIntent().getStringExtra(EXTRA_REPLY_COMMENTMEDIUM);
+            String commentLarge = getIntent().getStringExtra(EXTRA_REPLY_COMMENTLARGE);
 
             mFoodName.setText(name);
             mFavorite.setChecked(favorite);
-            mCalories.setText(String.valueOf(calories), TextView.BufferType.EDITABLE);
+            mCalories.setText(String.valueOf(calories));
             mCarbs.setText(String.valueOf(carbs));
+            mAmountSmall.setText(String.valueOf(amountSmall));
+            mAmountMedium.setText(String.valueOf(amountMedium));
+            mAmountLarge.setText(String.valueOf(amountLarge));
+            mCommentSmall.setText(commentSmall);
+            mCommentMedium.setText(commentMedium);
+            mCommentLarge.setText(commentLarge);
         }
         
         // Save button

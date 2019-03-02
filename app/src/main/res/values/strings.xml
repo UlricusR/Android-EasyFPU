@@ -19,4 +19,10 @@
     <string name="confirm_amount_button">Add</string>
     <string name="cancel_amount_button">Cancel</string>
     <string name="err_select_at_least_one_food">Select at least one food!</string>
+    <string name="amountsmall_label">Small</string>
+    <string name="amountmedium_label">Medium</string>
+    <string name="amountlarge_label">Large</string>
+    <string name="amounttypical_label">Typical portions in grams</string>
+    <string name="amount_label">Amount</string>
+    <string name="comment_label">Comment</string>
 </resources>
