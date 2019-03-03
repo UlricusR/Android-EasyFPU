@@ -5,10 +5,8 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,8 +15,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private DataViewModel mDataViewModel;
     public static final int NEW_FOOD_ACTIVITY_REQUEST_CODE = 1;
     public static final int EDIT_FOOD_ACTIVITY_REQUEST_CODE = 2;
+    public static final String INTENT_FOODLIST = "FoodList";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         mDataViewModel = ViewModelProviders.of(this).get(DataViewModel.class);
 
         // Create recycler view
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview_main);
         final FoodListAdapter adapter = new FoodListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -117,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     // Pass all selected food to NewMealActivity
                     Intent intent = new Intent(MainActivity.this, NewMealActivity.class);
-                    intent.putParcelableArrayListExtra("FoodList", adapter.getSelectedFood());
+                    intent.putParcelableArrayListExtra(INTENT_FOODLIST, adapter.getSelectedFood());
                     startActivity(intent);
                 }
             }

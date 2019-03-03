@@ -11,9 +11,6 @@ import android.support.annotation.Nullable;
 
 @Entity(tableName = "food_table")
 public class Food implements Parcelable {
-    @Ignore
-    private int mData;
-
     @PrimaryKey(autoGenerate = true)
     public int id;
 
@@ -137,7 +134,17 @@ public class Food implements Parcelable {
     }
 
     public void writeToParcel(Parcel out, int flags) {
-        out.writeInt(mData);
+        out.writeInt(id);
+        out.writeString(name);
+        out.writeBooleanArray(new boolean[] {favorite});
+        out.writeDouble(calories);
+        out.writeDouble(carbs);
+        out.writeDouble(amountSmall);
+        out.writeDouble(amountMedium);
+        out.writeDouble(amountLarge);
+        out.writeString(commentSmall);
+        out.writeString(commentMedium);
+        out.writeString(commentLarge);
     }
 
     public static final Parcelable.Creator<Food> CREATOR
@@ -152,6 +159,18 @@ public class Food implements Parcelable {
     };
 
     private Food(Parcel in) {
-        mData = in.readInt();
+        id = in.readInt();
+        name = in.readString();
+        boolean[] bArray = new boolean[1];
+        in.readBooleanArray(bArray);
+        favorite = bArray[0];
+        calories = in.readDouble();
+        carbs = in.readDouble();
+        amountSmall = in.readDouble();
+        amountMedium = in.readDouble();
+        amountLarge = in.readDouble();
+        commentSmall = in.readString();
+        commentMedium = in.readString();
+        commentLarge = in.readString();
     }
 }

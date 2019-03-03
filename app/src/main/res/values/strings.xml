@@ -25,4 +25,6 @@
     <string name="amounttypical_label">Typical portions in grams</string>
     <string name="amount_label">Amount</string>
     <string name="comment_label">Comment</string>
+    <string name="newmeal_nofoodselected">No food selected</string>
+    <string name="newmeal_customamount">Custom amount</string>
 </resources>

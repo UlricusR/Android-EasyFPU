@@ -26,4 +26,6 @@
     <string name="amounttypical_label">Typische Portionsgrößen in Gramm</string>
     <string name="amount_label">Menge</string>
     <string name="comment_label">Bemerkung</string>
+    <string name="newmeal_nofoodselected">Kein Essen ausgewählt</string>
+    <string name="newmeal_customamount">Eigene Menge</string>
 </resources>

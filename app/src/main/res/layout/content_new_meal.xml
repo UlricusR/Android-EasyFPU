@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_new_meal">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview_main"
+        android:id="@+id/recyclerview_newmeal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/darker_gray"
-        tools:listitem="@layout/food_list_item" />
+        tools:listitem="@layout/food_calc_item" />
 
 </android.support.constraint.ConstraintLayout>
