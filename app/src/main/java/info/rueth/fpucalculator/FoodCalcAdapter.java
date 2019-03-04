@@ -1,10 +1,7 @@
 package info.rueth.fpucalculator;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,18 +34,31 @@ public class FoodCalcAdapter extends RecyclerView.Adapter<FoodCalcAdapter.FoodVi
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
                         int amount = Integer.parseInt(v.getText().toString());
-
-                        // Store the amount in the first spinner item
-                        TypicalAmount typicalAmount = (TypicalAmount) typicalAmountSpinner.getItemAtPosition(0);
-                        typicalAmount.setAmount(amount);
-
-                        // ... and store it in the food
-                        selectedFood.get(getAdapterPosition()).setAmount(amount);
+                        storeAmount(amount);
                         return true;
                     }
                     return false;
                 }
             });
+            amountView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (!hasFocus) {
+                        String text = ((EditText) v).getText().toString();
+                        int amount = Integer.parseInt(text);
+                        storeAmount(amount);
+                    }
+                }
+            });
+        }
+
+        private void storeAmount(int amount) {
+            // Store the amount in the first spinner item
+            TypicalAmount typicalAmount = (TypicalAmount) typicalAmountSpinner.getItemAtPosition(0);
+            typicalAmount.setAmount(amount);
+
+            // ... and store it in the food
+            selectedFood.get(getAdapterPosition()).setAmount(amount);
         }
 
         @Override
