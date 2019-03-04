@@ -16,9 +16,9 @@ public abstract class AppDatabase extends RoomDatabase {
     static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
-            database.execSQL("ALTER TABLE food_table ADD amount_small DOUBLE");
-            database.execSQL("ALTER TABLE food_table ADD amount_medium DOUBLE");
-            database.execSQL("ALTER TABLE food_table ADD amount_large DOUBLE");
+            database.execSQL("ALTER TABLE food_table ADD amount_small INTEGER");
+            database.execSQL("ALTER TABLE food_table ADD amount_medium INTEGER");
+            database.execSQL("ALTER TABLE food_table ADD amount_large INTEGER");
         }
     };
 
@@ -86,9 +86,9 @@ public abstract class AppDatabase extends RoomDatabase {
             food.setFavorite(true);
             food.setCalories(162);
             food.setCarbs(32.6);
-            food.setAmountSmall(0f);
-            food.setAmountMedium(0f);
-            food.setAmountLarge(0f);
+            food.setAmountSmall(0);
+            food.setAmountMedium(0);
+            food.setAmountLarge(0);
             mDao.insert(food);
             return null;
         }

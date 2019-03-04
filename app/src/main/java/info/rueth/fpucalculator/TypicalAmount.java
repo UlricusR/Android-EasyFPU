@@ -4,19 +4,23 @@ import android.support.annotation.NonNull;
 
 public class TypicalAmount {
 
-    private double mAmount;
+    private int mAmount;
     private String mComment;
 
     @NonNull
     private String mDefaultComment;
 
-    public TypicalAmount(double amount, String comment, @NonNull String defaultComment) {
+    public TypicalAmount(int amount, String comment, @NonNull String defaultComment) {
         this.mAmount = amount;
         this.mComment = comment;
         this.mDefaultComment = defaultComment;
     }
 
-    public double getAmount() {
+    public void setAmount(int amount) {
+        mAmount = amount;
+    }
+
+    public int getAmount() {
         return mAmount;
     }
 

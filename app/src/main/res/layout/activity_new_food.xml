@@ -7,27 +7,27 @@
     android:paddingEnd="@dimen/activity_horizontal_padding"
     android:paddingTop="@dimen/activity_vertical_padding"
     android:paddingBottom="@dimen/activity_vertical_padding">
-    
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline_80"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.8" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline_33"
+        android:id="@+id/guideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.2" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline_66"
+        android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.4" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
 
     <TextView
         android:id="@+id/foodname_label"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="@string/foodname_label"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_80"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/favorite_label"
-        app:layout_constraintStart_toEndOf="@+id/guideline_80"
+        app:layout_constraintStart_toEndOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,7 +60,7 @@
         android:inputType="textAutoComplete"
         android:padding="@dimen/small_padding"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_80"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/foodname_label" />
 
@@ -71,7 +71,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/guideline_80"
+        app:layout_constraintStart_toEndOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/favorite_label" />
     
     <TextView
@@ -95,7 +95,7 @@
         android:inputType="numberDecimal"
         android:padding="@dimen/small_padding"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_80"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calories_label" />
 
@@ -106,7 +106,7 @@
         android:layout_marginStart="8dp"
         android:text="@string/calories_unit"
         app:layout_constraintBaseline_toBaselineOf="@+id/calories"
-        app:layout_constraintStart_toEndOf="@+id/guideline_80"
+        app:layout_constraintStart_toEndOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
@@ -130,7 +130,7 @@
         android:inputType="numberDecimal"
         android:padding="@dimen/small_padding"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_80"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carbs_label" />
 
@@ -141,7 +141,7 @@
         android:layout_marginStart="8dp"
         android:text="@string/carbs_unit"
         app:layout_constraintBaseline_toBaselineOf="@+id/carbs"
-        app:layout_constraintStart_toEndOf="@+id/guideline_80"
+        app:layout_constraintStart_toEndOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Typical amounts -->
@@ -165,8 +165,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginStart="4dp"
         android:text="@string/amount_label"
-        app:layout_constraintStart_toEndOf="@+id/guideline_33"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_66"
+        app:layout_constraintStart_toEndOf="@+id/guideline1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/amounttypical_label"/>
 
     <TextView
@@ -176,7 +176,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginStart="4dp"
         android:text="@string/comment_label"
-        app:layout_constraintStart_toEndOf="@+id/guideline_66"
+        app:layout_constraintStart_toEndOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBaseline_toBaselineOf="@+id/amount_label"/>
 
@@ -188,7 +188,7 @@
         android:layout_marginEnd="4dp"
         android:text="@string/amountsmall_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_33"
+        app:layout_constraintEnd_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/amount_label"/>
 
     <EditText
@@ -197,13 +197,13 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
         android:importantForAutofill="no"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:nextFocusForward="@+id/amountsmall_comment"
         android:padding="@dimen/small_padding"
         android:textSize="18sp"
         android:layout_marginEnd="4dp"
-        app:layout_constraintStart_toEndOf="@+id/guideline_33"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_66"
+        app:layout_constraintStart_toEndOf="@+id/guideline1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintBaseline_toBaselineOf="@+id/amountsmall_label"/>
 
 
@@ -219,7 +219,7 @@
         android:textSize="18sp"
         android:maxLength="20"
         android:layout_marginStart="4dp"
-        app:layout_constraintStart_toEndOf="@+id/guideline_66"
+        app:layout_constraintStart_toEndOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBaseline_toBaselineOf="@+id/amountsmall"/>
 
@@ -231,7 +231,7 @@
         android:layout_marginEnd="4dp"
         android:text="@string/amountmedium_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_33"
+        app:layout_constraintEnd_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/amountsmall_label"/>
 
     <EditText
@@ -240,13 +240,13 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
         android:importantForAutofill="no"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:nextFocusForward="@+id/amountmedium_comment"
         android:padding="@dimen/small_padding"
         android:textSize="18sp"
         android:layout_marginEnd="4dp"
-        app:layout_constraintStart_toEndOf="@+id/guideline_33"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_66"
+        app:layout_constraintStart_toEndOf="@+id/guideline1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintBaseline_toBaselineOf="@+id/amountmedium_label"/>
 
 
@@ -262,7 +262,7 @@
         android:textSize="18sp"
         android:maxLength="20"
         android:layout_marginStart="4dp"
-        app:layout_constraintStart_toEndOf="@+id/guideline_66"
+        app:layout_constraintStart_toEndOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBaseline_toBaselineOf="@+id/amountmedium"/>
 
@@ -274,7 +274,7 @@
         android:layout_marginEnd="4dp"
         android:text="@string/amountlarge_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_33"
+        app:layout_constraintEnd_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/amountmedium_label"/>
 
     <EditText
@@ -283,13 +283,13 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
         android:importantForAutofill="no"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:nextFocusForward="@+id/amountlarge_comment"
         android:padding="@dimen/small_padding"
         android:textSize="18sp"
         android:layout_marginEnd="4dp"
-        app:layout_constraintStart_toEndOf="@+id/guideline_33"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_66"
+        app:layout_constraintStart_toEndOf="@+id/guideline1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintBaseline_toBaselineOf="@+id/amountlarge_label"/>
 
     <EditText
@@ -303,7 +303,7 @@
         android:textSize="18sp"
         android:maxLength="20"
         android:layout_marginStart="4dp"
-        app:layout_constraintStart_toEndOf="@+id/guideline_66"
+        app:layout_constraintStart_toEndOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBaseline_toBaselineOf="@+id/amountlarge"/>
 

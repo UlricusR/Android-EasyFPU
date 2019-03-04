@@ -17,10 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import info.rueth.fpucalculator.calc.FoodCalc;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -165,9 +162,9 @@ public class MainActivity extends AppCompatActivity {
         boolean favorite = data.getBooleanExtra(NewFoodActivity.EXTRA_REPLY_FAVORITE, false);
         double calories = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_CALORIES, 0);
         double carbs = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_CARBS, 0);
-        double amountSmall = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_AMOUNTSMALL, 0);
-        double amountMedium = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_AMOUNTMEDIUM, 0);
-        double amountLarge = data.getDoubleExtra(NewFoodActivity.EXTRA_REPLY_AMOUNTLARGE, 0);
+        int amountSmall = data.getIntExtra(NewFoodActivity.EXTRA_REPLY_AMOUNTSMALL, 0);
+        int amountMedium = data.getIntExtra(NewFoodActivity.EXTRA_REPLY_AMOUNTMEDIUM, 0);
+        int amountLarge = data.getIntExtra(NewFoodActivity.EXTRA_REPLY_AMOUNTLARGE, 0);
         String commentSmall = data.getStringExtra(NewFoodActivity.EXTRA_REPLY_COMMENTSMALL);
         String commentMedium = data.getStringExtra(NewFoodActivity.EXTRA_REPLY_COMMENTMEDIUM);
         String commentLarge = data.getStringExtra(NewFoodActivity.EXTRA_REPLY_COMMENTLARGE);

@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".NewFoodActivity"></activity>
         <activity android:name=".NewMealActivity"></activity>
+        <activity android:name=".CalcMealActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

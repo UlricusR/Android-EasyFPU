@@ -11,6 +11,9 @@ import android.support.annotation.Nullable;
 
 @Entity(tableName = "food_table")
 public class Food implements Parcelable {
+    @Ignore
+    private int amount;
+
     @PrimaryKey(autoGenerate = true)
     public int id;
 
@@ -28,13 +31,13 @@ public class Food implements Parcelable {
     private double carbs;
 
     @ColumnInfo(name = "amount_small")
-    private double amountSmall;
+    private int amountSmall;
 
     @ColumnInfo(name = "amount_medium")
-    private double amountMedium;
+    private int amountMedium;
 
     @ColumnInfo(name = "amount_large")
-    private double amountLarge;
+    private int amountLarge;
 
     @ColumnInfo(name = "comment_small")
     private String commentSmall;
@@ -46,6 +49,16 @@ public class Food implements Parcelable {
     private String commentLarge;
 
     public Food() {}
+
+    @Ignore
+    public int getAmount() {
+        return amount;
+    }
+
+    @Ignore
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
     @NonNull
     public String getName() {
@@ -64,7 +77,7 @@ public class Food implements Parcelable {
         return carbs;
     }
 
-    public void setName(String name) {
+    public void setName(@NonNull String name) {
         this.name = name;
     }
 
@@ -80,15 +93,15 @@ public class Food implements Parcelable {
         this.carbs = carbs;
     }
 
-    public double getAmountSmall() {
+    public int getAmountSmall() {
         return amountSmall;
     }
 
-    public double getAmountMedium() {
+    public int getAmountMedium() {
         return amountMedium;
     }
 
-    public double getAmountLarge() {
+    public int getAmountLarge() {
         return amountLarge;
     }
 
@@ -104,15 +117,15 @@ public class Food implements Parcelable {
         return commentLarge;
     }
 
-    public void setAmountSmall(double amount) {
+    public void setAmountSmall(int amount) {
         this.amountSmall = amount;
     }
 
-    public void setAmountMedium(double amount) {
+    public void setAmountMedium(int amount) {
         this.amountMedium = amount;
     }
 
-    public void setAmountLarge(double amount) {
+    public void setAmountLarge(int amount) {
         this.amountLarge = amount;
     }
 
@@ -139,9 +152,10 @@ public class Food implements Parcelable {
         out.writeBooleanArray(new boolean[] {favorite});
         out.writeDouble(calories);
         out.writeDouble(carbs);
-        out.writeDouble(amountSmall);
-        out.writeDouble(amountMedium);
-        out.writeDouble(amountLarge);
+        out.writeInt(amount);
+        out.writeInt(amountSmall);
+        out.writeInt(amountMedium);
+        out.writeInt(amountLarge);
         out.writeString(commentSmall);
         out.writeString(commentMedium);
         out.writeString(commentLarge);
@@ -166,9 +180,10 @@ public class Food implements Parcelable {
         favorite = bArray[0];
         calories = in.readDouble();
         carbs = in.readDouble();
-        amountSmall = in.readDouble();
-        amountMedium = in.readDouble();
-        amountLarge = in.readDouble();
+        amount = in.readInt();
+        amountSmall = in.readInt();
+        amountMedium = in.readInt();
+        amountLarge = in.readInt();
         commentSmall = in.readString();
         commentMedium = in.readString();
         commentLarge = in.readString();

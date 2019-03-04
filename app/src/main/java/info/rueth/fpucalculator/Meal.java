@@ -11,7 +11,7 @@ public class Meal {
         allFood = new ArrayList<Food>();
     }
 
-    public void add(Food food, double amount) {
+    public void add(Food food) {
         allFood.add(food);
     }
 

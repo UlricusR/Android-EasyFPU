@@ -63,9 +63,9 @@ public class NewFoodActivity extends AppCompatActivity {
             boolean favorite = getIntent().getBooleanExtra(EXTRA_REPLY_FAVORITE, false);
             double carbs = getIntent().getDoubleExtra(EXTRA_REPLY_CARBS, 0f);
             double calories = getIntent().getDoubleExtra(EXTRA_REPLY_CALORIES, 0f);
-            double amountSmall = getIntent().getDoubleExtra(EXTRA_REPLY_AMOUNTSMALL, 0f);
-            double amountMedium = getIntent().getDoubleExtra(EXTRA_REPLY_AMOUNTMEDIUM, 0f);
-            double amountLarge = getIntent().getDoubleExtra(EXTRA_REPLY_AMOUNTLARGE, 0f);
+            int amountSmall = getIntent().getIntExtra(EXTRA_REPLY_AMOUNTSMALL, 0);
+            int amountMedium = getIntent().getIntExtra(EXTRA_REPLY_AMOUNTMEDIUM, 0);
+            int amountLarge = getIntent().getIntExtra(EXTRA_REPLY_AMOUNTLARGE, 0);
             String commentSmall = getIntent().getStringExtra(EXTRA_REPLY_COMMENTSMALL);
             String commentMedium = getIntent().getStringExtra(EXTRA_REPLY_COMMENTMEDIUM);
             String commentLarge = getIntent().getStringExtra(EXTRA_REPLY_COMMENTLARGE);
@@ -104,9 +104,9 @@ public class NewFoodActivity extends AppCompatActivity {
                     boolean favorite = mFavorite.isChecked();
                     double calories = Double.parseDouble(mCalories.getText().toString());
                     double carbs = Double.parseDouble(mCarbs.getText().toString());
-                    double amoutSmall = Double.parseDouble(mAmountSmall.getText().toString());
-                    double amoutMedium = Double.parseDouble(mAmountMedium.getText().toString());
-                    double amoutLarge = Double.parseDouble(mAmountLarge.getText().toString());
+                    int amoutSmall = Integer.parseInt(mAmountSmall.getText().toString());
+                    int amoutMedium = Integer.parseInt(mAmountMedium.getText().toString());
+                    int amoutLarge = Integer.parseInt(mAmountLarge.getText().toString());
                     String commentSmall = mCommentSmall.getText().toString();
                     String commentMedium = mCommentMedium.getText().toString();
                     String commentLarge = mCommentLarge.getText().toString();
