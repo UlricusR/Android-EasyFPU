@@ -25,10 +25,10 @@ public class Food implements Parcelable {
     private boolean favorite;
 
     @ColumnInfo(name = "calories")
-    private double calories;
+    private double caloriesPer100g;
 
     @ColumnInfo(name = "carbs")
-    private double carbs;
+    private double carbsPer100g;
 
     @ColumnInfo(name = "amount_small")
     private int amountSmall;
@@ -70,11 +70,19 @@ public class Food implements Parcelable {
     }
 
     public double getCalories() {
-        return calories;
+        return amount * caloriesPer100g / 100;
+    }
+
+    public double getCaloriesPer100g() {
+        return caloriesPer100g;
     }
 
     public double getCarbs() {
-        return carbs;
+        return amount * carbsPer100g / 100;
+    }
+
+    public double getCarbsPer100g() {
+        return carbsPer100g;
     }
 
     public void setName(@NonNull String name) {
@@ -85,12 +93,12 @@ public class Food implements Parcelable {
         this.favorite = favorite;
     }
 
-    public void setCalories(double calories) {
-        this.calories = calories;
+    public void setCaloriesPer100g(double caloriesPer100g) {
+        this.caloriesPer100g = caloriesPer100g;
     }
 
-    public void setCarbs(double carbs) {
-        this.carbs = carbs;
+    public void setCarbsPer100g(double carbsPer100g) {
+        this.carbsPer100g = carbsPer100g;
     }
 
     public int getAmountSmall() {
@@ -141,6 +149,26 @@ public class Food implements Parcelable {
         this.commentLarge = comment;
     }
 
+    /**
+     * Calculates the Fat Protein Units of the food.
+     *
+     * @return The FPU associated with that food
+     */
+    public FPU getFPU() {
+        // 1g carbs has ~4 kcal, so calculate carb portion of calories
+        double carbsCal = amount / 100 * carbsPer100g * 4;
+
+        // The carbs from fat and protein is the remainder
+        double calFromFP = getCalories() - carbsCal;
+
+        // 100kcal makes 1 FPU
+        double fpus = calFromFP / 100;
+
+        // Create and return the FPU object
+        return new FPU(fpus);
+    }
+
+
     // Implementation of Parcelable
     public int describeContents() {
         return 0;
@@ -150,8 +178,8 @@ public class Food implements Parcelable {
         out.writeInt(id);
         out.writeString(name);
         out.writeBooleanArray(new boolean[] {favorite});
-        out.writeDouble(calories);
-        out.writeDouble(carbs);
+        out.writeDouble(caloriesPer100g);
+        out.writeDouble(carbsPer100g);
         out.writeInt(amount);
         out.writeInt(amountSmall);
         out.writeInt(amountMedium);
@@ -178,8 +206,8 @@ public class Food implements Parcelable {
         boolean[] bArray = new boolean[1];
         in.readBooleanArray(bArray);
         favorite = bArray[0];
-        calories = in.readDouble();
-        carbs = in.readDouble();
+        caloriesPer100g = in.readDouble();
+        carbsPer100g = in.readDouble();
         amount = in.readInt();
         amountSmall = in.readInt();
         amountMedium = in.readInt();

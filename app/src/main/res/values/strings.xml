@@ -28,4 +28,15 @@
     <string name="newmeal_nofoodselected">No food selected</string>
     <string name="newmeal_customamount">Custom amount</string>
     <string name="unit_gram">g</string>
+    <string name="title_activity_preferences">Preferences</string>
+    <string name="foodcalories_label">Calories</string>
+    <string name="foodcarbs_label">Carbs</string>
+    <string name="fpu_unit">FPU</string>
+    <string name="foodfpu_label">Fat-Protein-Units</string>
+    <string name="ecarbs_label">Extended carbs</string>
+    <string name="absorptiontime_label">Absorption time</string>
+    <string name="absorptiontime_unit">h</string>
+    <string name="title_activity_newfood">New Food</string>
+    <string name="title_activity_newmeal">New Meal</string>
+    <string name="title_activity_calcmeal">Meal Values</string>
 </resources>

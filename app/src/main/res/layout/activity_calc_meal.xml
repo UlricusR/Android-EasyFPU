@@ -8,7 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_padding"
     android:paddingBottom="@dimen/activity_vertical_padding">
 
-
-
+    <include layout="@layout/content_calc_meal" />
 
 </android.support.constraint.ConstraintLayout>

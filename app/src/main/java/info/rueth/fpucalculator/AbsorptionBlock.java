@@ -1,4 +1,4 @@
-package info.rueth.fpucalculator.calc;
+package info.rueth.fpucalculator;
 
 /**
  * An absorption block associates a maximum number of FPUs

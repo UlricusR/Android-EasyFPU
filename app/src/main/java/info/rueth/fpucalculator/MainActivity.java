@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(NewFoodActivity.FOOD_POSITION, position);
                 intent.putExtra(NewFoodActivity.EXTRA_REPLY_NAME, food.getName());
                 intent.putExtra(NewFoodActivity.EXTRA_REPLY_FAVORITE, food.isFavorite());
-                intent.putExtra(NewFoodActivity.EXTRA_REPLY_CALORIES, food.getCalories());
-                intent.putExtra(NewFoodActivity.EXTRA_REPLY_CARBS, food.getCarbs());
+                intent.putExtra(NewFoodActivity.EXTRA_REPLY_CALORIES, food.getCaloriesPer100g());
+                intent.putExtra(NewFoodActivity.EXTRA_REPLY_CARBS, food.getCarbsPer100g());
                 intent.putExtra(NewFoodActivity.EXTRA_REPLY_AMOUNTSMALL, food.getAmountSmall());
                 intent.putExtra(NewFoodActivity.EXTRA_REPLY_AMOUNTMEDIUM, food.getAmountMedium());
                 intent.putExtra(NewFoodActivity.EXTRA_REPLY_AMOUNTLARGE, food.getAmountLarge());
@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, PreferencesActivity.class));
             return true;
         }
 
@@ -171,8 +172,8 @@ public class MainActivity extends AppCompatActivity {
 
         food.setName(name);
         food.setFavorite(favorite);
-        food.setCalories(calories);
-        food.setCarbs(carbs);
+        food.setCaloriesPer100g(calories);
+        food.setCarbsPer100g(carbs);
         food.setAmountSmall(amountSmall);
         food.setAmountMedium(amountMedium);
         food.setAmountLarge(amountLarge);

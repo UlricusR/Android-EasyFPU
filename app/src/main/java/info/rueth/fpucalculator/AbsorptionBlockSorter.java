@@ -1,4 +1,4 @@
-package info.rueth.fpucalculator.calc;
+package info.rueth.fpucalculator;
 
 import java.util.Comparator;
 

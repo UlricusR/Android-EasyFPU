@@ -72,8 +72,8 @@ public abstract class AppDatabase extends RoomDatabase {
             Food food = new Food();
             food.setName("Pizza");
             food.setFavorite(false);
-            food.setCalories(229);
-            food.setCarbs(24);
+            food.setCaloriesPer100g(229);
+            food.setCarbsPer100g(24);
             food.setAmountSmall(160);
             food.setAmountMedium(220);
             food.setAmountLarge(320);
@@ -84,8 +84,8 @@ public abstract class AppDatabase extends RoomDatabase {
             food = new Food();
             food.setName("Spaghetti");
             food.setFavorite(true);
-            food.setCalories(162);
-            food.setCarbs(32.6);
+            food.setCaloriesPer100g(162);
+            food.setCarbsPer100g(32.6);
             food.setAmountSmall(0);
             food.setAmountMedium(0);
             food.setAmountLarge(0);

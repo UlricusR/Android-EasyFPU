@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:clickable="true"
+    android:layout_margin="1dp"
+    android:background="?android:attr/selectableItemBackground">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/meal_food_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/small_padding">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65" />
+
+
+        <TextView
+            android:id="@+id/calcmeal_amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/food_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/calcmeal_amount_unit"
+            android:text="@string/unit_gram"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/food_title"
+            app:layout_constraintStart_toEndOf="@+id/calcmeal_amount"
+            app:layout_constraintBaseline_toBaselineOf="@+id/calcmeal_amount" />
+
+        <TextView
+            android:id="@+id/calcmeal_foodname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            style="@style/food_title"
+            app:layout_constraintStart_toEndOf="@+id/calcmeal_amount_unit"
+            app:layout_constraintBaseline_toBaselineOf="@+id/calcmeal_amount_unit" />
+
+
+        <TextView
+            android:id="@+id/calcmeal_calories_label"
+            android:text="@string/foodcalories_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/calcmeal_amount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline1" />
+
+        <TextView
+            android:id="@+id/calcmeal_calories"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintBaseline_toBaselineOf="@id/calcmeal_calories_label" />
+
+        <TextView
+            android:id="@+id/calcmeal_calories_unit"
+            android:text="@string/calories_unit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toEndOf="@+id/calcmeal_calories"
+            app:layout_constraintBaseline_toBaselineOf="@+id/calcmeal_calories" />
+
+
+        <TextView
+            android:id="@+id/calcmeal_carbs_label"
+            android:text="@string/foodcarbs_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/calcmeal_calories_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline1" />
+
+        <TextView
+            android:id="@+id/calcmeal_carbs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintBaseline_toBaselineOf="@id/calcmeal_carbs_label" />
+
+        <TextView
+            android:id="@+id/calcmeal_carbs_unit"
+            android:text="@string/carbs_unit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toEndOf="@+id/calcmeal_carbs"
+            app:layout_constraintBaseline_toBaselineOf="@+id/calcmeal_carbs" />
+
+
+        <TextView
+            android:id="@+id/calcmeal_fpu_label"
+            android:text="@string/foodfpu_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/calcmeal_carbs_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline1" />
+
+        <TextView
+            android:id="@+id/calcmeal_fpu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintBaseline_toBaselineOf="@id/calcmeal_fpu_label" />
+
+        <TextView
+            android:id="@+id/calcmeal_fpu_unit"
+            android:text="@string/fpu_unit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toEndOf="@+id/calcmeal_fpu"
+            app:layout_constraintBaseline_toBaselineOf="@+id/calcmeal_fpu" />
+
+
+        <TextView
+            android:id="@+id/calcmeal_ecarbs_label"
+            android:text="@string/ecarbs_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/calcmeal_fpu_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline1" />
+
+        <TextView
+            android:id="@+id/calcmeal_ecarbs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintBaseline_toBaselineOf="@id/calcmeal_ecarbs_label" />
+
+        <TextView
+            android:id="@+id/calcmeal_ecarbs_unit"
+            android:text="@string/unit_gram"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toEndOf="@+id/calcmeal_ecarbs"
+            app:layout_constraintBaseline_toBaselineOf="@+id/calcmeal_ecarbs" />
+
+
+        <TextView
+            android:id="@+id/calcmeal_absorptiontime_label"
+            android:text="@string/absorptiontime_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/calcmeal_ecarbs_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline1" />
+
+        <TextView
+            android:id="@+id/calcmeal_absorptiontime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintBaseline_toBaselineOf="@id/calcmeal_absorptiontime_label" />
+
+        <TextView
+            android:id="@+id/calcmeal_absorptiontime_unit"
+            android:text="@string/absorptiontime_unit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toEndOf="@+id/calcmeal_absorptiontime"
+            app:layout_constraintBaseline_toBaselineOf="@+id/calcmeal_absorptiontime" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>
