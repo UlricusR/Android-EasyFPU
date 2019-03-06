@@ -1,34 +1,64 @@
 package info.rueth.fpucalculator;
 
-import java.util.Arrays;
+import android.content.Context;
+import android.util.JsonReader;
+import android.util.JsonWriter;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Holds an absorption scheme, connecting FPUs to recommended absorption times.
  */
 public class AbsorptionScheme {
-    private AbsorptionBlock[] absorptionBlocks;
+    private List<AbsorptionBlock> absorptionBlocks;
+    private Context context;
+    private static final String MAX_FPU = "max_fpu";
+    private static final String ABSORPTION_TIME = "absorption_time";
+    private static final String FILENAME_USER = "absorptionscheme.json";
 
-    AbsorptionScheme() {
-        // Create empty array
-        absorptionBlocks = new AbsorptionBlock[0];
-    }
+    AbsorptionScheme(Context context) throws IOException {
+        this.context = context;
 
-    /**
-     * Adds a new absorption block to the absorption scheme.
-     *
-     * @param maxFPU         The maximum FPU for the absorption time
-     * @param absorptionTime The absorption time for that FPU.
-     */
-    public void addBlock(int maxFPU, int absorptionTime) {
-        // Copy existing array into new array with one more empty element at the end ...
-        AbsorptionBlock[] newArray = Arrays.copyOf(absorptionBlocks, absorptionBlocks.length + 1);
+        // Load the absorption scheme
+        InputStream inputStream;
+        boolean userFileExists;
+        try {
+            // Load the user file
+            inputStream = context.openFileInput(FILENAME_USER);
+            userFileExists = true;
+        } catch (FileNotFoundException e) {
+            // Load the default file instead
+            inputStream = context.getResources().openRawResource(R.raw.absorptionscheme_default);
+            userFileExists = false;
+        }
 
-        // ... and put new AbsorptionBlock into that empty element
-        newArray[absorptionBlocks.length] = new AbsorptionBlock(maxFPU, absorptionTime);
+        // Read absorption blocks
+        absorptionBlocks = new ArrayList<>();
+        readJsonStream(inputStream);
+        inputStream.close();
 
-        // Sort by maxFPU and replace object variable
-        Arrays.sort(newArray, new AbsorptionBlockSorter());
-        absorptionBlocks = newArray;
+        // Save user file in case inputStream used the default file
+        if (!userFileExists) save();
+
+        // Sort absorption blocks
+        Collections.sort(absorptionBlocks, new Comparator<AbsorptionBlock>() {
+            @Override
+            public int compare(AbsorptionBlock o1, AbsorptionBlock o2) {
+                return o1.getMaxFPU() - o2.getMaxFPU();
+            }
+        });
     }
 
     /**
@@ -52,7 +82,64 @@ public class AbsorptionScheme {
         }
 
         // Seems to be beyond the last block, so return time of the last block
-        return absorptionBlocks[absorptionBlocks.length - 1].getAbsorptionTime();
+        return absorptionBlocks.get(absorptionBlocks.size() - 1).getAbsorptionTime();
+    }
+
+    private void readJsonStream(InputStream in) throws IOException {
+        JsonReader reader = new JsonReader(new InputStreamReader(in, StandardCharsets.UTF_8));
+        try {
+            reader.beginArray();
+            while (reader.hasNext()) {
+                absorptionBlocks.add(readAbsorptionBlock(reader));
+            }
+            reader.endArray();
+        } finally {
+            reader.close();
+        }
+    }
+
+    private AbsorptionBlock readAbsorptionBlock(JsonReader reader) throws IOException {
+        int maxFPU = -1;
+        int absorptionTime = -1;
+
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals(MAX_FPU)) {
+                maxFPU = reader.nextInt();
+            } else if (name.equals(ABSORPTION_TIME)) {
+                absorptionTime = reader.nextInt();
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+        return new AbsorptionBlock(maxFPU, absorptionTime);
+    }
+
+    public void save() throws IOException {
+        FileOutputStream outputStream;
+        outputStream = context.openFileOutput(FILENAME_USER, Context.MODE_PRIVATE);
+        writeJsonStream(outputStream);
+        outputStream.close();
+    }
+
+    private void writeJsonStream(OutputStream out) throws IOException {
+        JsonWriter writer = new JsonWriter(new OutputStreamWriter(out, StandardCharsets.UTF_8));
+        writer.setIndent("  ");
+        writer.beginArray();
+        for (AbsorptionBlock absorptionBlock : absorptionBlocks) {
+            writeAbsorptionBlock(writer, absorptionBlock);
+        }
+        writer.endArray();
+        writer.close();
+    }
+
+    private void writeAbsorptionBlock(JsonWriter writer, AbsorptionBlock absorptionBlock) throws IOException {
+        writer.beginObject();
+        writer.name(MAX_FPU).value(absorptionBlock.getMaxFPU());
+        writer.name(ABSORPTION_TIME).value(absorptionBlock.getAbsorptionTime());
+        writer.endObject();
     }
 
     @Override

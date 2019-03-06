@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,12 +42,14 @@ public class MealCalcAdapter extends RecyclerView.Adapter<MealCalcAdapter.FoodVi
    }
 
     private final LayoutInflater mInflater;
+    private AbsorptionScheme mAbsorptionScheme;
     private List<Food> selectedFood; // Cached copy of all selected food items
 
-    MealCalcAdapter(Context context) {
+    MealCalcAdapter(Context context, AbsorptionScheme absorptionScheme) {
         mInflater = LayoutInflater.from(context);
+        mAbsorptionScheme = absorptionScheme;
     }
-    
+
     @Override
     public FoodViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Create the food calc item
@@ -63,11 +66,11 @@ public class MealCalcAdapter extends RecyclerView.Adapter<MealCalcAdapter.FoodVi
             // Set food name, amount, resulting calories, carbs, FPUs, eCarbs and absorption time
             holder.foodnameView.setText(food.getName());
             holder.amountView.setText(String.valueOf(food.getAmount()));
-            holder.caloriesView.setText(String.valueOf(food.getCalories()));
-            holder.carbsView.setText(String.valueOf(food.getCarbs()));
-            holder.fpuView.setText(String.valueOf(food.getFPU().getFPU()));
-            holder.eCarbsView.setText(String.valueOf(food.getFPU().getExtendedCarbs()));
-            //holder.absorptionTimeView.setText(String.valueOf(food.getFPU().getAbsorptionTime(absorptionScheme)));
+            holder.caloriesView.setText(String.format("%.1f", food.getCalories()));
+            holder.carbsView.setText(String.format("%.1f", food.getCarbs()));
+            holder.fpuView.setText(String.format("%.1f", food.getFPU().getFPU()));
+            holder.eCarbsView.setText(String.format("%.1f", food.getFPU().getExtendedCarbs()));
+            holder.absorptionTimeView.setText(String.valueOf(food.getFPU().getAbsorptionTime(mAbsorptionScheme)));
 
         } else {
             // Covers the case no food has been selected (should never happen, we check before)

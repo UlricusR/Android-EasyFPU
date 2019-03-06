@@ -39,4 +39,6 @@
     <string name="title_activity_newfood">New Food</string>
     <string name="title_activity_newmeal">New Meal</string>
     <string name="title_activity_calcmeal">Meal Values</string>
+    <string name="err_absorptionschemefilenotfound">AbsorptionScheme file not found</string>
+    <string name="meal">Total Meal</string>
 </resources>

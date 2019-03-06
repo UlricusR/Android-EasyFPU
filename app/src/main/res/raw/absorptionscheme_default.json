@@ -1,0 +1,22 @@
+[
+  {
+    "max_fpu": 1,
+    "absorption_time": 3
+  },
+  {
+    "max_fpu": 2,
+    "absorption_time": 4
+  },
+  {
+    "max_fpu": 3,
+    "absorption_time": 5
+  },
+  {
+    "max_fpu": 4,
+    "absorption_time": 6
+  },
+  {
+    "max_fpu": 6,
+    "absorption_time": 8
+  }
+]
