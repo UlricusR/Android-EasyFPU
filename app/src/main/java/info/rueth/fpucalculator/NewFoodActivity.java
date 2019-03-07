@@ -106,9 +106,9 @@ public class NewFoodActivity extends AppCompatActivity {
                     boolean favorite = mFavorite.isChecked();
                     double calories = Double.parseDouble(mCalories.getText().toString());
                     double carbs = Double.parseDouble(mCarbs.getText().toString());
-                    int amoutSmall = Integer.parseInt(mAmountSmall.getText().toString());
-                    int amoutMedium = Integer.parseInt(mAmountMedium.getText().toString());
-                    int amoutLarge = Integer.parseInt(mAmountLarge.getText().toString());
+                    int amoutSmall = !TextUtils.isEmpty(mAmountSmall.getText()) ? Integer.parseInt(mAmountSmall.getText().toString()) : 0;
+                    int amoutMedium = !TextUtils.isEmpty(mAmountMedium.getText()) ? Integer.parseInt(mAmountMedium.getText().toString()) : 0;
+                    int amoutLarge = !TextUtils.isEmpty(mAmountLarge.getText()) ? Integer.parseInt(mAmountLarge.getText().toString()) : 0;
                     String commentSmall = mCommentSmall.getText().toString();
                     String commentMedium = mCommentMedium.getText().toString();
                     String commentLarge = mCommentLarge.getText().toString();

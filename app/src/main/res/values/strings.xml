@@ -41,4 +41,5 @@
     <string name="title_activity_calcmeal">Meal Values</string>
     <string name="err_absorptionschemefilenotfound">AbsorptionScheme file not found</string>
     <string name="meal">Total Meal</string>
+    <string name="foodlist">Food List</string>
 </resources>

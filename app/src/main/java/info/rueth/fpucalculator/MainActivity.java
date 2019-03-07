@@ -15,13 +15,16 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private DataViewModel mDataViewModel;
+    private boolean mIsFavorite;
     public static final int NEW_FOOD_ACTIVITY_REQUEST_CODE = 1;
     public static final int EDIT_FOOD_ACTIVITY_REQUEST_CODE = 2;
     public static final String INTENT_FOODLIST = "FoodList";
@@ -33,8 +36,24 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Favorite button
+        /**
+        ToggleButton favoriteButton = findViewById(R.id.button_favorite);
+        favoriteButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mIsFavorite = true;
+                    mDataViewModel.get
+                } else {
+                    mIsFavorite = false;
+                }
+            }
+        });**/
+
         // Get data model
         mDataViewModel = ViewModelProviders.of(this).get(DataViewModel.class);
+        mIsFavorite = false;
 
         // Create recycler view
         RecyclerView recyclerView = findViewById(R.id.recyclerview_main);

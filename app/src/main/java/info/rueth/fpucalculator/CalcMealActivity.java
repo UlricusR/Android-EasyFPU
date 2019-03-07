@@ -3,16 +3,15 @@ package info.rueth.fpucalculator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.List;
@@ -64,6 +63,19 @@ public class CalcMealActivity extends AppCompatActivity {
 
         // Set background color of the meal card to distinguish it easier from the food cards
         findViewById(R.id.meal_foodcard).setBackgroundColor(Color.YELLOW);
+
+        // Floating action button to go back to main activity
+        FloatingActionButton fabCalc = findViewById(R.id.fab_done);
+        fabCalc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CalcMealActivity.this, MainActivity.class);
+
+                // Start activity
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

@@ -9,15 +9,21 @@ import java.util.List;
 public class DataRepository {
     private FoodDao foodDao;
     private LiveData<List<Food>> allFood;
+    private LiveData<List<Food>> favoriteFood;
 
     DataRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         foodDao = db.foodDao();
         allFood = foodDao.getAll();
+        favoriteFood = foodDao.getFavorites();
     }
 
     LiveData<List<Food>> getAllFood() {
         return allFood;
+    }
+
+    LiveData<List<Food>> getFavoriteFood() {
+        return favoriteFood;
     }
 
     public void insert(Food food) {

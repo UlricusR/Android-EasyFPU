@@ -14,6 +14,9 @@ public interface FoodDao {
     @Query("SELECT * FROM food_table ORDER BY name ASC")
     LiveData<List<Food>> getAll();
 
+    @Query("SELECT * FROM food_table WHERE favorite = 1 ORDER BY name ASC")
+    LiveData<List<Food>> getFavorites();
+
     @Query("SELECT * FROM food_table WHERE id IN (:foodIds) ORDER BY name ASC")
     List<Food> loadAllByIds(int[] foodIds);
 
