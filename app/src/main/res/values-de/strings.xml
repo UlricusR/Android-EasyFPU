@@ -43,4 +43,5 @@
     <string name="err_absorptionschemefilenotfound">Absorptionsschema-Datei nicht gefunden</string>
     <string name="meal">Gesamtmahlzeit</string>
     <string name="foodlist">Essensliste</string>
+    <string name="title_activity_editfood">Essen bearbeiten</string>
 </resources>

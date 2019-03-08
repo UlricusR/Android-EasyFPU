@@ -78,13 +78,11 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
         return allFood.get(position);
     }
 
-    Food deleteFood(int position) {
+    void deleteFood(int position) {
         Food foodToDelete = allFood.get(position);
         allFood.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, getItemCount());
-
-        return foodToDelete;
     }
 
     boolean isAtLeastOneSelected() {

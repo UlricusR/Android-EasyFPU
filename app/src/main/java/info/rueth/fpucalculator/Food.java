@@ -3,16 +3,20 @@ package info.rueth.fpucalculator;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-@Entity(tableName = "food_table")
+@Entity(tableName = "food_table", indices = {@Index(value = {"name"}, unique = true)})
 public class Food implements Parcelable {
     @Ignore
     private int amount;
+
+    @Ignore
+    private boolean selected;
 
     @PrimaryKey(autoGenerate = true)
     public int id;
@@ -58,6 +62,16 @@ public class Food implements Parcelable {
     @Ignore
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    @Ignore
+    public boolean isSelected() {
+        return selected;
+    }
+
+    @Ignore
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
     @NonNull

@@ -14,14 +14,11 @@ public interface FoodDao {
     @Query("SELECT * FROM food_table ORDER BY name ASC")
     LiveData<List<Food>> getAll();
 
-    @Query("SELECT * FROM food_table WHERE favorite = 1 ORDER BY name ASC")
-    LiveData<List<Food>> getFavorites();
-
     @Query("SELECT * FROM food_table WHERE id IN (:foodIds) ORDER BY name ASC")
     List<Food> loadAllByIds(int[] foodIds);
 
-    @Query("SELECT * FROM food_table WHERE name LIKE :foodName LIMIT 1")
-    Food findByName(String foodName);
+    @Query("SELECT * FROM food_table WHERE name LIKE :foodName")
+    List<Food> findByName(String foodName);
 
     @Insert
     void insertAll(Food... food);
@@ -32,8 +29,8 @@ public interface FoodDao {
     @Update
     void update(Food food);
 
-    @Delete
-    void delete(Food food);
+    @Query("DELETE FROM food_table WHERE name LIKE :foodName")
+    void delete(String foodName);
 
     @Query("DELETE FROM food_table")
     void deleteAll();

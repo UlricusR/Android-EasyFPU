@@ -6,32 +6,46 @@ import android.os.AsyncTask;
 
 import java.util.List;
 
-public class DataRepository {
+public class FoodDataRepository {
     private FoodDao foodDao;
     private LiveData<List<Food>> allFood;
-    private LiveData<List<Food>> favoriteFood;
+    private static volatile FoodDataRepository INSTANCE;
 
-    DataRepository(Application application) {
+    static FoodDataRepository getInstance(Application application) {
+        if (INSTANCE == null) {
+            synchronized (FoodDataRepository.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new FoodDataRepository(application);
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
+    private FoodDataRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         foodDao = db.foodDao();
         allFood = foodDao.getAll();
-        favoriteFood = foodDao.getFavorites();
     }
 
     LiveData<List<Food>> getAllFood() {
         return allFood;
     }
 
-    LiveData<List<Food>> getFavoriteFood() {
-        return favoriteFood;
+    Food getFoodByName(String foodName) {
+        List<Food> foods = allFood.getValue();
+        for (Food food : foods) {
+            if (food.getName().equals(foodName)) return food;
+        }
+        return null;
     }
 
     public void insert(Food food) {
         new insertAsyncTask(foodDao).execute(food);
     }
 
-    public void delete(Food food) {
-        new deleteAsyncTask(foodDao).execute(food);
+    public void delete(String foodName) {
+        new deleteAsyncTask(foodDao).execute(foodName);
     }
 
     public void update(Food food) {
@@ -53,7 +67,7 @@ public class DataRepository {
         }
     }
 
-    private static class deleteAsyncTask extends AsyncTask<Food, Void, Void> {
+    private static class deleteAsyncTask extends AsyncTask<String, Void, Void> {
 
         private FoodDao mAsyncTaskDao;
 
@@ -62,7 +76,7 @@ public class DataRepository {
         }
 
         @Override
-        protected  Void doInBackground(final Food... params) {
+        protected  Void doInBackground(final String... params) {
             mAsyncTaskDao.delete(params[0]);
             return null;
         }
@@ -79,6 +93,21 @@ public class DataRepository {
         @Override
         protected Void doInBackground(final Food... params) {
             mAsyncTaskDao.update(params[0]);
+            return null;
+        }
+    }
+
+    private static class findByNameAsyncTask extends AsyncTask<Food, Void, Void> {
+
+        private FoodDao mAsyncTaskDao;
+
+        findByNameAsyncTask(FoodDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Food... params) {
+            mAsyncTaskDao.findByName(params[0].getName());
             return null;
         }
     }

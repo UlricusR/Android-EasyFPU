@@ -2,9 +2,8 @@ package info.rueth.fpucalculator;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,11 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
-public class NewFoodActivity extends AppCompatActivity {
+public class EditFoodActivity extends AppCompatActivity {
 
     private FoodViewModel viewModel;
 
@@ -48,6 +45,33 @@ public class NewFoodActivity extends AppCompatActivity {
         mCommentMedium = findViewById(R.id.amountmedium_comment);
         mCommentLarge = findViewById(R.id.amountlarge_comment);
 
+        // Fill view model data - we need to set the food name first to enable view model to find the food in the DB
+        viewModel.setName(getIntent().getStringExtra(MainActivity.FOODNAME));
+        new FoodEdit(getApplication()).execute(viewModel);
+
+        // Get data from view model
+        String name = viewModel.getName();
+        boolean favorite = viewModel.isFavorite();
+        double caloriesPer100g = viewModel.getCaloriesPer100g();
+        double carbsPer100g = viewModel.getCarbsPer100g();
+        int amountSmall = viewModel.getAmountSmall();
+        int amountMedium = viewModel.getAmountMedium();
+        int amountLarge = viewModel.getAmountLarge();
+        String commentSmall = viewModel.getCommentSmall();
+        String commentMedium = viewModel.getCommentMedium();
+        String commentLarge = viewModel.getCommentLarge();
+
+        mFoodName.setText(name);
+        mFavorite.setChecked(favorite);
+        mCalories.setText(String.valueOf(caloriesPer100g));
+        mCarbs.setText(String.valueOf(carbsPer100g));
+        mAmountSmall.setText(String.valueOf(amountSmall));
+        mAmountMedium.setText(String.valueOf(amountMedium));
+        mAmountLarge.setText(String.valueOf(amountLarge));
+        mCommentSmall.setText(commentSmall);
+        mCommentMedium.setText(commentMedium);
+        mCommentLarge.setText(commentLarge);
+        
         // Save button
         final Button saveButton = findViewById(R.id.button_save);
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -110,8 +134,9 @@ public class NewFoodActivity extends AppCompatActivity {
                         viewModel.setCommentMedium(commentMedium);
                         viewModel.setCommentLarge(commentLarge);
 
-                        // Save food
-                        new FoodSave(getApplication()).execute(viewModel);
+                        // Save or update food
+                        new FoodUpdate(getApplication()).execute(viewModel);
+
                         setResult(RESULT_OK, replyIntent);
                         finish();
                     }
