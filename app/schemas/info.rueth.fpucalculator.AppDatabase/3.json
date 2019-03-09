@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "96ec0e67bc8c306d9dd4541d7c8cc199",
+    "identityHash": "b57087484d08d5fef13b724507e9f02d",
     "entities": [
       {
         "tableName": "food_table",
@@ -81,22 +81,13 @@
           ],
           "autoGenerate": true
         },
-        "indices": [
-          {
-            "name": "index_food_table_name",
-            "unique": true,
-            "columnNames": [
-              "name"
-            ],
-            "createSql": "CREATE UNIQUE INDEX `index_food_table_name` ON `${TABLE_NAME}` (`name`)"
-          }
-        ],
+        "indices": [],
         "foreignKeys": []
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"96ec0e67bc8c306d9dd4541d7c8cc199\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"b57087484d08d5fef13b724507e9f02d\")"
     ]
   }
 }

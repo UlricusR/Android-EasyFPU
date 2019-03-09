@@ -43,7 +43,7 @@ public class FoodDataRepository {
     Food getFoodByID(int id) {
         List<Food> foods = allFood.getValue();
         for (Food food : foods) {
-            if (food.getID().equals(id)) return food;
+            if (food.getID() == id) return food;
         }
         return null;
     }
