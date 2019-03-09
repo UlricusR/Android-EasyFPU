@@ -10,7 +10,7 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-@Entity(tableName = "food_table", indices = {@Index(value = {"name"}, unique = true)})
+@Entity(tableName = "food_table")
 public class Food implements Parcelable {
     @Ignore
     private int amount;
@@ -77,6 +77,10 @@ public class Food implements Parcelable {
     @NonNull
     public String getName() {
         return name;
+    }
+    
+    public int getID() {
+        return id;
     }
 
     public boolean isFavorite() {

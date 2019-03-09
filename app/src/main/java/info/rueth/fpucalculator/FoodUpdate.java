@@ -10,8 +10,8 @@ public class FoodUpdate implements FoodUseCase {
     }
 
     public void execute(FoodViewModel viewModel) {
-        String name = viewModel.getName();
-        Food data = repository.getFoodByName(name);
+        int id = viewModel.getID();
+        Food data = repository.getFoodByID(id);
         setFoodData(data, viewModel);
         repository.update(data);
     }

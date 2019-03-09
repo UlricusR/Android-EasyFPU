@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FoodViewModel mFoodViewModel;
     private boolean mIsFavorite;
-    public static final String FOODNAME = "info.rueth.fpucalculator.FoodName";
+    public static final String FOOD_ID = "info.rueth.fpucalculator.FoodID";
     public static final String INTENT_FOODLIST = "info.rueth.fpucalculator.FoodList";
 
     @Override
@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
                     mIsFavorite = false;
                 }
             }
-        });**/
+        });
+        */
 
         // Get the persisted FoodViewModel
         mFoodViewModel = ViewModelProviders.of(this).get(FoodViewModel.class);
@@ -67,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onLeftClicked(int position) {
                 Intent intent = new Intent(MainActivity.this, EditFoodActivity.class);
-                String foodName = adapter.getFood(position).getName();
-                intent.putExtra(FOODNAME, foodName);
+                int id = adapter.getFood(position).getID();
+                intent.putExtra(FOOD_ID, id);
                 startActivity(intent);
             }
 

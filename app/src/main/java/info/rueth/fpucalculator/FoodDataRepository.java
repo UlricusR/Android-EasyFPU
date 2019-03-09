@@ -39,6 +39,15 @@ public class FoodDataRepository {
         }
         return null;
     }
+    
+    Food getFoodByID(int id) {
+        List<Food> foods = allFood.getValue();
+        for (Food food : foods) {
+            if (food.getID().equals(id)) return food;
+        }
+        return null;
+    }
+
 
     public void insert(Food food) {
         new insertAsyncTask(foodDao).execute(food);

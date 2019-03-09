@@ -3,6 +3,7 @@ package info.rueth.fpucalculator;
 import android.arch.lifecycle.ViewModel;
 
 public class FoodViewModel extends ViewModel {
+    private int id;
     private String name;
     private boolean favorite;
     private double caloriesPer100g;
@@ -15,6 +16,14 @@ public class FoodViewModel extends ViewModel {
     private String commentMedium;
     private String commentLarge;
 
+    public int getID() {
+        return id;
+    }
+
+    public void setID(int id) {
+        this.id = id;
+    }
+    
     public String getName() {
         return name;
     }

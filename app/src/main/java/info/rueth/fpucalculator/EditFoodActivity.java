@@ -46,7 +46,7 @@ public class EditFoodActivity extends AppCompatActivity {
         mCommentLarge = findViewById(R.id.amountlarge_comment);
 
         // Fill view model data - we need to set the food name first to enable view model to find the food in the DB
-        viewModel.setName(getIntent().getStringExtra(MainActivity.FOODNAME));
+        viewModel.setID(getIntent().getIntExtra(MainActivity.FOOD_ID));
         new FoodEdit(getApplication()).execute(viewModel);
 
         // Get data from view model
