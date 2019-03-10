@@ -23,7 +23,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
 
         void bind(int position) {
             // Use the sparse boolean array to check
-            if (!itemStateArray.get(position, false)) {
+            if (!allFood.get(position).isSelected()) {
                 foodItemView.setChecked(false);
             } else {
                 foodItemView.setChecked(true);
@@ -32,20 +32,22 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
 
         @Override
         public void onClick(final View view) {
-            final int adapterPosition = getAdapterPosition();
-            if (!itemStateArray.get(adapterPosition, false)) { // The food is selected
+            Food food = allFood.get(getAdapterPosition());
+            if (!food.isSelected()) {
+                // The food was not selected and is now being selected
                 foodItemView.setChecked(true);
-                itemStateArray.put(adapterPosition, true);
-            } else { // The food is unselected
+                food.setSelected(true);
+            } else {
+                // The food was selected and is now being unselected
                 foodItemView.setChecked(false);
-                itemStateArray.put(adapterPosition, false);
+                food.setSelected(false);
             }
         }
     }
 
     private final LayoutInflater mInflater;
     private List<Food> allFood; // Cached copy of all food items
-    SparseBooleanArray itemStateArray = new SparseBooleanArray();
+    //SparseBooleanArray itemStateArray = new SparseBooleanArray();
 
     FoodListAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
@@ -79,23 +81,22 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
     }
 
     void deleteFood(int position) {
-        Food foodToDelete = allFood.get(position);
         allFood.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, getItemCount());
     }
 
     boolean isAtLeastOneSelected() {
-        for (int i = 0; i < itemStateArray.size(); i++) {
-            if (itemStateArray.valueAt(i)) return true;
+        for (Food food : allFood) {
+            if (food.isSelected()) return true;
         }
         return false;
     }
 
     ArrayList<Food> getSelectedFood() {
         ArrayList<Food> selectedFood = new ArrayList<Food>();
-        for (int i = 0; i < itemStateArray.size(); i++) {
-            if (itemStateArray.valueAt(i)) selectedFood.add(getFood(i));
+        for (Food food : allFood) {
+            if (food.isSelected()) selectedFood.add(food);
         }
         return selectedFood;
     }
