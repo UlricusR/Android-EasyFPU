@@ -46,7 +46,7 @@ public class EditFoodActivity extends AppCompatActivity {
         mCommentLarge = findViewById(R.id.amountlarge_comment);
 
         // Fill view model data - we need to set the food name first to enable view model to find the food in the DB
-        viewModel.setID(getIntent().getIntExtra(MainActivity.FOOD_ID, -1));
+        viewModel.setId(getIntent().getIntExtra(MainActivity.FOOD_ID, -1));
         new FoodEdit(getApplication()).execute(viewModel);
 
         // Get data from view model
@@ -74,85 +74,79 @@ public class EditFoodActivity extends AppCompatActivity {
         
         // Save button
         final Button saveButton = findViewById(R.id.button_save);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent replyIntent = new Intent();
+        saveButton.setOnClickListener(v -> {
+            Intent replyIntent = new Intent();
 
-                if (
-                        TextUtils.isEmpty(mFoodName.getText()) ||
-                        TextUtils.isEmpty(mCalories.getText()) ||
-                        TextUtils.isEmpty(mCarbs.getText())
-                ) {
-                    String errMsg = getResources().getString(R.string.newfood_error_datamissing);
+            if (
+                    TextUtils.isEmpty(mFoodName.getText()) ||
+                    TextUtils.isEmpty(mCalories.getText()) ||
+                    TextUtils.isEmpty(mCarbs.getText())
+            ) {
+                String errMsg = getResources().getString(R.string.newfood_error_datamissing);
+                Toast.makeText(
+                        getApplicationContext(),
+                        errMsg,
+                        Toast.LENGTH_LONG).show();
+            } else {
+                String foodName = mFoodName.getText().toString();
+                boolean favorite1 = mFavorite.isChecked();
+                double caloriesPer100g1 = Double.parseDouble(mCalories.getText().toString());
+                double carbsPer100g1 = Double.parseDouble(mCarbs.getText().toString());
+                int amoutSmall = !TextUtils.isEmpty(mAmountSmall.getText()) ? Integer.parseInt(mAmountSmall.getText().toString()) : 0;
+                int amoutMedium = !TextUtils.isEmpty(mAmountMedium.getText()) ? Integer.parseInt(mAmountMedium.getText().toString()) : 0;
+                int amoutLarge = !TextUtils.isEmpty(mAmountLarge.getText()) ? Integer.parseInt(mAmountLarge.getText().toString()) : 0;
+                String commentSmall1 = mCommentSmall.getText().toString();
+                String commentMedium1 = mCommentMedium.getText().toString();
+                String commentLarge1 = mCommentLarge.getText().toString();
+
+                // Check if all numbers are positive
+                if (caloriesPer100g1 < 0 || carbsPer100g1 < 0) {
+                    String errMsg = getResources().getString(R.string.newfood_error_carbsorcalbelowzero) + foodName;
+                    Toast.makeText(
+                            getApplicationContext(),
+                            errMsg,
+                            Toast.LENGTH_LONG).show();
+                } else if (carbsPer100g1 * 4 > caloriesPer100g1) {
+                    // Do a consistency check: Calories from carbs cannot be more than
+                    // total calories; 1g of carbs has 4 kcal
+                    String errMsg =
+                            getResources().getString(R.string.newfood_error_calslargercarbs1)
+                            + foodName
+                            + getResources().getString(R.string.newfood_error_calslargercarbs2)
+                            + (carbsPer100g1 * 4) + getResources().getString(R.string.newfood_error_calslargercarbs3)
+                            + caloriesPer100g1;
                     Toast.makeText(
                             getApplicationContext(),
                             errMsg,
                             Toast.LENGTH_LONG).show();
                 } else {
-                    String foodName = mFoodName.getText().toString();
-                    boolean favorite = mFavorite.isChecked();
-                    double caloriesPer100g = Double.parseDouble(mCalories.getText().toString());
-                    double carbsPer100g = Double.parseDouble(mCarbs.getText().toString());
-                    int amoutSmall = !TextUtils.isEmpty(mAmountSmall.getText()) ? Integer.parseInt(mAmountSmall.getText().toString()) : 0;
-                    int amoutMedium = !TextUtils.isEmpty(mAmountMedium.getText()) ? Integer.parseInt(mAmountMedium.getText().toString()) : 0;
-                    int amoutLarge = !TextUtils.isEmpty(mAmountLarge.getText()) ? Integer.parseInt(mAmountLarge.getText().toString()) : 0;
-                    String commentSmall = mCommentSmall.getText().toString();
-                    String commentMedium = mCommentMedium.getText().toString();
-                    String commentLarge = mCommentLarge.getText().toString();
+                    // Fill food
+                    viewModel.setName(foodName);
+                    viewModel.setFavorite(favorite1);
+                    viewModel.setCaloriesPer100g(caloriesPer100g1);
+                    viewModel.setCarbsPer100g(carbsPer100g1);
+                    viewModel.setAmountSmall(amoutSmall);
+                    viewModel.setAmountMedium(amoutMedium);
+                    viewModel.setAmountLarge(amoutLarge);
+                    viewModel.setCommentSmall(commentSmall1);
+                    viewModel.setCommentMedium(commentMedium1);
+                    viewModel.setCommentLarge(commentLarge1);
 
-                    // Check if all numbers are positive
-                    if (caloriesPer100g < 0 || carbsPer100g < 0) {
-                        String errMsg = getResources().getString(R.string.newfood_error_carbsorcalbelowzero) + foodName;
-                        Toast.makeText(
-                                getApplicationContext(),
-                                errMsg,
-                                Toast.LENGTH_LONG).show();
-                    } else if (carbsPer100g * 4 > caloriesPer100g) {
-                        // Do a consistency check: Calories from carbs cannot be more than
-                        // total calories; 1g of carbs has 4 kcal
-                        String errMsg =
-                                getResources().getString(R.string.newfood_error_calslargercarbs1)
-                                + foodName
-                                + getResources().getString(R.string.newfood_error_calslargercarbs2)
-                                + (carbsPer100g * 4) + getResources().getString(R.string.newfood_error_calslargercarbs3)
-                                + caloriesPer100g;
-                        Toast.makeText(
-                                getApplicationContext(),
-                                errMsg,
-                                Toast.LENGTH_LONG).show();
-                    } else {
-                        // Fill food
-                        viewModel.setName(foodName);
-                        viewModel.setFavorite(favorite);
-                        viewModel.setCaloriesPer100g(caloriesPer100g);
-                        viewModel.setCarbsPer100g(carbsPer100g);
-                        viewModel.setAmountSmall(amoutSmall);
-                        viewModel.setAmountMedium(amoutMedium);
-                        viewModel.setAmountLarge(amoutLarge);
-                        viewModel.setCommentSmall(commentSmall);
-                        viewModel.setCommentMedium(commentMedium);
-                        viewModel.setCommentLarge(commentLarge);
+                    // Save or update food
+                    new FoodUpdate(getApplication()).execute(viewModel);
 
-                        // Save or update food
-                        new FoodUpdate(getApplication()).execute(viewModel);
-
-                        setResult(RESULT_OK, replyIntent);
-                        finish();
-                    }
+                    setResult(RESULT_OK, replyIntent);
+                    finish();
                 }
             }
         });
         
         // Cancel button
         final Button cancelButton = findViewById(R.id.button_cancel);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent replyIntent = new Intent();
-                setResult(RESULT_CANCELED, replyIntent);
-                finish();
-            }
+        cancelButton.setOnClickListener(v -> {
+            Intent replyIntent = new Intent();
+            setResult(RESULT_CANCELED, replyIntent);
+            finish();
         });
     }
 

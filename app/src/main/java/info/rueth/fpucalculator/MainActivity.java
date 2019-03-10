@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -23,8 +24,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FoodViewModel mFoodViewModel;
-    private boolean mIsFavorite;
+    private boolean mFavorite;
     public static final String FOOD_ID = "info.rueth.fpucalculator.FoodID";
     public static final String INTENT_FOODLIST = "info.rueth.fpucalculator.FoodList";
 
@@ -37,25 +37,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Favorite button
-        /**
-        ToggleButton favoriteButton = findViewById(R.id.button_favorite);
-        favoriteButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    mIsFavorite = true;
-                    mDataViewModel.get
-                } else {
-                    mIsFavorite = false;
-                }
-            }
-        });
-        */
-
         // Get the persisted FoodViewModel
-        mFoodViewModel = ViewModelProviders.of(this).get(FoodViewModel.class);
-        mIsFavorite = false;
+        mFavorite = false;
 
         // Create recycler view
         RecyclerView recyclerView = findViewById(R.id.recyclerview_main);
@@ -63,21 +46,28 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Favorite button
+        ToggleButton favoriteButton = findViewById(R.id.button_favorite);
+        favoriteButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            mFavorite = isChecked;
+            FoodDataRepository.getInstance(getApplication()).getAllFood(mFavorite).observe(this, adapter::setAllFood);
+        });
+
         // Create swipe controller and attach to recycler view
         final SwipeController swipeController = new SwipeController(getResources(), new SwipeControllerActions() {
             @Override
             public void onLeftClicked(int position) {
                 Intent intent = new Intent(MainActivity.this, EditFoodActivity.class);
-                int id = adapter.getFood(position).getID();
+                int id = adapter.getFood(position).getId();
                 intent.putExtra(FOOD_ID, id);
                 startActivity(intent);
             }
 
             @Override
             public void onRightClicked(int position) {
+                FoodViewModel viewModel = adapter.getFood(position);
+                new FoodDelete(getApplication()).execute(viewModel);
                 adapter.deleteFood(position);
-                new FoodDelete(getApplication()).execute(mFoodViewModel);
-                //mDataViewModel.delete(food);
             }
         });
 
@@ -85,47 +75,37 @@ public class MainActivity extends AppCompatActivity {
         itemTouchHelper.attachToRecyclerView(recyclerView);
         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
-            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+            @NonNull
+            public void onDraw(Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
                 swipeController.onDraw(c);
             }
         });
 
         // Attach data observer
-        FoodDataRepository.getInstance(getApplication()).getAllFood().observe(this, new Observer<List<Food>>() {
-            @Override
-            public void onChanged(@Nullable List<Food> allFood) {
-                // Update the cached copy of the food items in the adapter
-                adapter.setAllFood(allFood);
-            }
-        });
+        // Update the cached copy of the food items in the adapter
+        FoodDataRepository.getInstance(getApplication()).getAllFood(mFavorite).observe(this, adapter::setAllFood);
 
         // New food FAB
         FloatingActionButton fabAdd = findViewById(R.id.fab_new);
-        fabAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, NewFoodActivity.class);
-                startActivity(intent);
-            }
+        fabAdd.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, NewFoodActivity.class);
+            startActivity(intent);
         });
 
         // New meal FAB
         FloatingActionButton fabMeal = findViewById(R.id.fab_meal);
-        fabMeal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Check if any food is selected
-                if (!adapter.isAtLeastOneSelected()) {
-                    Toast.makeText(
-                            getApplicationContext(),
-                            getString(R.string.err_select_at_least_one_food),
-                            Toast.LENGTH_LONG).show();
-                } else {
-                    // Pass all selected food to NewMealActivity
-                    Intent intent = new Intent(MainActivity.this, NewMealActivity.class);
-                    intent.putParcelableArrayListExtra(INTENT_FOODLIST, adapter.getSelectedFood());
-                    startActivity(intent);
-                }
+        fabMeal.setOnClickListener(view -> {
+            // Check if any food is selected
+            if (!adapter.isAtLeastOneSelected()) {
+                Toast.makeText(
+                        getApplicationContext(),
+                        getString(R.string.err_select_at_least_one_food),
+                        Toast.LENGTH_LONG).show();
+            } else {
+                // Pass all selected food to NewMealActivity
+                Intent intent = new Intent(MainActivity.this, NewMealActivity.class);
+                intent.putParcelableArrayListExtra(INTENT_FOODLIST, adapter.getSelectedFood());
+                startActivity(intent);
             }
         });
     }
@@ -149,6 +129,16 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, PreferencesActivity.class));
             return true;
         }
+
+        if (id == R.id.action_exportdb) {
+            MaintenanceUtils.backupDatabase(getApplicationContext());
+        }
+
+        /**
+        if (id == R.id.action_importdb) {
+            MaintenanceUtils.loadDatabase(getApplicationContext());
+        }
+         */
 
         return super.onOptionsItemSelected(item);
     }

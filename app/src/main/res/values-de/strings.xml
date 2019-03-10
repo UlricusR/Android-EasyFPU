@@ -44,4 +44,9 @@
     <string name="meal">Gesamtmahlzeit</string>
     <string name="foodlist">Essensliste</string>
     <string name="title_activity_editfood">Essen bearbeiten</string>
+    <string name="backup_complete">Backup komplett</string>
+    <string name="backup_failed">Backup fehlgeschlagen</string>
+    <string name="action_exportdb">Exportiere Datenbank</string>
+    <string name="backup_cannotwrite">Kann nicht speichern auf</string>
+    <string name="action_importdb">Importiere Datenbank</string>
 </resources>

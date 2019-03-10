@@ -2,8 +2,10 @@ package info.rueth.fpucalculator;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Transformations;
 import android.os.AsyncTask;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FoodDataRepository {
@@ -28,8 +30,43 @@ public class FoodDataRepository {
         allFood = foodDao.getAll();
     }
 
-    LiveData<List<Food>> getAllFood() {
-        return allFood;
+    LiveData<List<FoodViewModel>> getAllFood(boolean favorite) {
+        return Transformations.map(allFood, newData -> createFoodViewModel(newData, favorite));
+    }
+
+    private List<FoodViewModel> createFoodViewModel(List<Food> list, boolean favorite) {
+        List<FoodViewModel> foodVM = new ArrayList<>();
+        FoodViewModel foodViewModel;
+        for (Food item : list) {
+            if (favorite) {
+                if (item.isFavorite()) {
+                    foodViewModel = createViewModel(item);
+                    foodVM.add(foodViewModel);
+                }
+            } else {
+                foodViewModel = createViewModel(item);
+                foodVM.add(foodViewModel);
+            }
+        }
+        return foodVM;
+    }
+
+    private FoodViewModel createViewModel(Food food) {
+        FoodViewModel viewModel = new FoodViewModel();
+        viewModel.setId(food.getId());
+        viewModel.setSelected(food.isSelected());
+        viewModel.setName(food.getName());
+        viewModel.setFavorite(food.isFavorite());
+        viewModel.setCaloriesPer100g(food.getCaloriesPer100g());
+        viewModel.setCarbsPer100g(food.getCarbsPer100g());
+        viewModel.setAmount(food.getAmount());
+        viewModel.setAmountSmall(food.getAmountSmall());
+        viewModel.setAmountMedium(food.getAmountMedium());
+        viewModel.setAmountLarge(food.getAmountLarge());
+        viewModel.setCommentSmall(food.getCommentSmall());
+        viewModel.setCommentMedium(food.getCommentMedium());
+        viewModel.setCommentLarge(food.getCommentLarge());
+        return viewModel;
     }
 
     Food getFoodByName(String foodName) {
@@ -43,7 +80,7 @@ public class FoodDataRepository {
     Food getFoodByID(int id) {
         List<Food> foods = allFood.getValue();
         for (Food food : foods) {
-            if (food.getID() == id) return food;
+            if (food.getId() == id) return food;
         }
         return null;
     }
@@ -53,8 +90,8 @@ public class FoodDataRepository {
         new insertAsyncTask(foodDao).execute(food);
     }
 
-    public void delete(String foodName) {
-        new deleteAsyncTask(foodDao).execute(foodName);
+    public void delete(int id) {
+        new deleteAsyncTask(foodDao).execute(id);
     }
 
     public void update(Food food) {
@@ -76,7 +113,7 @@ public class FoodDataRepository {
         }
     }
 
-    private static class deleteAsyncTask extends AsyncTask<String, Void, Void> {
+    private static class deleteAsyncTask extends AsyncTask<Integer, Void, Void> {
 
         private FoodDao mAsyncTaskDao;
 
@@ -85,7 +122,7 @@ public class FoodDataRepository {
         }
 
         @Override
-        protected  Void doInBackground(final String... params) {
+        protected  Void doInBackground(final Integer... params) {
             mAsyncTaskDao.delete(params[0]);
             return null;
         }

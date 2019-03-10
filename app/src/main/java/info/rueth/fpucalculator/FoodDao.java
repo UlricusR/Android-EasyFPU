@@ -29,8 +29,8 @@ public interface FoodDao {
     @Update
     void update(Food food);
 
-    @Query("DELETE FROM food_table WHERE name LIKE :foodName")
-    void delete(String foodName);
+    @Query("DELETE FROM food_table WHERE id LIKE :id")
+    void delete(int id);
 
     @Query("DELETE FROM food_table")
     void deleteAll();

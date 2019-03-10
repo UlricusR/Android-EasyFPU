@@ -1,6 +1,7 @@
 package info.rueth.fpucalculator;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -43,7 +44,7 @@ public class MealCalcAdapter extends RecyclerView.Adapter<MealCalcAdapter.FoodVi
 
     private final LayoutInflater mInflater;
     private AbsorptionScheme mAbsorptionScheme;
-    private List<Food> selectedFood; // Cached copy of all selected food items
+    private List<FoodViewModel> selectedFood; // Cached copy of all selected food items
 
     MealCalcAdapter(Context context, AbsorptionScheme absorptionScheme) {
         mInflater = LayoutInflater.from(context);
@@ -51,17 +52,18 @@ public class MealCalcAdapter extends RecyclerView.Adapter<MealCalcAdapter.FoodVi
     }
 
     @Override
-    public FoodViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @NonNull
+    public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Create the food calc item
         View itemView = mInflater.inflate(R.layout.meal_food_item, parent, false);
         return new FoodViewHolder(itemView);
     }
     
     @Override
-    public void onBindViewHolder(FoodViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
         if (selectedFood != null) {
             // Get the current food item
-            Food food = selectedFood.get(position);
+            FoodViewModel food = selectedFood.get(position);
 
             // Set food name, amount, resulting calories, carbs, FPUs, eCarbs and absorption time
             holder.foodnameView.setText(food.getName());
@@ -78,11 +80,11 @@ public class MealCalcAdapter extends RecyclerView.Adapter<MealCalcAdapter.FoodVi
         }
     }
 
-    void setSelectedFood(List<Food> selectedFood) {
+    void setSelectedFood(List<FoodViewModel> selectedFood) {
         this.selectedFood = selectedFood;
     }
 
-    List<Food> getSelectedFood() {
+    List<FoodViewModel> getSelectedFood() {
         return selectedFood;
     }
 

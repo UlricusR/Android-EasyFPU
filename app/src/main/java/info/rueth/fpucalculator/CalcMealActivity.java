@@ -37,7 +37,7 @@ public class CalcMealActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Pass selected food to adapter
-        List<Food> weightedFood = getIntent().getParcelableArrayListExtra(NewMealActivity.INTENT_FOODCALC);
+        List<FoodViewModel> weightedFood = getIntent().getParcelableArrayListExtra(NewMealActivity.INTENT_FOODCALC);
         adapter.setSelectedFood(weightedFood);
 
         // Retrieve the fields

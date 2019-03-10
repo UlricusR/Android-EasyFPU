@@ -3,14 +3,14 @@ package info.rueth.fpucalculator;
 import android.app.Application;
 
 public class FoodUpdate implements FoodUseCase {
-    FoodDataRepository repository;
+    private FoodDataRepository repository;
 
-    public FoodUpdate(Application application) {
+    FoodUpdate(Application application) {
         repository = FoodDataRepository.getInstance(application);
     }
 
     public void execute(FoodViewModel viewModel) {
-        int id = viewModel.getID();
+        int id = viewModel.getId();
         Food data = repository.getFoodByID(id);
         setFoodData(data, viewModel);
         repository.update(data);

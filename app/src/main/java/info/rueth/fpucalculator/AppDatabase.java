@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 @Database(entities = {Food.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
 
+    static final String DB_NAME = "app_database";
 
     static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
@@ -39,7 +40,7 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, "app_database")
+                            AppDatabase.class, DB_NAME)
                             .addCallback(sRoomDatabaseCallback)
                             .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                             .build();

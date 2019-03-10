@@ -1,6 +1,7 @@
 package info.rueth.fpucalculator;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -29,25 +30,19 @@ public class FoodCalcAdapter extends RecyclerView.Adapter<FoodCalcAdapter.FoodVi
             foodnameView = itemView.findViewById(R.id.newmeal_foodname);
             typicalAmountSpinner = itemView.findViewById(R.id.newmeal_typicalamountspinner);
             amountView = itemView.findViewById(R.id.newmeal_amount);
-            amountView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                @Override
-                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                    if (actionId == EditorInfo.IME_ACTION_DONE) {
-                        int amount = Integer.parseInt(v.getText().toString());
-                        storeAmount(amount);
-                        return true;
-                    }
-                    return false;
+            amountView.setOnEditorActionListener((v, actionId, event) -> {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    int amount = Integer.parseInt(v.getText().toString());
+                    storeAmount(amount);
+                    return true;
                 }
+                return false;
             });
-            amountView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if (!hasFocus) {
-                        String text = ((EditText) v).getText().toString();
-                        int amount = Integer.parseInt(text);
-                        storeAmount(amount);
-                    }
+            amountView.setOnFocusChangeListener((v, hasFocus) -> {
+                if (!hasFocus) {
+                    String text = ((EditText) v).getText().toString();
+                    int amount = Integer.parseInt(text);
+                    storeAmount(amount);
                 }
             });
         }
@@ -87,24 +82,25 @@ public class FoodCalcAdapter extends RecyclerView.Adapter<FoodCalcAdapter.FoodVi
     }
     
     private final LayoutInflater mInflater;
-    private List<Food> selectedFood; // Cached copy of all selected food items
+    private List<FoodViewModel> selectedFood; // Cached copy of all selected food items
     
     FoodCalcAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
     }
     
     @Override
-    public FoodViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @NonNull
+    public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Create the food calc item
         View itemView = mInflater.inflate(R.layout.food_calc_item, parent, false);
         return new FoodViewHolder(itemView);
     }
     
     @Override
-    public void onBindViewHolder(FoodViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
         if (selectedFood != null) {
             // Get the current food item
-            Food food = selectedFood.get(position);
+            FoodViewModel food = selectedFood.get(position);
 
             // Set the food name
             holder.foodnameView.setText(food.getName());
@@ -134,11 +130,11 @@ public class FoodCalcAdapter extends RecyclerView.Adapter<FoodCalcAdapter.FoodVi
         }
     }
 
-    void setSelectedFood(List<Food> selectedFood) {
+    void setSelectedFood(List<FoodViewModel> selectedFood) {
         this.selectedFood = selectedFood;
     }
 
-    List<Food> getSelectedFood() {
+    List<FoodViewModel> getSelectedFood() {
         return selectedFood;
     }
 
