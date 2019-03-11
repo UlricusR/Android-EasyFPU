@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.JsonReader;
 import android.util.JsonWriter;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,7 +27,20 @@ public class AbsorptionScheme {
     private static final String ABSORPTION_TIME = "absorption_time";
     private static final String FILENAME_USER = "absorptionscheme.json";
 
-    AbsorptionScheme(Context context) throws IOException {
+    private static volatile AbsorptionScheme INSTANCE;
+
+    static AbsorptionScheme getInstance(Context context) throws IOException {
+        if (INSTANCE == null) {
+            synchronized (AbsorptionScheme.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new AbsorptionScheme(context);
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
+    private AbsorptionScheme(Context context) throws IOException {
         this.context = context;
 
         // Load the absorption scheme
