@@ -6,6 +6,7 @@ import android.arch.lifecycle.Transformations;
 import android.os.AsyncTask;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FoodDataRepository {
@@ -85,6 +86,14 @@ public class FoodDataRepository {
         return null;
     }
 
+    List<Food> getFoodByIDs(int[] foodIds) {
+        List<Food> foods = new ArrayList<>();
+        for (int i = 0; i < foodIds.length; i++) {
+            foods.add(getFoodByID(foodIds[i]));
+        }
+        return foods;
+    }
+
 
     public void insert(Food food) {
         new insertAsyncTask(foodDao).execute(food);
@@ -143,18 +152,21 @@ public class FoodDataRepository {
         }
     }
 
-    private static class findByNameAsyncTask extends AsyncTask<Food, Void, Void> {
+    private static class findByIdAsyncTask extends AsyncTask<Integer, Void, List<Food>> {
 
         private FoodDao mAsyncTaskDao;
 
-        findByNameAsyncTask(FoodDao dao) {
+        findByIdAsyncTask(FoodDao dao) {
             mAsyncTaskDao = dao;
         }
 
         @Override
-        protected Void doInBackground(final Food... params) {
-            mAsyncTaskDao.findByName(params[0].getName());
-            return null;
+        protected List<Food> doInBackground(Integer... ids) {
+            int[] foodIds = new int[ids.length];
+            for (int i = 0; i < ids.length; i++) {
+                foodIds[i] = ids[i].intValue();
+            }
+            return mAsyncTaskDao.loadAllByIds(foodIds);
         }
     }
 

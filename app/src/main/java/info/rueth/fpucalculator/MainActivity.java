@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 // Pass all selected food to NewMealActivity
                 Intent intent = new Intent(MainActivity.this, NewMealActivity.class);
-                intent.putParcelableArrayListExtra(INTENT_FOODLIST, adapter.getSelectedFood());
+                intent.putExtra(INTENT_FOODLIST, adapter.getSelectedFoodIds());
                 startActivity(intent);
             }
         });

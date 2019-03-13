@@ -15,7 +15,7 @@ import java.util.List;
 
 public class NewMealActivity extends AppCompatActivity {
 
-    public static final String INTENT_FOODCALC = "Meal";
+    public static final String INTENT_MEALCALC = "info.rueth.fpucalculator.MealCalc";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,9 +28,9 @@ public class NewMealActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Pass selected food to adapter
-        List<FoodViewModel> selectedFood = getIntent().getParcelableArrayListExtra(MainActivity.INTENT_FOODLIST);
-        adapter.setSelectedFood(selectedFood);
+        // Get food IDs from intent, retrieve respective food from repository and set to adapter
+        int[] selectedFoodIds = getIntent().getIntArrayExtra(MainActivity.INTENT_FOODLIST);
+        adapter.setSelectedFood(FoodDataRepository.getInstance(getApplication()).getFoodByIDs(selectedFoodIds));
 
         // Floating action button to calculate meal
         FloatingActionButton fabCalc = findViewById(R.id.fab_calcmeal);
@@ -38,10 +38,13 @@ public class NewMealActivity extends AppCompatActivity {
             Intent intent = new Intent(NewMealActivity.this, CalcMealActivity.class);
 
             // Get all selected food, each weighted with its amount
-            ArrayList<FoodViewModel> weightedFood = new ArrayList<>(adapter.getSelectedFood());
+            //ArrayList<Food> weightedFood = new ArrayList<>(adapter.getSelectedFood());
 
             // Set to intent
-            intent.putParcelableArrayListExtra(INTENT_FOODCALC, weightedFood);
+            //intent.putParcelableArrayListExtra(INTENT_MEALCALC, weightedFood);
+
+            // Pass on ids of selected food
+            intent.putExtra(INTENT_MEALCALC, selectedFoodIds);
 
             // Start activity
             startActivity(intent);

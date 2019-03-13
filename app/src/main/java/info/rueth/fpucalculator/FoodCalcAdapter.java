@@ -82,7 +82,7 @@ public class FoodCalcAdapter extends RecyclerView.Adapter<FoodCalcAdapter.FoodVi
     }
     
     private final LayoutInflater mInflater;
-    private List<FoodViewModel> selectedFood; // Cached copy of all selected food items
+    private List<Food> selectedFood; // Cached copy of all selected food items
     
     FoodCalcAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
@@ -100,7 +100,7 @@ public class FoodCalcAdapter extends RecyclerView.Adapter<FoodCalcAdapter.FoodVi
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
         if (selectedFood != null) {
             // Get the current food item
-            FoodViewModel food = selectedFood.get(position);
+            Food food = selectedFood.get(position);
 
             // Set the food name
             holder.foodnameView.setText(food.getName());
@@ -130,11 +130,11 @@ public class FoodCalcAdapter extends RecyclerView.Adapter<FoodCalcAdapter.FoodVi
         }
     }
 
-    void setSelectedFood(List<FoodViewModel> selectedFood) {
+    void setSelectedFood(List<Food> selectedFood) {
         this.selectedFood = selectedFood;
     }
 
-    List<FoodViewModel> getSelectedFood() {
+    List<Food> getSelectedFood() {
         return selectedFood;
     }
 

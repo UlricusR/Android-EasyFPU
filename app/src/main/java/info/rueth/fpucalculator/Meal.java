@@ -10,7 +10,7 @@ public class Meal {
     private String name;
 
     // The list of all food of the meal
-    private List<FoodViewModel> food;
+    private List<Food> food;
 
     private double calories = 0;
     private double carbs = 0;
@@ -23,7 +23,7 @@ public class Meal {
      * @param name The name of the meal
      * @param food A list of all food of the meal
      */
-     Meal(String name, List<FoodViewModel> food) {
+     Meal(String name, List<Food> food) {
         this.name = name;
         this.food = food;
 

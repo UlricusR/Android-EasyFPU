@@ -44,7 +44,7 @@ public class MealCalcAdapter extends RecyclerView.Adapter<MealCalcAdapter.FoodVi
 
     private final LayoutInflater mInflater;
     private AbsorptionScheme mAbsorptionScheme;
-    private List<FoodViewModel> selectedFood; // Cached copy of all selected food items
+    private List<Food> selectedFood; // Cached copy of all selected food items
 
     MealCalcAdapter(Context context, AbsorptionScheme absorptionScheme) {
         mInflater = LayoutInflater.from(context);
@@ -63,7 +63,7 @@ public class MealCalcAdapter extends RecyclerView.Adapter<MealCalcAdapter.FoodVi
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
         if (selectedFood != null) {
             // Get the current food item
-            FoodViewModel food = selectedFood.get(position);
+            Food food = selectedFood.get(position);
 
             // Set food name, amount, resulting calories, carbs, FPUs, eCarbs and absorption time
             holder.foodnameView.setText(food.getName());
@@ -80,18 +80,12 @@ public class MealCalcAdapter extends RecyclerView.Adapter<MealCalcAdapter.FoodVi
         }
     }
 
-    void setSelectedFood(List<FoodViewModel> selectedFood) {
+    void setSelectedFood(List<Food> selectedFood) {
         this.selectedFood = selectedFood;
     }
 
-    List<FoodViewModel> getSelectedFood() {
+    List<Food> getSelectedFood() {
         return selectedFood;
-    }
-
-    private void appendTypicalAmount(List<TypicalAmount> typicalAmounts, int amount, String comment, String defaultComment) {
-        if (amount > 0) {
-            typicalAmounts.add(new TypicalAmount(amount, comment, defaultComment));
-        }
     }
 
     // getItemCount() is called many times, and when it is first called,

@@ -158,4 +158,31 @@ public class Food {
     public void setCommentLarge(String comment) {
         this.commentLarge = comment;
     }
+
+    public double getCalories() {
+        return amount * caloriesPer100g / 100;
+    }
+
+    public double getCarbs() {
+        return amount * carbsPer100g / 100;
+    }
+
+    /**
+     * Calculates the Fat Protein Units of the food.
+     *
+     * @return The FPU associated with that food
+     */
+    public FPU getFPU() {
+        // 1g carbs has ~4 kcal, so calculate carb portion of calories
+        double carbsCal = amount / 100 * carbsPer100g * 4;
+
+        // The carbs from fat and protein is the remainder
+        double calFromFP = getCalories() - carbsCal;
+
+        // 100kcal makes 1 FPU
+        double fpus = calFromFP / 100;
+
+        // Create and return the FPU object
+        return new FPU(fpus);
+    }
 }

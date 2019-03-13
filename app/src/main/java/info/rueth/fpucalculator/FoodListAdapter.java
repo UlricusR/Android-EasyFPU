@@ -102,6 +102,15 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
         return selectedFood;
     }
 
+    int[] getSelectedFoodIds() {
+        ArrayList<FoodViewModel> foodArrayList = getSelectedFood();
+        int[] foodIds = new int[foodArrayList.size()];
+        for (int i = 0; i < foodArrayList.size(); i++) {
+            foodIds[i] = foodArrayList.get(i).getId();
+        }
+        return foodIds;
+    }
+
     // getItemCount() is called many times, and when it is first called,
     // allFood has not been updated (means initially, it's null, and we can't return null)
     @Override
