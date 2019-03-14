@@ -49,4 +49,5 @@
     <string name="action_exportdb">Exportiere Datenbank</string>
     <string name="backup_cannotwrite">Kann nicht speichern auf</string>
     <string name="action_importdb">Importiere Datenbank</string>
+    <string name="absorptionscheme_info_text"><![CDATA[Die Absorptionszeit wird nach folgender Logik entsprechend der FPE ausgewählt, z.B.:  Absorptionsschema: 0-1 FPU - 3 Stunden; 1-2 FPE - 4 Stunden; 2-3 FPE - 5 Stunden; 3-4 FPE - 6 Stunden; >4 FPE - 8 Stunden  Die FPE werden kaufmännisch gerundet, d.h. 2,49 wird auf 2 gerundet, 2.50 auf 3.  Liegen die FPE oberhalb des letzten Eintrags, wird die Absorptionszeit des letzten Eintrags genutzt.]]></string>
 </resources>
