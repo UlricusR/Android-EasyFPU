@@ -18,14 +18,29 @@ import java.util.List;
 
 public class CalcMealActivity extends AppCompatActivity {
 
+    // The activity's fields
+    private TextView foodnameView;
+    private TextView amountView;
+    private TextView caloriesView;
+    private TextView carbsView;
+    private TextView fpuView;
+    private TextView eCarbsView;
+    private TextView absorptionTimeView;
+
+    private FloatingActionButton fabCalc;
+
+    // Other class variables
+    private AbsorptionScheme absorptionScheme;
+    private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc_meal);
 
         // Create recycler view
-        AbsorptionScheme absorptionScheme = null;
-        RecyclerView recyclerView = findViewById(R.id.recyclerview_calc_meal);
+        absorptionScheme = null;
+        recyclerView = findViewById(R.id.recyclerview_calc_meal);
         try {
             absorptionScheme = AbsorptionScheme.getInstance(this);
         } catch (IOException e) {
@@ -42,13 +57,13 @@ public class CalcMealActivity extends AppCompatActivity {
         adapter.setSelectedFood(weightedFood);
 
         // Retrieve the fields
-        TextView foodnameView = findViewById(R.id.calcmeal_foodname);
-        TextView amountView = findViewById(R.id.calcmeal_amount);
-        TextView caloriesView = findViewById(R.id.calcmeal_calories);
-        TextView carbsView = findViewById(R.id.calcmeal_carbs);
-        TextView fpuView = findViewById(R.id.calcmeal_fpu);
-        TextView eCarbsView = findViewById(R.id.calcmeal_ecarbs);
-        TextView absorptionTimeView = findViewById(R.id.calcmeal_absorptiontime);
+        foodnameView = findViewById(R.id.calcmeal_foodname);
+        amountView = findViewById(R.id.calcmeal_amount);
+        caloriesView = findViewById(R.id.calcmeal_calories);
+        carbsView = findViewById(R.id.calcmeal_carbs);
+        fpuView = findViewById(R.id.calcmeal_fpu);
+        eCarbsView = findViewById(R.id.calcmeal_ecarbs);
+        absorptionTimeView = findViewById(R.id.calcmeal_absorptiontime);
 
         // Create the meal
         Meal meal = new Meal(getApplicationContext().getString(R.string.meal), weightedFood);
@@ -65,8 +80,14 @@ public class CalcMealActivity extends AppCompatActivity {
         // Set background color of the meal card to distinguish it easier from the food cards
         findViewById(R.id.meal_foodcard).setBackgroundColor(Color.YELLOW);
 
-        // Floating action button to go back to main activity
-        FloatingActionButton fabCalc = findViewById(R.id.fab_done);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Register floating action button to go back to main activity
+        fabCalc = findViewById(R.id.fab_done);
         fabCalc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +97,14 @@ public class CalcMealActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // De-register fab onClick listener
+        fabCalc.setOnClickListener(null);
     }
 
     @Override

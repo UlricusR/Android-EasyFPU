@@ -15,6 +15,11 @@ import java.util.List;
 
 public class NewMealActivity extends AppCompatActivity {
 
+    private FloatingActionButton fabCalc;
+
+    private FoodCalcAdapter adapter;
+    private int[] selectedFoodIds;
+
     public static final String INTENT_MEALCALC = "info.rueth.fpucalculator.MealCalc";
 
     @Override
@@ -24,24 +29,25 @@ public class NewMealActivity extends AppCompatActivity {
 
         // Create recycler view
         RecyclerView recyclerView = findViewById(R.id.recyclerview_newmeal);
-        final FoodCalcAdapter adapter = new FoodCalcAdapter(this);
+        adapter = new FoodCalcAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Get food IDs from intent, retrieve respective food from repository and set to adapter
-        int[] selectedFoodIds = getIntent().getIntArrayExtra(MainActivity.INTENT_FOODLIST);
-        adapter.setSelectedFood(FoodDataRepository.getInstance(getApplication()).getFoodByIDs(selectedFoodIds));
-
         // Floating action button to calculate meal
-        FloatingActionButton fabCalc = findViewById(R.id.fab_calcmeal);
+        fabCalc = findViewById(R.id.fab_calcmeal);
+
+        // Get food IDs from intent, retrieve respective food from repository and set to adapter
+        selectedFoodIds = getIntent().getIntArrayExtra(MainActivity.INTENT_FOODLIST);
+        adapter.setSelectedFood(FoodDataRepository.getInstance(getApplication()).getFoodByIDs(selectedFoodIds));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Add onClick listener to fab
         fabCalc.setOnClickListener(view -> {
             Intent intent = new Intent(NewMealActivity.this, CalcMealActivity.class);
-
-            // Get all selected food, each weighted with its amount
-            //ArrayList<Food> weightedFood = new ArrayList<>(adapter.getSelectedFood());
-
-            // Set to intent
-            //intent.putParcelableArrayListExtra(INTENT_MEALCALC, weightedFood);
 
             // Pass on ids of selected food
             intent.putExtra(INTENT_MEALCALC, selectedFoodIds);
@@ -49,6 +55,14 @@ public class NewMealActivity extends AppCompatActivity {
             // Start activity
             startActivity(intent);
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // De-register fab onClick listener
+        fabCalc.setOnClickListener(null);
     }
 
     @Override

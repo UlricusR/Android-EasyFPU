@@ -24,7 +24,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FloatingActionButton fabAdd;
+    private FloatingActionButton fabMeal;
+
     private boolean mFavorite;
+    private FoodListAdapter adapter;
+
     public static final String FOOD_ID = "info.rueth.fpucalculator.FoodID";
     public static final String INTENT_FOODLIST = "info.rueth.fpucalculator.FoodList";
 
@@ -37,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Get the persisted FoodViewModel
+        // Set favorite to false initially
         mFavorite = false;
 
         // Create recycler view
         RecyclerView recyclerView = findViewById(R.id.recyclerview_main);
-        final FoodListAdapter adapter = new FoodListAdapter(this);
+        adapter = new FoodListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -85,15 +90,22 @@ public class MainActivity extends AppCompatActivity {
         // Update the cached copy of the food items in the adapter
         FoodDataRepository.getInstance(getApplication()).getAllFood(mFavorite).observe(this, adapter::setAllFood);
 
-        // New food FAB
-        FloatingActionButton fabAdd = findViewById(R.id.fab_new);
+        // New food and meal calc FABs
+        fabAdd = findViewById(R.id.fab_new);
+        fabMeal = findViewById(R.id.fab_meal);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Add onClickListener to fabAdd
         fabAdd.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, NewFoodActivity.class);
             startActivity(intent);
         });
 
-        // New meal FAB
-        FloatingActionButton fabMeal = findViewById(R.id.fab_meal);
+        // Add onClickListener to fabMeal
         fabMeal.setOnClickListener(view -> {
             // Check if any food is selected
             if (!adapter.isAtLeastOneSelected()) {
@@ -108,6 +120,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // De-register FAB onClick listeners
+        fabAdd.setOnClickListener(null);
+        fabMeal.setOnClickListener(null);
     }
 
     @Override
