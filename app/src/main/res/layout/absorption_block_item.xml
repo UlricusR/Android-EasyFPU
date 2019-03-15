@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="4">
+
+    <EditText
+        android:id="@+id/absorption_block_fpu"
+        android:text="test"
+        android:layout_gravity="fill_horizontal"
+        android:gravity="end"
+        android:inputType="number"
+        android:selectAllOnFocus="true"
+        android:layout_columnWeight="1"/>
+
+    <TextView
+        android:text="@string/fpu_unit"
+        android:layout_gravity="fill_horizontal"
+        android:layout_columnWeight="1"/>
+
+    <EditText
+        android:id="@+id/absorption_block_hours"
+        android:text="test"
+        android:layout_gravity="fill_horizontal"
+        android:gravity="end"
+        android:inputType="number"
+        android:selectAllOnFocus="true"
+        android:layout_columnWeight="1"/>
+
+    <TextView
+        android:text="@string/absorptiontime_unit"
+        android:layout_gravity="fill_horizontal"
+        android:layout_columnWeight="1"/>
+</GridLayout>

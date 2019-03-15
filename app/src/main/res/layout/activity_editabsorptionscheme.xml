@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -10,15 +11,23 @@
         android:layout_height="wrap_content"
         android:text="@string/absorptionscheme_info_text"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"/>
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/foodfpu_label"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_absorptionblock"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@+id/absorptionscheme_info"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="8dp"
-        />
+        android:background="@android:color/darker_gray"
+        tools:listitem="@layout/absorption_block_item" />
+
+    <Button
+        android:id="@+id/button_absorptionblock_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/recyclerview_absorptionblock"
+        android:layout_marginTop="8dp"/>
 
 </android.support.constraint.ConstraintLayout>
