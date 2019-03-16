@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
     <TextView
         android:id="@+id/absorptionscheme_info"
         android:layout_width="match_parent"
@@ -25,9 +32,12 @@
 
     <Button
         android:id="@+id/button_absorptionblock_add"
-        android:layout_width="match_parent"
+        android:text="@string/button_add"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/recyclerview_absorptionblock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"/>
 
 </android.support.constraint.ConstraintLayout>

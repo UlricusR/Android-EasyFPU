@@ -42,7 +42,7 @@ public class CalcMealActivity extends AppCompatActivity {
         absorptionScheme = null;
         recyclerView = findViewById(R.id.recyclerview_calc_meal);
         try {
-            absorptionScheme = AbsorptionScheme.getInstance(this);
+            absorptionScheme = new AbsorptionScheme(AbsorptionSchemeRepository.getInstance(getApplication()).getAbsorptionBlocks());
         } catch (IOException e) {
             Toast.makeText(this, getText(R.string.err_absorptionschemefilenotfound), Toast.LENGTH_SHORT).show();
             this.finish();
