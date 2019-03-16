@@ -12,7 +12,7 @@ import java.util.List;
 
 public class AbsorptionSchemeAdapter extends RecyclerView.Adapter<AbsorptionSchemeAdapter.AbsorptionBlockViewHolder> {
 
-    public class AbsorptionBlockViewHolder extends RecyclerView.ViewHolder {
+    class AbsorptionBlockViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView fpuView;
         private final TextView absorptionTimeView;
@@ -27,11 +27,10 @@ public class AbsorptionSchemeAdapter extends RecyclerView.Adapter<AbsorptionSche
     private LayoutInflater mInflater;
     private List<AbsorptionBlockViewModel> mAbsorptionBlocks;
 
-    AbsorptionSchemeAdapter(Context context, List<AbsorptionBlockViewModel> absorptionBlocks) {
+    AbsorptionSchemeAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
-        mAbsorptionBlocks = absorptionBlocks;
     }
-
+    
     @NonNull
     @Override
     public AbsorptionBlockViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -50,6 +49,11 @@ public class AbsorptionSchemeAdapter extends RecyclerView.Adapter<AbsorptionSche
             holder.fpuView.setText(absorptionBlock.getMaxFPU());
             holder.absorptionTimeView.setText(absorptionBlock.getAbsorptionTime());
         }
+    }
+
+    void setAbsorptionBlocks(List<AbsorptionBlockViewModel> absorptionBlocks) {
+        this.mAbsorptionBlocks = absorptionBlocks;
+        notifyDataSetChanged();
     }
 
     // getItemCount() is called many times, and when it is first called,
