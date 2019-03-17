@@ -5,29 +5,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline_center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
-
-    <TextView
-        android:id="@+id/absorptionscheme_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/absorptionscheme_info_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"/>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_absorptionblock"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/absorptionscheme_info"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
         tools:listitem="@layout/absorption_block_item" />
 
     <Button
@@ -39,5 +22,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/button_absorptionscheme_reset"
+        android:text="@string/button_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/button_absorptionblock_add"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_done"
+        app:srcCompat="@drawable/ic_done_black_24dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="8dp" />
 
 </android.support.constraint.ConstraintLayout>

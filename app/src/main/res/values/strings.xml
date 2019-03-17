@@ -51,4 +51,7 @@
     <string name="absorptionscheme_info_text"><![CDATA[The absorption time is defined based on the total FPUs, e.g.: 0-1 FPU - 3 hours; 1-2 FPUs - 4 hours; 2-3 FPUs - 5 hours; 3-4 FPUs - 6 hours; >4 FPUs - 8 hours  The fpu value is commercially rounded to 0 digits, i.e. 2.49 will be rounded to 2, 2.50 will be rounded to 3.  If the fpu value is beyond the last value, the time of the last value is used.]]></string>
     <string name="button_add">Add</string>
     <string name="button_remove">Remove</string>
+    <string name="action_editabsorptionscheme">Edit absorption scheme</string>
+    <string name="button_reset">Reset</string>
+    <string name="absorptionblock_cannotdelete">Cannot delete absorption block</string>
 </resources>

@@ -12,8 +12,10 @@ import org.junit.runner.RunWith;
 
 import java.io.IOException;
 
-import static info.rueth.fpucalculator.AppDatabase.MIGRATION_1_2;
-import static info.rueth.fpucalculator.AppDatabase.MIGRATION_2_3;
+import info.rueth.fpucalculator.domain.repository.AppDatabase;
+
+import static info.rueth.fpucalculator.domain.repository.AppDatabase.MIGRATION_1_2;
+import static info.rueth.fpucalculator.domain.repository.AppDatabase.MIGRATION_2_3;
 
 @RunWith(AndroidJUnit4.class)
 public class MigrationTest {
