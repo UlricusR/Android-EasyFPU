@@ -10,6 +10,28 @@ public class AbsorptionScheme {
 
     public AbsorptionScheme(List<AbsorptionBlock> absorptionBlocks) {
         this.mAbsorptionBlocks = absorptionBlocks;
+        healthcheck();
+    }
+    
+    public List<AbsorptionBlock> getAbsorptionBlocks() {
+        return mAbsorptionBlocks;
+    }
+    
+    public boolean delete(int maxFPU) {
+        for (AbsorptionBlock absorptionBlock : mAbsorptionBlocks) {
+            if (absorptionBlock.getMaxFPU() == maxFPU) {
+                mAbsorptionBlocks.remove(absorptionBlock);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private void healthcheck() {
+        // Sort absorption blocks
+        Collections.sort(mAbsorptionBlocks, (o1, o2) -> o1.getMaxFPU() - o2.getMaxFPU());
+
+        // TODO Checking if a value is double and logic regarding absorptiontime
     }
 
     /**

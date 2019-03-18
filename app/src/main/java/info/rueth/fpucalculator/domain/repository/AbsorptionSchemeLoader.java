@@ -19,6 +19,7 @@ import java.util.List;
 
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.domain.model.AbsorptionBlock;
+import info.rueth.fpucalculator.domain.model.AbsorptionScheme;
 
 class AbsorptionSchemeLoader {
     private Context context;
@@ -31,7 +32,7 @@ class AbsorptionSchemeLoader {
         this.context = context;
     }
 
-    List<AbsorptionBlock> load() throws IOException {
+    AbsorptionScheme load() throws IOException {
         // Load the absorption scheme
         InputStream inputStream;
         boolean userFileExists;
@@ -49,14 +50,13 @@ class AbsorptionSchemeLoader {
         List<AbsorptionBlock> absorptionBlocks = new ArrayList<>();
         readJsonStream(inputStream, absorptionBlocks);
         inputStream.close();
+        
+        AbsorptionScheme absorptionScheme = new AbsorptionScheme(absorptionBlocks);
 
         // Save user file in case inputStream used the default file
-        if (!userFileExists) save(absorptionBlocks);
+        if (!userFileExists) save(absorptionScheme);
 
-        // Sort absorption blocks
-        Collections.sort(absorptionBlocks, (o1, o2) -> o1.getMaxFPU() - o2.getMaxFPU());
-
-        return absorptionBlocks;
+        return absorptionScheme;
     }
 
     private void readJsonStream(InputStream in, List<AbsorptionBlock> absorptionBlocks) throws IOException {
@@ -91,7 +91,8 @@ class AbsorptionSchemeLoader {
         return new AbsorptionBlock(maxFPU, absorptionTime);
     }
 
-    void save(List<AbsorptionBlock> absorptionBlocks) throws IOException {
+    void save(AbsorptionScheme absorptionScheme) throws IOException {
+        List<AbsorptionBlock> absorptionBlocks = absorptionScheme.getAbsorptionBlocks();
         FileOutputStream outputStream;
         outputStream = context.openFileOutput(FILENAME_USER, Context.MODE_PRIVATE);
         writeJsonStream(outputStream, absorptionBlocks);
@@ -116,20 +117,20 @@ class AbsorptionSchemeLoader {
         writer.endObject();
     }
 
-    public List<AbsorptionBlock> reset() throws IOException {
+    public AbsorptionScheme reset() throws IOException {
         InputStream inputStream = context.getResources().openRawResource(R.raw.absorptionscheme_default);
 
         // Read absorption blocks
         List<AbsorptionBlock> absorptionBlocks = new ArrayList<>();
         readJsonStream(inputStream, absorptionBlocks);
         inputStream.close();
+        
+        // Create absorptionscheme
+        AbsorptionScheme absorptionScheme = new AbsorptionScheme(absorptionBlocks);
 
         // Save user file
-        save(absorptionBlocks);
+        save(absorptionScheme);
 
-        // Sort absorption blocks
-        Collections.sort(absorptionBlocks, (o1, o2) -> o1.getMaxFPU() - o2.getMaxFPU());
-
-        return absorptionBlocks;
+        return absorptionScheme;
     }
 }

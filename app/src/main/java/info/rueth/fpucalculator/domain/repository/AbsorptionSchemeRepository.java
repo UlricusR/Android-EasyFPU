@@ -13,7 +13,7 @@ import info.rueth.fpucalculator.presentation.viewmodels.AbsorptionBlockViewModel
 
 public class AbsorptionSchemeRepository {
     private AbsorptionSchemeLoader mAbsorptionSchemeLoader;
-    private List<AbsorptionBlock> mAbsorptionBlocks;
+    private AbsorptionScheme mAbsorptionScheme;
     private static volatile AbsorptionSchemeRepository INSTANCE;
 
     public static AbsorptionSchemeRepository getInstance(Context context) throws IOException {
@@ -29,17 +29,17 @@ public class AbsorptionSchemeRepository {
 
     private AbsorptionSchemeRepository(Context context) throws IOException {
         mAbsorptionSchemeLoader = new AbsorptionSchemeLoader(context);
-        this.mAbsorptionBlocks = mAbsorptionSchemeLoader.load();
+        mAbsorptionScheme = mAbsorptionSchemeLoader.load();
     }
 
     public List<AbsorptionBlock> getAbsorptionBlocks() {
-        return this.mAbsorptionBlocks;
+        return mAbsorptionScheme.getAbsorptionBlocks();
     }
 
     public LiveData<List<AbsorptionBlockViewModel>> getAbsorptionBlockViewModel() {
         List<AbsorptionBlockViewModel> absorptionBlockVM = new ArrayList<>();
         AbsorptionBlockViewModel absorptionBlockViewModel;
-        for (AbsorptionBlock item : mAbsorptionBlocks) {
+        for (AbsorptionBlock item : getAbsorptionBlocks()) {
             absorptionBlockViewModel = createViewModel(item);
             absorptionBlockVM.add(absorptionBlockViewModel);
         }
@@ -55,17 +55,14 @@ public class AbsorptionSchemeRepository {
     }
 
     public void delete(int maxFPU) throws IOException {
-        for (AbsorptionBlock absorptionBlock : mAbsorptionBlocks) {
-            if (absorptionBlock.getMaxFPU() == maxFPU) {
-                mAbsorptionBlocks.remove(absorptionBlock);
-                mAbsorptionSchemeLoader.save(mAbsorptionBlocks);
-                return;
-            }
+        if (mAbsorptionScheme.delete(maxFPU)) {
+            // Removing was successful, so save new absorption scheme
+            mAbsorptionSchemeLoader.save(mAbsorptionBlocks);
         }
     }
 
     public LiveData<List<AbsorptionBlockViewModel>> reset() throws IOException {
-        mAbsorptionBlocks = mAbsorptionSchemeLoader.reset();
+        mAbsorptionScheme = mAbsorptionSchemeLoader.reset();
         return getAbsorptionBlockViewModel();
     }
 }
