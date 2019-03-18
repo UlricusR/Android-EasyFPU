@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 import info.rueth.fpucalculator.R;
+import info.rueth.fpucalculator.domain.model.AbsorptionSchemeException;
 import info.rueth.fpucalculator.presentation.viewmodels.AbsorptionBlockViewModel;
 import info.rueth.fpucalculator.usecases.AbsorptionBlockDelete;
 
@@ -70,6 +71,8 @@ public class AbsorptionSchemeAdapter extends RecyclerView.Adapter<AbsorptionSche
                     notifyItemRangeChanged(position, getItemCount());
                 } catch (IOException e) {
                     Toast.makeText(mInflater.getContext(), R.string.absorptionblock_cannotdelete, Toast.LENGTH_SHORT).show();
+                } catch (AbsorptionSchemeException e) {
+                    Toast.makeText(mInflater.getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }

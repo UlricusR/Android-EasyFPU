@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.io.IOException;
 
 import info.rueth.fpucalculator.R;
+import info.rueth.fpucalculator.domain.model.AbsorptionSchemeException;
 import info.rueth.fpucalculator.domain.repository.AbsorptionSchemeRepository;
 import info.rueth.fpucalculator.presentation.adapter.AbsorptionSchemeAdapter;
 
@@ -41,6 +42,9 @@ public class AbsorptionSchemeActivity extends AppCompatActivity {
         } catch (IOException e) {
             Toast.makeText(this, R.string.err_absorptionschemefilenotfound, Toast.LENGTH_SHORT).show();
             finish();
+        } catch (AbsorptionSchemeException e) {
+            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            finish();
         }
 
         // Add and reset buttons
@@ -66,6 +70,10 @@ public class AbsorptionSchemeActivity extends AppCompatActivity {
                 AbsorptionSchemeRepository.getInstance(getApplicationContext()).reset().observe(this, adapter::setAbsorptionBlocks);
             } catch (IOException e) {
                 Toast.makeText(getApplicationContext(), R.string.err_absorptionschemefilenotfound, Toast.LENGTH_SHORT).show();
+                finish();
+            } catch (AbsorptionSchemeException e) {
+                Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 

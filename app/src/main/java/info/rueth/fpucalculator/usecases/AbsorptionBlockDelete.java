@@ -4,13 +4,14 @@ import android.content.Context;
 
 import java.io.IOException;
 
+import info.rueth.fpucalculator.domain.model.AbsorptionSchemeException;
 import info.rueth.fpucalculator.domain.repository.AbsorptionSchemeRepository;
 import info.rueth.fpucalculator.presentation.viewmodels.AbsorptionBlockViewModel;
 
 public class AbsorptionBlockDelete implements AbsorptionBlockUseCase {
     private AbsorptionSchemeRepository repository;
 
-    public AbsorptionBlockDelete(Context context) throws IOException {
+    public AbsorptionBlockDelete(Context context) throws IOException, AbsorptionSchemeException {
         repository = AbsorptionSchemeRepository.getInstance(context);
     }
 

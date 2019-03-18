@@ -18,6 +18,7 @@ import java.util.List;
 
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.domain.model.AbsorptionScheme;
+import info.rueth.fpucalculator.domain.model.AbsorptionSchemeException;
 import info.rueth.fpucalculator.domain.model.Food;
 import info.rueth.fpucalculator.domain.model.Meal;
 import info.rueth.fpucalculator.domain.repository.AbsorptionSchemeRepository;
@@ -50,11 +51,15 @@ public class CalcMealActivity extends AppCompatActivity {
         absorptionScheme = null;
         recyclerView = findViewById(R.id.recyclerview_calc_meal);
         try {
-            absorptionScheme = new AbsorptionScheme(AbsorptionSchemeRepository.getInstance(getApplication()).getAbsorptionBlocks());
+            absorptionScheme = AbsorptionSchemeRepository.getInstance(getApplication()).getAbsorptionScheme();
         } catch (IOException e) {
             Toast.makeText(this, getText(R.string.err_absorptionschemefilenotfound), Toast.LENGTH_SHORT).show();
             this.finish();
+        } catch (AbsorptionSchemeException e) {
+            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            this.finish();
         }
+
         final MealCalcAdapter adapter = new MealCalcAdapter(this, absorptionScheme);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

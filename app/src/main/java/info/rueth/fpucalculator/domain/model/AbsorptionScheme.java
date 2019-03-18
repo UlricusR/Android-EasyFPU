@@ -1,5 +1,6 @@
 package info.rueth.fpucalculator.domain.model;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -8,9 +9,11 @@ import java.util.List;
 public class AbsorptionScheme {
     private List<AbsorptionBlock> mAbsorptionBlocks;
 
-    public AbsorptionScheme(List<AbsorptionBlock> absorptionBlocks) {
+    public AbsorptionScheme(List<AbsorptionBlock> absorptionBlocks, String errorMessage) throws AbsorptionSchemeException {
         this.mAbsorptionBlocks = absorptionBlocks;
-        healthcheck();
+        if (!healthcheck()) {
+            throw new AbsorptionSchemeException(errorMessage);
+        }
     }
     
     public List<AbsorptionBlock> getAbsorptionBlocks() {
@@ -27,11 +30,17 @@ public class AbsorptionScheme {
         return false;
     }
     
-    private void healthcheck() {
+    private boolean healthcheck() {
         // Sort absorption blocks
         Collections.sort(mAbsorptionBlocks, (o1, o2) -> o1.getMaxFPU() - o2.getMaxFPU());
 
         // TODO Checking if a value is double and logic regarding absorptiontime
+        return true;
+    }
+
+    public boolean add(AbsorptionBlock absorptionBlock) {
+        mAbsorptionBlocks.add(absorptionBlock);
+        return healthcheck();
     }
 
     /**

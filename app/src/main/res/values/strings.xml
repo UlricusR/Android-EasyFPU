@@ -54,4 +54,5 @@
     <string name="action_editabsorptionscheme">Edit absorption scheme</string>
     <string name="button_reset">Reset</string>
     <string name="absorptionblock_cannotdelete">Cannot delete absorption block</string>
+    <string name="err_absorptionblock_error">Absorption block does not fit to existing scheme</string>
 </resources>

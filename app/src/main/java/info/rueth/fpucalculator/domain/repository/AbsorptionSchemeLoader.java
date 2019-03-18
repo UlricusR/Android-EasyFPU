@@ -20,6 +20,7 @@ import java.util.List;
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.domain.model.AbsorptionBlock;
 import info.rueth.fpucalculator.domain.model.AbsorptionScheme;
+import info.rueth.fpucalculator.domain.model.AbsorptionSchemeException;
 
 class AbsorptionSchemeLoader {
     private Context context;
@@ -32,7 +33,7 @@ class AbsorptionSchemeLoader {
         this.context = context;
     }
 
-    AbsorptionScheme load() throws IOException {
+    AbsorptionScheme load() throws IOException, AbsorptionSchemeException {
         // Load the absorption scheme
         InputStream inputStream;
         boolean userFileExists;
@@ -50,8 +51,8 @@ class AbsorptionSchemeLoader {
         List<AbsorptionBlock> absorptionBlocks = new ArrayList<>();
         readJsonStream(inputStream, absorptionBlocks);
         inputStream.close();
-        
-        AbsorptionScheme absorptionScheme = new AbsorptionScheme(absorptionBlocks);
+
+        AbsorptionScheme absorptionScheme = new AbsorptionScheme(absorptionBlocks, context.getText(R.string.err_absorptionblock_error).toString());
 
         // Save user file in case inputStream used the default file
         if (!userFileExists) save(absorptionScheme);
@@ -117,7 +118,7 @@ class AbsorptionSchemeLoader {
         writer.endObject();
     }
 
-    public AbsorptionScheme reset() throws IOException {
+    public AbsorptionScheme reset() throws IOException, AbsorptionSchemeException {
         InputStream inputStream = context.getResources().openRawResource(R.raw.absorptionscheme_default);
 
         // Read absorption blocks
@@ -126,7 +127,7 @@ class AbsorptionSchemeLoader {
         inputStream.close();
         
         // Create absorptionscheme
-        AbsorptionScheme absorptionScheme = new AbsorptionScheme(absorptionBlocks);
+        AbsorptionScheme absorptionScheme = new AbsorptionScheme(absorptionBlocks, context.getText(R.string.err_absorptionblock_error).toString());
 
         // Save user file
         save(absorptionScheme);
