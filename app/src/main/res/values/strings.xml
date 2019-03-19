@@ -55,4 +55,5 @@
     <string name="button_reset">Reset</string>
     <string name="absorptionblock_cannotdelete">Cannot delete absorption block</string>
     <string name="err_absorptionblock_error">Absorption block does not fit to existing scheme</string>
+    <string name="hint_absorptionscheme_reset">Absorption scheme reset to default</string>
 </resources>

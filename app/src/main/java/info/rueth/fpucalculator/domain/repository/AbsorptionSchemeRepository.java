@@ -10,7 +10,6 @@ import java.util.List;
 
 import info.rueth.fpucalculator.domain.model.AbsorptionBlock;
 import info.rueth.fpucalculator.domain.model.AbsorptionScheme;
-import info.rueth.fpucalculator.domain.model.AbsorptionSchemeException;
 import info.rueth.fpucalculator.presentation.viewmodels.AbsorptionBlockViewModel;
 
 public class AbsorptionSchemeRepository {
@@ -18,7 +17,7 @@ public class AbsorptionSchemeRepository {
     private AbsorptionScheme mAbsorptionScheme;
     private static volatile AbsorptionSchemeRepository INSTANCE;
 
-    public static AbsorptionSchemeRepository getInstance(Context context) throws IOException, AbsorptionSchemeException {
+    public static AbsorptionSchemeRepository getInstance(Context context) throws IOException {
         if (INSTANCE == null) {
             synchronized (AbsorptionSchemeRepository.class) {
                 if (INSTANCE == null) {
@@ -29,7 +28,7 @@ public class AbsorptionSchemeRepository {
         return INSTANCE;
     }
 
-    private AbsorptionSchemeRepository(Context context) throws IOException, AbsorptionSchemeException {
+    private AbsorptionSchemeRepository(Context context) throws IOException {
         mAbsorptionSchemeLoader = new AbsorptionSchemeLoader(context);
         mAbsorptionScheme = mAbsorptionSchemeLoader.load();
     }
@@ -38,14 +37,10 @@ public class AbsorptionSchemeRepository {
         return mAbsorptionScheme;
     }
 
-    public List<AbsorptionBlock> getAbsorptionBlocks() {
-        return mAbsorptionScheme.getAbsorptionBlocks();
-    }
-
     public LiveData<List<AbsorptionBlockViewModel>> getAbsorptionBlockViewModel() {
         List<AbsorptionBlockViewModel> absorptionBlockVM = new ArrayList<>();
         AbsorptionBlockViewModel absorptionBlockViewModel;
-        for (AbsorptionBlock item : getAbsorptionBlocks()) {
+        for (AbsorptionBlock item : mAbsorptionScheme.getAbsorptionBlocks()) {
             absorptionBlockViewModel = createViewModel(item);
             absorptionBlockVM.add(absorptionBlockViewModel);
         }
@@ -56,23 +51,28 @@ public class AbsorptionSchemeRepository {
     }
 
     private AbsorptionBlockViewModel createViewModel(AbsorptionBlock absorptionBlock) {
-        AbsorptionBlockViewModel viewModel = new AbsorptionBlockViewModel(absorptionBlock.getMaxFPU(), absorptionBlock.getAbsorptionTime());
-        return viewModel;
+        return new AbsorptionBlockViewModel(absorptionBlock.getMaxFPU(), absorptionBlock.getAbsorptionTime());
     }
 
-    public void delete(int maxFPU) throws IOException {
-        if (mAbsorptionScheme.delete(maxFPU)) {
-            // Removing was successful, so save new absorption scheme
-            mAbsorptionSchemeLoader.save(mAbsorptionScheme);
+    public void setAbsorptionBlockViewModel(List<AbsorptionBlockViewModel> absorptionBlockVM) {
+        List<AbsorptionBlock> absorptionBlocks = new ArrayList<>();
+        for (AbsorptionBlockViewModel viewModel : absorptionBlockVM) {
+            absorptionBlocks.add(createAbsorptionBlock(viewModel));
         }
+        mAbsorptionScheme.setAbsorptionBlocks(absorptionBlocks);
     }
 
-    public boolean add(AbsorptionBlock absorptionBlock) {
-        return mAbsorptionScheme.add(absorptionBlock);
+    private AbsorptionBlock createAbsorptionBlock(AbsorptionBlockViewModel absorptionBlockVM) {
+        return new AbsorptionBlock(absorptionBlockVM.getMaxFPU(), absorptionBlockVM.getAbsorptionTime());
     }
 
-    public LiveData<List<AbsorptionBlockViewModel>> reset() throws IOException, AbsorptionSchemeException {
-        mAbsorptionScheme = mAbsorptionSchemeLoader.reset();
+    public void save() throws IOException {
+        mAbsorptionSchemeLoader.save(mAbsorptionScheme);
+    }
+
+    public LiveData<List<AbsorptionBlockViewModel>> reset() throws IOException {
+        mAbsorptionScheme = mAbsorptionSchemeLoader.loadDefault();
+        save();
         return getAbsorptionBlockViewModel();
     }
 }

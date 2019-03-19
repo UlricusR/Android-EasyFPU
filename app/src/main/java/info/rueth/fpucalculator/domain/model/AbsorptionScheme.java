@@ -1,6 +1,5 @@
 package info.rueth.fpucalculator.domain.model;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -9,40 +8,18 @@ import java.util.List;
 public class AbsorptionScheme {
     private List<AbsorptionBlock> mAbsorptionBlocks;
 
-    public AbsorptionScheme(List<AbsorptionBlock> absorptionBlocks, String errorMessage) throws AbsorptionSchemeException {
+    public AbsorptionScheme(List<AbsorptionBlock> absorptionBlocks) {
         this.mAbsorptionBlocks = absorptionBlocks;
-        if (!healthcheck()) {
-            throw new AbsorptionSchemeException(errorMessage);
-        }
     }
     
     public List<AbsorptionBlock> getAbsorptionBlocks() {
         return mAbsorptionBlocks;
     }
-    
-    public boolean delete(int maxFPU) {
-        for (AbsorptionBlock absorptionBlock : mAbsorptionBlocks) {
-            if (absorptionBlock.getMaxFPU() == maxFPU) {
-                mAbsorptionBlocks.remove(absorptionBlock);
-                return true;
-            }
-        }
-        return false;
+
+    public void setAbsorptionBlocks(List<AbsorptionBlock> absorptionBlocks) {
+            mAbsorptionBlocks = absorptionBlocks;
     }
     
-    private boolean healthcheck() {
-        // Sort absorption blocks
-        Collections.sort(mAbsorptionBlocks, (o1, o2) -> o1.getMaxFPU() - o2.getMaxFPU());
-
-        // TODO Checking if a value is double and logic regarding absorptiontime
-        return true;
-    }
-
-    public boolean add(AbsorptionBlock absorptionBlock) {
-        mAbsorptionBlocks.add(absorptionBlock);
-        return healthcheck();
-    }
-
     /**
      * Picks the absorption time associated to the number of FPUs, e.g.:
      * <p>absorptionScheme: 0-1 FPU - 3 hours; 1-2 FPU - 4 hours; 2-3 FPUs - 5 hours; 3-4 FPUs - 6 hours; >4 FPUs - 8 hours</p>

@@ -56,4 +56,5 @@
     <string name="button_reset">Zurücksetzen</string>
     <string name="absorptionblock_cannotdelete">Kann Absorptionsblock nicht löschen</string>
     <string name="err_absorptionblock_error">Absorptionsblock passt nicht in existierendes Schema</string>
+    <string name="hint_absorptionscheme_reset">Absorptionsschema auf Voreinstellungen zurückgesetzt</string>
 </resources>

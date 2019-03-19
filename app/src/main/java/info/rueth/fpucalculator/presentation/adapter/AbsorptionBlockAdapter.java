@@ -8,17 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.List;
 
 import info.rueth.fpucalculator.R;
-import info.rueth.fpucalculator.domain.model.AbsorptionSchemeException;
 import info.rueth.fpucalculator.presentation.viewmodels.AbsorptionBlockViewModel;
-import info.rueth.fpucalculator.usecases.AbsorptionBlockDelete;
 
-public class AbsorptionSchemeAdapter extends RecyclerView.Adapter<AbsorptionSchemeAdapter.AbsorptionBlockViewHolder> {
+public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlockAdapter.AbsorptionBlockViewHolder> {
 
     public class AbsorptionBlockViewHolder extends RecyclerView.ViewHolder {
 
@@ -37,7 +33,7 @@ public class AbsorptionSchemeAdapter extends RecyclerView.Adapter<AbsorptionSche
     private LayoutInflater mInflater;
     private List<AbsorptionBlockViewModel> mAbsorptionBlocks;
 
-    public AbsorptionSchemeAdapter(Context context) {
+    public AbsorptionBlockAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
     }
     
@@ -61,19 +57,11 @@ public class AbsorptionSchemeAdapter extends RecyclerView.Adapter<AbsorptionSche
 
             // Set onClickListener to remove button
             holder.buttonRemove.setOnClickListener(v -> {
-                try {
-                    // Delete absorption block from data model
-                    new AbsorptionBlockDelete(mInflater.getContext()).execute(mAbsorptionBlocks.get(position));
-
-                    // ... and in parallel from cache and view
-                    mAbsorptionBlocks.remove(position);
-                    notifyItemRemoved(position);
-                    notifyItemRangeChanged(position, getItemCount());
-                } catch (IOException e) {
-                    Toast.makeText(mInflater.getContext(), R.string.absorptionblock_cannotdelete, Toast.LENGTH_SHORT).show();
-                } catch (AbsorptionSchemeException e) {
-                    Toast.makeText(mInflater.getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                }
+                // Delete absorption block from cache and view, not yet from data repository
+                // (this will only be done on save)
+                mAbsorptionBlocks.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, getItemCount());
             });
         }
     }
@@ -81,6 +69,10 @@ public class AbsorptionSchemeAdapter extends RecyclerView.Adapter<AbsorptionSche
     public void setAbsorptionBlocks(List<AbsorptionBlockViewModel> absorptionBlocks) {
         this.mAbsorptionBlocks = absorptionBlocks;
         notifyDataSetChanged();
+    }
+
+    public List<AbsorptionBlockViewModel> getAbsorptionBlocks() {
+        return mAbsorptionBlocks;
     }
 
     // getItemCount() is called many times, and when it is first called,

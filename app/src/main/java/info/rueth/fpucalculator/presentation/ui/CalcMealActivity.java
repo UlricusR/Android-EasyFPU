@@ -18,7 +18,6 @@ import java.util.List;
 
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.domain.model.AbsorptionScheme;
-import info.rueth.fpucalculator.domain.model.AbsorptionSchemeException;
 import info.rueth.fpucalculator.domain.model.Food;
 import info.rueth.fpucalculator.domain.model.Meal;
 import info.rueth.fpucalculator.domain.repository.AbsorptionSchemeRepository;
@@ -52,9 +51,6 @@ public class CalcMealActivity extends AppCompatActivity {
             absorptionScheme = AbsorptionSchemeRepository.getInstance(getApplication()).getAbsorptionScheme();
         } catch (IOException e) {
             Toast.makeText(this, getText(R.string.err_absorptionschemefilenotfound), Toast.LENGTH_SHORT).show();
-            this.finish();
-        } catch (AbsorptionSchemeException e) {
-            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             this.finish();
         }
         
