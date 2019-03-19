@@ -39,7 +39,6 @@ public class CalcMealActivity extends AppCompatActivity {
     private FloatingActionButton fabCalc;
 
     // Other class variables
-    private AbsorptionScheme absorptionScheme;
     private RecyclerView recyclerView;
 
     @Override
@@ -47,9 +46,8 @@ public class CalcMealActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc_meal);
 
-        // Create recycler view
-        absorptionScheme = null;
-        recyclerView = findViewById(R.id.recyclerview_calc_meal);
+        // Get absorption scheme
+        AbsorptionScheme absorptionScheme = null;
         try {
             absorptionScheme = AbsorptionSchemeRepository.getInstance(getApplication()).getAbsorptionScheme();
         } catch (IOException e) {
@@ -59,8 +57,14 @@ public class CalcMealActivity extends AppCompatActivity {
             Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             this.finish();
         }
+        
+        //
+        // Prepare the recycler view with the individual food items of the meal
+        //
 
+        // Create adapter using the actual absorption scheme and assign to meal calculation recycler view
         final MealCalcAdapter adapter = new MealCalcAdapter(this, absorptionScheme);
+        recyclerView = findViewById(R.id.recyclerview_calc_meal);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -68,6 +72,11 @@ public class CalcMealActivity extends AppCompatActivity {
         int[] selectedFoodIds = getIntent().getIntArrayExtra(NewMealActivity.INTENT_MEALCALC);
         List<Food> weightedFood = FoodDataRepository.getInstance(getApplication()).getFoodByIDs(selectedFoodIds);
         adapter.setSelectedFood(weightedFood);
+        
+        //
+        // Prepare the meal, which includes all selected food items.
+        // The meal will be displayed on top of the recycler view (outside the recycler).
+        //
 
         // Retrieve the fields
         foodnameView = findViewById(R.id.calcmeal_foodname);
@@ -92,7 +101,6 @@ public class CalcMealActivity extends AppCompatActivity {
 
         // Set background color of the meal card to distinguish it easier from the food cards
         findViewById(R.id.meal_foodcard).setBackgroundColor(Color.YELLOW);
-
     }
 
     @Override
