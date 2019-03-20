@@ -57,4 +57,6 @@
     <string name="absorptionblock_cannotdelete">Kann Absorptionsblock nicht löschen</string>
     <string name="err_absorptionblock_error">Absorptionsblock passt nicht in existierendes Schema</string>
     <string name="hint_absorptionscheme_reset">Absorptionsschema auf Voreinstellungen zurückgesetzt</string>
+    <string name="err_newabsorptionblock_maxfpuidentical">Kann neuen Absorptionsblock nicht erstellen: Max. FPE-Wert existiert bereits</string>
+    <string name="err_newabsorptionblock_absorptiontime">Kann neuen Absorptionsblock nicht erstellen: Absorptionszeit passt nicht zu existierenden Werten</string>
 </resources>

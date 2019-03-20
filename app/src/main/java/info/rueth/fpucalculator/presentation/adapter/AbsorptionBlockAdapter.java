@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Collections;
 import java.util.List;
 
 import info.rueth.fpucalculator.R;
@@ -73,6 +74,62 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
 
     public List<AbsorptionBlockViewModel> getAbsorptionBlocks() {
         return mAbsorptionBlocks;
+    }
+
+    public boolean addAbsorptionBlock(AbsorptionBlockViewModel absorptionBlockNew, String errorMessage) {
+        // Check no. 1: If the list only has one element, then everything is fine, as the new block is the first one
+        if (mAbsorptionBlocks.size() == 0) {
+            mAbsorptionBlocks.add(absorptionBlockNew);
+            return true;
+        }
+
+        // Check no. 2: There are existing blocks, so we must check to not have identical maxFPU values
+        for (AbsorptionBlockViewModel absorptionBlock : mAbsorptionBlocks) {
+            if (absorptionBlock.getMaxFPU() == absorptionBlockNew.getMaxFPU()) {
+                // Duplicate maxFPU values not allowed
+                errorMessage = mInflater.getContext().getString(R.string.err_newabsorptionblock_maxfpuidentical);
+                return false;
+            }
+        }
+
+        // Now we're sure the new maxFPU is not identical, therefore we add new absorption block and sort
+        mAbsorptionBlocks.add(absorptionBlockNew);
+        Collections.sort(mAbsorptionBlocks, (o1, o2) -> o1.getMaxFPU() - o2.getMaxFPU());
+
+        // Check no. 3: The absorption block before the new one must have a lower, the one after a higher absorption time
+        int newBlockIndex = mAbsorptionBlocks.indexOf(absorptionBlockNew);
+
+        // Case 3a: It's the first element, so just check the block after -
+        // we have already excluded the case that the new block is the only element in check no. 1!
+        if (newBlockIndex == 0) {
+            if (absorptionBlockNew.getAbsorptionTime() >= mAbsorptionBlocks.get(1).getAbsorptionTime()) {
+                // Error: The new block's absorption time is equals or larger than of the one after
+                errorMessage = mInflater.getContext().getString(R.string.err_newabsorptionblock_absorptiontime);
+                mAbsorptionBlocks.remove(absorptionBlockNew);
+                return false;
+            }
+        }
+
+        // Case 3b: It's the last element, so just check the block before
+        if (newBlockIndex == mAbsorptionBlocks.size() - 1) {
+            if (absorptionBlockNew.getAbsorptionTime() <= mAbsorptionBlocks.get(mAbsorptionBlocks.size() - 1).getAbsorptionTime()) {
+                // Error: The new block's absorption time is equals or less than of the one before
+                errorMessage = mInflater.getContext().getString(R.string.err_newabsorptionblock_absorptiontime);
+                mAbsorptionBlocks.remove(absorptionBlockNew);
+                return false;
+            }
+        }
+
+        // Case 3c: It's somewhere in the middle
+        if (!(absorptionBlockNew.getAbsorptionTime() > mAbsorptionBlocks.get(newBlockIndex - 1).getAbsorptionTime() &&
+              absorptionBlockNew.getAbsorptionTime() < mAbsorptionBlocks.get(newBlockIndex + 1).getAbsorptionTime())) {
+            errorMessage = mInflater.getContext().getString(R.string.err_newabsorptionblock_absorptiontime);
+            mAbsorptionBlocks.remove(absorptionBlockNew);
+            return false;
+        }
+
+        // All set!
+        return true;
     }
 
     // getItemCount() is called many times, and when it is first called,

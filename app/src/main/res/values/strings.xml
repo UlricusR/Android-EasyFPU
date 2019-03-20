@@ -56,4 +56,6 @@
     <string name="absorptionblock_cannotdelete">Cannot delete absorption block</string>
     <string name="err_absorptionblock_error">Absorption block does not fit to existing scheme</string>
     <string name="hint_absorptionscheme_reset">Absorption scheme reset to default</string>
+    <string name="err_newabsorptionblock_maxfpuidentical">Cannot add absorption block: Max. FPU value already exists</string>
+    <string name="err_newabsorptionblock_absorptiontime">Cannot add absorption block: Absorption time does not fit to existing values</string>
 </resources>
