@@ -76,19 +76,23 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
         return mAbsorptionBlocks;
     }
 
-    public boolean addAbsorptionBlock(AbsorptionBlockViewModel absorptionBlockNew, String errorMessage) {
+    /**
+     * Adds an absorption block
+     * @param absorptionBlockNew
+     * @return An error message if the absorption block could not be added, otherwise null
+     */
+    public String addAbsorptionBlock(AbsorptionBlockViewModel absorptionBlockNew) {
         // Check no. 1: If the list only has one element, then everything is fine, as the new block is the first one
         if (mAbsorptionBlocks.size() == 0) {
             mAbsorptionBlocks.add(absorptionBlockNew);
-            return true;
+            return null;
         }
 
         // Check no. 2: There are existing blocks, so we must check to not have identical maxFPU values
         for (AbsorptionBlockViewModel absorptionBlock : mAbsorptionBlocks) {
             if (absorptionBlock.getMaxFPU() == absorptionBlockNew.getMaxFPU()) {
                 // Duplicate maxFPU values not allowed
-                errorMessage = mInflater.getContext().getString(R.string.err_newabsorptionblock_maxfpuidentical);
-                return false;
+                return mInflater.getContext().getString(R.string.err_newabsorptionblock_maxfpuidentical);
             }
         }
 
@@ -104,9 +108,8 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
         if (newBlockIndex == 0) {
             if (absorptionBlockNew.getAbsorptionTime() >= mAbsorptionBlocks.get(1).getAbsorptionTime()) {
                 // Error: The new block's absorption time is equals or larger than of the one after
-                errorMessage = mInflater.getContext().getString(R.string.err_newabsorptionblock_absorptiontime);
                 mAbsorptionBlocks.remove(absorptionBlockNew);
-                return false;
+                return mInflater.getContext().getString(R.string.err_newabsorptionblock_absorptiontime);
             }
         }
 
@@ -114,22 +117,20 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
         if (newBlockIndex == mAbsorptionBlocks.size() - 1) {
             if (absorptionBlockNew.getAbsorptionTime() <= mAbsorptionBlocks.get(mAbsorptionBlocks.size() - 1).getAbsorptionTime()) {
                 // Error: The new block's absorption time is equals or less than of the one before
-                errorMessage = mInflater.getContext().getString(R.string.err_newabsorptionblock_absorptiontime);
                 mAbsorptionBlocks.remove(absorptionBlockNew);
-                return false;
+                return mInflater.getContext().getString(R.string.err_newabsorptionblock_absorptiontime);
             }
         }
 
         // Case 3c: It's somewhere in the middle
         if (!(absorptionBlockNew.getAbsorptionTime() > mAbsorptionBlocks.get(newBlockIndex - 1).getAbsorptionTime() &&
               absorptionBlockNew.getAbsorptionTime() < mAbsorptionBlocks.get(newBlockIndex + 1).getAbsorptionTime())) {
-            errorMessage = mInflater.getContext().getString(R.string.err_newabsorptionblock_absorptiontime);
             mAbsorptionBlocks.remove(absorptionBlockNew);
-            return false;
+            return mInflater.getContext().getString(R.string.err_newabsorptionblock_absorptiontime);
         }
 
         // All set!
-        return true;
+        return null;
     }
 
     // getItemCount() is called many times, and when it is first called,
