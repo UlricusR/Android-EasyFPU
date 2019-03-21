@@ -14,9 +14,12 @@ import java.io.IOException;
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.domain.repository.AbsorptionSchemeRepository;
 import info.rueth.fpucalculator.presentation.adapter.AbsorptionBlockAdapter;
+import info.rueth.fpucalculator.presentation.ui.dialogs.AddAbsorptionBlockDialog;
+import info.rueth.fpucalculator.presentation.ui.dialogs.IAddAbsorptionBlockListener;
+import info.rueth.fpucalculator.presentation.viewmodels.AbsorptionBlockViewModel;
 import info.rueth.fpucalculator.usecases.AbsorptionSchemeSave;
 
-public class AbsorptionSchemeActivity extends AppCompatActivity {
+public class AbsorptionSchemeActivity extends AppCompatActivity implements IAddAbsorptionBlockListener {
 
     private AbsorptionBlockAdapter adapter;
 
@@ -60,7 +63,12 @@ public class AbsorptionSchemeActivity extends AppCompatActivity {
 
         // Set onClickListener to add button
         buttonAdd.setOnClickListener(v -> {
-            // TODO
+            AddAbsorptionBlockDialog dialog = new AddAbsorptionBlockDialog();
+            Bundle args = new Bundle();
+            args.putIntegerArrayList(AddAbsorptionBlockDialog.FPU_KEY, adapter.getFreeFPUValues());
+            args.putIntegerArrayList(AddAbsorptionBlockDialog.ABSORPTIONTIME_KEY, adapter.getFreeAbsorptionTimeValues());
+            dialog.setArguments(args);
+            dialog.show(getSupportFragmentManager(), "AddAbsorptionBlockDialogFragment");
         });
 
         // Set onClickListener to reset button
@@ -106,5 +114,13 @@ public class AbsorptionSchemeActivity extends AppCompatActivity {
         buttonReset.setOnClickListener(null);
         buttonSave.setOnClickListener(null);
         buttonCancel.setOnClickListener(null);
+    }
+
+    @Override
+    public void addAbsorptionBlock(AbsorptionBlockViewModel absorptionBlock) {
+        String errorMessage = adapter.addAbsorptionBlock(absorptionBlock);
+        if (errorMessage != null) {
+            Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_SHORT).show();
+        }
     }
 }

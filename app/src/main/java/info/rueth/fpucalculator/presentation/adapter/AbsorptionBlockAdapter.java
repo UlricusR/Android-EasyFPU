@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,6 +34,8 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
 
     private LayoutInflater mInflater;
     private List<AbsorptionBlockViewModel> mAbsorptionBlocks;
+    private static final int MAX_FPU = 20; // TODO set in preferences
+    private static final int MAX_ABSORPTIONTIME = 10; // TODO set in preferences
 
     public AbsorptionBlockAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
@@ -76,6 +79,38 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
         return mAbsorptionBlocks;
     }
 
+    public ArrayList<Integer> getFreeFPUValues() {
+        ArrayList<Integer> freeValues = new ArrayList<>();
+
+        // First create the full range from 1 to MAX
+        for (int i = 1; i < MAX_FPU; i++) {
+            freeValues.add(Integer.valueOf(i));
+        }
+
+        // Then remove existing FPUs
+        for (AbsorptionBlockViewModel viewModel : mAbsorptionBlocks) {
+            freeValues.remove(Integer.valueOf(viewModel.getMaxFPU()));
+        }
+
+        return freeValues;
+    }
+
+    public ArrayList<Integer> getFreeAbsorptionTimeValues() {
+        ArrayList<Integer> freeValues = new ArrayList<>();
+
+        // First create the full range from 1 to MAX
+        for (int i = 1; i < MAX_ABSORPTIONTIME; i++) {
+            freeValues.add(Integer.valueOf(i));
+        }
+
+        // Then remove existing absorption times
+        for (AbsorptionBlockViewModel viewModel : mAbsorptionBlocks) {
+            freeValues.remove(Integer.valueOf(viewModel.getAbsorptionTime()));
+        }
+
+        return freeValues;
+    }
+
     /**
      * Adds an absorption block
      * @param absorptionBlockNew
@@ -85,6 +120,8 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
         // Check no. 1: If the list only has one element, then everything is fine, as the new block is the first one
         if (mAbsorptionBlocks.size() == 0) {
             mAbsorptionBlocks.add(absorptionBlockNew);
+            notifyItemInserted(0);
+            notifyItemRangeChanged(0, getItemCount());
             return null;
         }
 
@@ -110,15 +147,23 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
                 // Error: The new block's absorption time is equals or larger than of the one after
                 mAbsorptionBlocks.remove(absorptionBlockNew);
                 return mInflater.getContext().getString(R.string.err_newabsorptionblock_absorptiontime);
+            } else {
+                notifyItemInserted(newBlockIndex);
+                notifyItemRangeChanged(newBlockIndex, getItemCount());
+                return null;
             }
         }
 
         // Case 3b: It's the last element, so just check the block before
         if (newBlockIndex == mAbsorptionBlocks.size() - 1) {
-            if (absorptionBlockNew.getAbsorptionTime() <= mAbsorptionBlocks.get(mAbsorptionBlocks.size() - 1).getAbsorptionTime()) {
+            if (absorptionBlockNew.getAbsorptionTime() <= mAbsorptionBlocks.get(mAbsorptionBlocks.size() - 2).getAbsorptionTime()) {
                 // Error: The new block's absorption time is equals or less than of the one before
                 mAbsorptionBlocks.remove(absorptionBlockNew);
                 return mInflater.getContext().getString(R.string.err_newabsorptionblock_absorptiontime);
+            } else {
+                notifyItemInserted(newBlockIndex);
+                notifyItemRangeChanged(newBlockIndex, getItemCount());
+                return null;
             }
         }
 
@@ -127,10 +172,11 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
               absorptionBlockNew.getAbsorptionTime() < mAbsorptionBlocks.get(newBlockIndex + 1).getAbsorptionTime())) {
             mAbsorptionBlocks.remove(absorptionBlockNew);
             return mInflater.getContext().getString(R.string.err_newabsorptionblock_absorptiontime);
+        } else {
+            notifyItemInserted(newBlockIndex);
+            notifyItemRangeChanged(newBlockIndex, getItemCount());
+            return null;
         }
-
-        // All set!
-        return null;
     }
 
     // getItemCount() is called many times, and when it is first called,

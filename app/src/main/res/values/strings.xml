@@ -58,4 +58,6 @@
     <string name="hint_absorptionscheme_reset">Absorption scheme reset to default</string>
     <string name="err_newabsorptionblock_maxfpuidentical">Cannot add absorption block: Max. FPU value already exists</string>
     <string name="err_newabsorptionblock_absorptiontime">Cannot add absorption block: Absorption time does not fit to existing values</string>
+    <string name="dialog_title_newabsorptionblock">New absorption block</string>
+    <string name="dialog_message_newabsorptionblock">Enter the absorption time related to the maximum FPUs</string>
 </resources>

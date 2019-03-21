@@ -59,4 +59,6 @@
     <string name="hint_absorptionscheme_reset">Absorptionsschema auf Voreinstellungen zurückgesetzt</string>
     <string name="err_newabsorptionblock_maxfpuidentical">Kann neuen Absorptionsblock nicht erstellen: Max. FPE-Wert existiert bereits</string>
     <string name="err_newabsorptionblock_absorptiontime">Kann neuen Absorptionsblock nicht erstellen: Absorptionszeit passt nicht zu existierenden Werten</string>
+    <string name="dialog_title_newabsorptionblock">Neuer Absorptionsblock</string>
+    <string name="dialog_message_newabsorptionblock">Absorptionszeit in Relation zu maximalen FPEs eingeben</string>
 </resources>
