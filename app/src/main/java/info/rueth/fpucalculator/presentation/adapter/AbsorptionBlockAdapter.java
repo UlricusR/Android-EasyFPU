@@ -59,6 +59,20 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
             holder.fpuView.setText(String.valueOf(absorptionBlock.getMaxFPU()));
             holder.absorptionTimeView.setText(String.valueOf(absorptionBlock.getAbsorptionTime()));
 
+            // Add listener to views
+            holder.fpuView.setOnFocusChangeListener((v, hasFocus) -> {
+                if (!hasFocus) {
+                    // Focus has gone, so save value to adapter
+                    mAbsorptionBlocks.get(position).setMaxFPU(Integer.valueOf(holder.fpuView.getText().toString()));
+                }
+            });
+            holder.absorptionTimeView.setOnFocusChangeListener((v, hasFocus) -> {
+                if (!hasFocus) {
+                    // Focus has gone, so save value to adapter
+                    mAbsorptionBlocks.get(position).setAbsorptionTime(Integer.valueOf(holder.absorptionTimeView.getText().toString()));
+                }
+            });
+
             // Set onClickListener to remove button
             holder.buttonRemove.setOnClickListener(v -> {
                 // Delete absorption block from cache and view, not yet from data repository

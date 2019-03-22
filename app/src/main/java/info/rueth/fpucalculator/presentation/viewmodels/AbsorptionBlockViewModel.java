@@ -22,4 +22,12 @@ public class AbsorptionBlockViewModel {
     public int getAbsorptionTime() {
         return absorptionTime;
     }
+
+    public void setMaxFPU(int maxFPU) {
+        this.maxFPU = maxFPU;
+    }
+
+    public void setAbsorptionTime(int absorptionTime) {
+        this.absorptionTime = absorptionTime;
+    }
 }
