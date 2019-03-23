@@ -60,4 +60,13 @@
     <string name="err_newabsorptionblock_absorptiontime">Cannot add absorption block: Absorption time does not fit to existing values</string>
     <string name="dialog_title_newabsorptionblock">New absorption block</string>
     <string name="dialog_message_newabsorptionblock">Enter the absorption time related to the maximum FPUs</string>
+    <string name="category_absorptionscheme">Absorption Scheme</string>
+    <string name="preference_maxfpu_key" translatable="false">info.rueth.fpucalculator.preference.maxfpu</string>
+    <string name="preference_maxfpu">Maximum FPUs</string>
+    <string name="preference_maxfpu_default" translatable="false">20</string>
+    <string name="preference_maxfpu_summary">The maximum Fat-Protein-Units that can be selected in the absorption scheme</string>
+    <string name="preference_maxabsorptiontime_key" translatable="false">info.rueth.fpucalculator.preference.maxabsorptiontime</string>
+    <string name="preference_maxabsorptiontime">Maximum absorption time</string>
+    <string name="preference_maxabsorptiontime_default" translatable="false">10</string>
+    <string name="preference_maxabsorptiontime_summary">The maximum absorption time that can be selected in the absorption scheme</string>
 </resources>

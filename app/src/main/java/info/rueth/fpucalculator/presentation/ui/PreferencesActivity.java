@@ -4,16 +4,13 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 
-public class PreferencesActivity extends PreferenceActivity
-        implements Preference.OnPreferenceChangeListener {
+import info.rueth.fpucalculator.R;
+
+public class PreferencesActivity extends PreferenceActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object value) {
-        return false;
+        addPreferencesFromResource(R.xml.preferences);
     }
 }

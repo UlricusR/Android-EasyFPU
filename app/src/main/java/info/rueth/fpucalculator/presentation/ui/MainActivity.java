@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                 MaintenanceUtils.backupDatabase(getApplicationContext());
                 return true;
             /** TODO Import database
-            case R.id.action_exportdb:
+            case R.id.action_importdb:
                 // Import database
                 MaintenanceUtils.loadDatabase(getApplicationContext());
                 return true;

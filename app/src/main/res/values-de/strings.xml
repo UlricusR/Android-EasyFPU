@@ -61,4 +61,9 @@
     <string name="err_newabsorptionblock_absorptiontime">Kann neuen Absorptionsblock nicht erstellen: Absorptionszeit passt nicht zu existierenden Werten</string>
     <string name="dialog_title_newabsorptionblock">Neuer Absorptionsblock</string>
     <string name="dialog_message_newabsorptionblock">Absorptionszeit in Relation zu maximalen FPEs eingeben</string>
+    <string name="category_absorptionscheme">Absorptionsschema</string>
+    <string name="preference_maxfpu">Maximale FPE</string>
+    <string name="preference_maxfpu_summary">Die maximale Anzahl an Fett-Protein-Einheiten, die im Absorptionsschema ausgewählt werden kann</string>
+    <string name="preference_maxabsorptiontime">Maximale Absorptionszeit</string>
+    <string name="preference_maxabsorptiontime_summary">Die maximale Absorptionszeit, die im Absorptionsschema ausgewählt werden kann</string>
 </resources>

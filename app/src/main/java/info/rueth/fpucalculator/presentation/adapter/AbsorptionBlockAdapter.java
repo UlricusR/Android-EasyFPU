@@ -1,10 +1,10 @@
 package info.rueth.fpucalculator.presentation.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,11 +36,18 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
 
     private LayoutInflater mInflater;
     private List<AbsorptionBlockViewModel> mAbsorptionBlocks;
-    private static final int MAX_FPU = 20; // TODO set in preferences
-    private static final int MAX_ABSORPTIONTIME = 10; // TODO set in preferences
+    private static final String MAX_FPU = "20";
+    private static final String MAX_ABSORPTIONTIME = "10";
+    private int maxFPUPreference;
+    private int maxAbsorptionTimePreference;
 
     public AbsorptionBlockAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
+
+        // Get maximum FPU and absorption time from SharedPreferences
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        maxFPUPreference = Integer.valueOf(prefs.getString(context.getString(R.string.preference_maxfpu_key), MAX_FPU));
+        maxAbsorptionTimePreference = Integer.valueOf(prefs.getString(context.getString(R.string.preference_maxabsorptiontime_key), MAX_ABSORPTIONTIME));
     }
     
     @NonNull
@@ -85,7 +92,7 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
         ArrayList<Integer> freeValues = new ArrayList<>();
 
         // First create the full range from 1 to MAX
-        for (int i = 1; i < MAX_FPU; i++) {
+        for (int i = 1; i <= maxFPUPreference; i++) {
             freeValues.add(Integer.valueOf(i));
         }
 
@@ -101,7 +108,7 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
         ArrayList<Integer> freeValues = new ArrayList<>();
 
         // First create the full range from 1 to MAX
-        for (int i = 1; i < MAX_ABSORPTIONTIME; i++) {
+        for (int i = 1; i <= maxAbsorptionTimePreference; i++) {
             freeValues.add(Integer.valueOf(i));
         }
 
