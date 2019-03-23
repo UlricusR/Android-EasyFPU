@@ -4,13 +4,11 @@
     android:layout_height="wrap_content"
     android:columnCount="5">
 
-    <EditText
+    <TextView
         android:id="@+id/absorption_block_fpu"
-        android:text="test"
+        android:layout_marginRight="4dp"
         android:layout_gravity="fill_horizontal"
         android:gravity="end"
-        android:inputType="number"
-        android:selectAllOnFocus="true"
         android:layout_columnWeight="1"/>
 
     <TextView
@@ -18,13 +16,11 @@
         android:layout_gravity="fill_horizontal"
         android:layout_columnWeight="1"/>
 
-    <EditText
+    <TextView
         android:id="@+id/absorption_block_hours"
-        android:text="test"
+        android:layout_marginRight="4dp"
         android:layout_gravity="fill_horizontal"
         android:gravity="end"
-        android:inputType="number"
-        android:selectAllOnFocus="true"
         android:layout_columnWeight="1"/>
 
     <TextView

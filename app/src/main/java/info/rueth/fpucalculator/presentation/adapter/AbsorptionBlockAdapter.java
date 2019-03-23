@@ -61,48 +61,6 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
             holder.fpuView.setText(String.valueOf(absorptionBlock.getMaxFPU()));
             holder.absorptionTimeView.setText(String.valueOf(absorptionBlock.getAbsorptionTime()));
 
-            // Add listener to views
-            holder.fpuView.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    // Do nothing
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if (s.length() != 0) {
-                        mAbsorptionBlocks.get(position).setMaxFPU(Integer.valueOf(s.toString()));
-                    } else {
-                        // TODO Warning if no value
-                    }
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    // Do nothing
-                }
-            });
-            holder.absorptionTimeView.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    // Do nothing
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if (s.length() != 0) {
-                        mAbsorptionBlocks.get(position).setAbsorptionTime(Integer.valueOf(s.toString()));
-                    } else {
-                        // TODO Warning if no value
-                    }
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    // Do nothing
-                }
-            });
-
             // Set onClickListener to remove button
             holder.buttonRemove.setOnClickListener(v -> {
                 // Delete absorption block from cache and view, not yet from data repository
