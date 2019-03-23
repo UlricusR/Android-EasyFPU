@@ -3,6 +3,8 @@ package info.rueth.fpucalculator.presentation.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,16 +62,44 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
             holder.absorptionTimeView.setText(String.valueOf(absorptionBlock.getAbsorptionTime()));
 
             // Add listener to views
-            holder.fpuView.setOnFocusChangeListener((v, hasFocus) -> {
-                if (!hasFocus) {
-                    // Focus has gone, so save value to adapter
-                    mAbsorptionBlocks.get(position).setMaxFPU(Integer.valueOf(holder.fpuView.getText().toString()));
+            holder.fpuView.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    // Do nothing
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (s.length() != 0) {
+                        mAbsorptionBlocks.get(position).setMaxFPU(Integer.valueOf(s.toString()));
+                    } else {
+                        // TODO Warning if no value
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    // Do nothing
                 }
             });
-            holder.absorptionTimeView.setOnFocusChangeListener((v, hasFocus) -> {
-                if (!hasFocus) {
-                    // Focus has gone, so save value to adapter
-                    mAbsorptionBlocks.get(position).setAbsorptionTime(Integer.valueOf(holder.absorptionTimeView.getText().toString()));
+            holder.absorptionTimeView.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    // Do nothing
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (s.length() != 0) {
+                        mAbsorptionBlocks.get(position).setAbsorptionTime(Integer.valueOf(s.toString()));
+                    } else {
+                        // TODO Warning if no value
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    // Do nothing
                 }
             });
 
