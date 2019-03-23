@@ -3,6 +3,8 @@ package info.rueth.fpucalculator.presentation.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,19 +35,26 @@ public class FoodCalcAdapter extends RecyclerView.Adapter<FoodCalcAdapter.FoodVi
             foodnameView = itemView.findViewById(R.id.newmeal_foodname);
             typicalAmountSpinner = itemView.findViewById(R.id.newmeal_typicalamountspinner);
             amountView = itemView.findViewById(R.id.newmeal_amount);
-            amountView.setOnEditorActionListener((v, actionId, event) -> {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    int amount = Integer.parseInt(v.getText().toString());
-                    storeAmount(amount);
-                    return true;
+            amountView.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    // Do nothing
                 }
-                return false;
-            });
-            amountView.setOnFocusChangeListener((v, hasFocus) -> {
-                if (!hasFocus) {
-                    String text = ((EditText) v).getText().toString();
-                    int amount = Integer.parseInt(text);
-                    storeAmount(amount);
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (s.length() != 0) {
+                        int amount = Integer.valueOf(s.toString());
+                        storeAmount(amount);
+                    } else {
+                        // Set default value of 0
+                        storeAmount(0);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    // Do nothing
                 }
             });
         }
