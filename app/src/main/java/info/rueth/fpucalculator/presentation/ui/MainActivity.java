@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private boolean mFavorite;
     private FoodListAdapter adapter;
 
-    public static final String FOOD_ID = "info.rueth.fpucalculator.FoodID";
     public static final String INTENT_FOODLIST = "info.rueth.fpucalculator.FoodList";
 
     @Override
