@@ -11,16 +11,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <CheckedTextView
             android:id="@+id/food_name"
             style="@style/food_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:checked="false"
             android:drawableStart="?android:attr/listChoiceIndicatorMultiple"
             android:drawableEnd="@null" />
+        
+        <TextView
+            android:id="@+id/more_icon"
+            style="@style/food_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:text="@string/more_icon"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

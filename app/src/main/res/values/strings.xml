@@ -69,4 +69,9 @@
     <string name="preference_maxabsorptiontime">Maximum absorption time</string>
     <string name="preference_maxabsorptiontime_default" translatable="false">10</string>
     <string name="preference_maxabsorptiontime_summary">The maximum absorption time that can be selected in the absorption scheme</string>
+    <string name="menu_delete_food">Delete</string>
+    <string name="menu_edit_food">Edit</string>
+    <string name="menu_favorite_add">Set as favorite</string>
+    <string name="menu_favorite_remove">Remove from favorites</string>
+    <string name="more_icon" translatable="false">&#8942;</string>
 </resources>

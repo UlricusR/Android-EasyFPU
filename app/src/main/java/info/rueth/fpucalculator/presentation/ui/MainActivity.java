@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Create recycler view
         RecyclerView recyclerView = findViewById(R.id.recyclerview_main);
-        adapter = new FoodListAdapter(this);
+        adapter = new FoodListAdapter(this, getApplication());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -56,34 +56,6 @@ public class MainActivity extends AppCompatActivity {
         favoriteButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
             mFavorite = isChecked;
             FoodDataRepository.getInstance(getApplication()).getAllFood(mFavorite).observe(this, adapter::setAllFood);
-        });
-
-        // Create swipe controller and attach to recycler view
-        final SwipeController swipeController = new SwipeController(getResources(), new SwipeControllerActions() {
-            @Override
-            public void onLeftClicked(int position) {
-                Intent intent = new Intent(MainActivity.this, EditFoodActivity.class);
-                int id = adapter.getFood(position).getId();
-                intent.putExtra(FOOD_ID, id);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onRightClicked(int position) {
-                FoodViewModel viewModel = adapter.getFood(position);
-                new FoodDelete(getApplication()).execute(viewModel);
-                adapter.deleteFood(position);
-            }
-        });
-
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            @NonNull
-            public void onDraw(Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-                swipeController.onDraw(c);
-            }
         });
 
         // Attach data observer

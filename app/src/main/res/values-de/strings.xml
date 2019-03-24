@@ -66,4 +66,8 @@
     <string name="preference_maxfpu_summary">Die maximale Anzahl an Fett-Protein-Einheiten, die im Absorptionsschema ausgewählt werden kann</string>
     <string name="preference_maxabsorptiontime">Maximale Absorptionszeit</string>
     <string name="preference_maxabsorptiontime_summary">Die maximale Absorptionszeit, die im Absorptionsschema ausgewählt werden kann</string>
+    <string name="menu_delete_food">Löschen</string>
+    <string name="menu_edit_food">Bearbeiten</string>
+    <string name="menu_favorite_add">Zu Favoriten hinzufügen</string>
+    <string name="menu_favorite_remove">Aus Favoriten entfernen</string>
 </resources>
