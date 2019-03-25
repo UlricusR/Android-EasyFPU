@@ -6,7 +6,7 @@
     android:focusable="true"
     android:clickable="true"
     android:layout_margin="1dp"
-    android:background="?android:attr/selectableItemBackground">
+    android:background="?attr/selectableItemBackground">
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         <CheckedTextView
             android:id="@+id/food_name"
             style="@style/food_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="false"
@@ -28,7 +28,7 @@
             style="@style/food_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:text="@string/more_icon"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold" />

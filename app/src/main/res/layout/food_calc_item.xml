@@ -7,7 +7,7 @@
     android:focusable="true"
     android:clickable="true"
     android:layout_margin="1dp"
-    android:background="?android:attr/selectableItemBackground">
+    android:background="?attr/selectableItemBackground">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/newmeal_fooditem"
