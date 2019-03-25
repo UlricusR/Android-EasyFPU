@@ -1,6 +1,6 @@
 package info.rueth.fpucalculator.domain.model;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public class TypicalAmount {
 
@@ -33,6 +33,7 @@ public class TypicalAmount {
     }
 
     @Override
+    @NonNull
     public String toString() {
         if (mComment != null) return mComment;
         return mDefaultComment;

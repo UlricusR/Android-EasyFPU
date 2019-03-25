@@ -3,8 +3,6 @@ package info.rueth.fpucalculator.presentation.adapter;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +13,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.presentation.viewmodels.AbsorptionBlockViewModel;
 
 public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlockAdapter.AbsorptionBlockViewHolder> {
 
-    public class AbsorptionBlockViewHolder extends RecyclerView.ViewHolder {
+    class AbsorptionBlockViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView fpuView;
         private final TextView absorptionTimeView;
         private final Button buttonRemove;
 
-        public AbsorptionBlockViewHolder(@NonNull View itemView) {
+        AbsorptionBlockViewHolder(@NonNull View itemView) {
             super(itemView);
             fpuView = itemView.findViewById(R.id.absorption_block_fpu);
             absorptionTimeView = itemView.findViewById(R.id.absorption_block_hours);
@@ -93,7 +93,7 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
 
         // First create the full range from 1 to MAX
         for (int i = 1; i <= maxFPUPreference; i++) {
-            freeValues.add(Integer.valueOf(i));
+            freeValues.add(i);
         }
 
         // Then remove existing FPUs
@@ -109,7 +109,7 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
 
         // First create the full range from 1 to MAX
         for (int i = 1; i <= maxAbsorptionTimePreference; i++) {
-            freeValues.add(Integer.valueOf(i));
+            freeValues.add(i);
         }
 
         // Then remove existing absorption times
@@ -122,7 +122,7 @@ public class AbsorptionBlockAdapter extends RecyclerView.Adapter<AbsorptionBlock
 
     /**
      * Adds an absorption block
-     * @param absorptionBlockNew
+     * @param absorptionBlockNew The new absorption block to add
      * @return An error message if the absorption block could not be added, otherwise null
      */
     public String addAbsorptionBlock(AbsorptionBlockViewModel absorptionBlockNew) {

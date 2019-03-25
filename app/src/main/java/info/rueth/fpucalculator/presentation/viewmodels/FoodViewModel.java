@@ -1,6 +1,6 @@
 package info.rueth.fpucalculator.presentation.viewmodels;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 
 public class FoodViewModel extends ViewModel {
     private int id;

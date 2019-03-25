@@ -1,15 +1,16 @@
 package info.rueth.fpucalculator.presentation.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.domain.model.AbsorptionScheme;
 import info.rueth.fpucalculator.domain.model.Food;
@@ -64,10 +65,10 @@ public class MealCalcAdapter extends RecyclerView.Adapter<MealCalcAdapter.FoodVi
             // Set food name, amount, resulting calories, carbs, FPUs, eCarbs and absorption time
             holder.foodnameView.setText(food.getName());
             holder.amountView.setText(String.valueOf(food.getAmount()));
-            holder.caloriesView.setText(String.format("%.1f", food.getCalories()));
-            holder.carbsView.setText(String.format("%.1f", food.getCarbs()));
-            holder.fpuView.setText(String.format("%.1f", food.getFPU().getFPU()));
-            holder.eCarbsView.setText(String.format("%.1f", food.getFPU().getExtendedCarbs()));
+            holder.caloriesView.setText(String.format(Locale.getDefault(), "%.1f", food.getCalories()));
+            holder.carbsView.setText(String.format(Locale.getDefault(), "%.1f", food.getCarbs()));
+            holder.fpuView.setText(String.format(Locale.getDefault(), "%.1f", food.getFPU().getFPU()));
+            holder.eCarbsView.setText(String.format(Locale.getDefault(), "%.1f", food.getFPU().getExtendedCarbs()));
             holder.absorptionTimeView.setText(String.valueOf(food.getFPU().getAbsorptionTime(mAbsorptionScheme)));
 
         } else {

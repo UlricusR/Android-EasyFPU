@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/absorption_block_fpu"
-        android:layout_marginRight="4dp"
+        android:layout_marginEnd="4dp"
         android:layout_gravity="fill_horizontal"
         android:gravity="end"
         android:layout_columnWeight="1"/>
@@ -18,7 +18,7 @@
 
     <TextView
         android:id="@+id/absorption_block_hours"
-        android:layout_marginRight="4dp"
+        android:layout_marginEnd="4dp"
         android:layout_gravity="fill_horizontal"
         android:gravity="end"
         android:layout_columnWeight="1"/>

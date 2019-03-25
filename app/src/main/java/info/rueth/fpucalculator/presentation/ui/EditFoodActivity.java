@@ -2,6 +2,7 @@ package info.rueth.fpucalculator.presentation.ui;
 
 import android.os.Bundle;
 
+import info.rueth.fpucalculator.presentation.adapter.FoodListAdapter;
 import info.rueth.fpucalculator.usecases.FoodEdit;
 import info.rueth.fpucalculator.usecases.FoodUpdate;
 

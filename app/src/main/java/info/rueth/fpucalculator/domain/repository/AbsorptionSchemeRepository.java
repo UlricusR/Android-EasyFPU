@@ -1,13 +1,13 @@
 package info.rueth.fpucalculator.domain.repository;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import info.rueth.fpucalculator.domain.model.AbsorptionBlock;
 import info.rueth.fpucalculator.domain.model.AbsorptionScheme;
 import info.rueth.fpucalculator.presentation.viewmodels.AbsorptionBlockViewModel;

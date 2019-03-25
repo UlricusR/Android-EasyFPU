@@ -1,13 +1,13 @@
 package info.rueth.fpucalculator.domain.repository;
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Transformations;
 import android.os.AsyncTask;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
 import info.rueth.fpucalculator.domain.model.Food;
 import info.rueth.fpucalculator.presentation.viewmodels.FoodViewModel;
 
@@ -74,6 +74,7 @@ public class FoodDataRepository {
 
     public Food getFoodByName(String foodName) {
         List<Food> foods = allFood.getValue();
+        if (foods == null) return null;
         for (Food food : foods) {
             if (food.getName().equals(foodName)) return food;
         }
@@ -82,6 +83,7 @@ public class FoodDataRepository {
     
     public Food getFoodByID(int id) {
         List<Food> foods = allFood.getValue();
+        if (foods == null) return null;
         for (Food food : foods) {
             if (food.getId() == id) return food;
         }
@@ -90,8 +92,8 @@ public class FoodDataRepository {
 
     public List<Food> getFoodByIDs(int[] foodIds) {
         List<Food> foods = new ArrayList<>();
-        for (int i = 0; i < foodIds.length; i++) {
-            foods.add(getFoodByID(foodIds[i]));
+        for (int foodId : foodIds) {
+            foods.add(getFoodByID(foodId));
         }
         return foods;
     }
@@ -166,7 +168,7 @@ public class FoodDataRepository {
         protected List<Food> doInBackground(Integer... ids) {
             int[] foodIds = new int[ids.length];
             for (int i = 0; i < ids.length; i++) {
-                foodIds[i] = ids[i].intValue();
+                foodIds[i] = ids[i];
             }
             return mAsyncTaskDao.loadAllByIds(foodIds);
         }

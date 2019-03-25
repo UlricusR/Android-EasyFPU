@@ -3,19 +3,20 @@ package info.rueth.fpucalculator.presentation.ui;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.domain.model.AbsorptionScheme;
 import info.rueth.fpucalculator.domain.model.Food;
@@ -89,10 +90,10 @@ public class CalcMealActivity extends AppCompatActivity {
         // Set the meal values
         foodnameView.setText(meal.getName());
         amountView.setText(String.valueOf(meal.getAmount()));
-        caloriesView.setText(String.format("%.1f", meal.getCalories()));
-        carbsView.setText(String.format("%.1f", meal.getCarbs()));
-        fpuView.setText(String.format("%.1f", meal.getFPUs().getFPU()));
-        eCarbsView.setText(String.format("%.1f", meal.getFPUs().getExtendedCarbs()));
+        caloriesView.setText(String.format(Locale.getDefault(), "%.1f", meal.getCalories()));
+        carbsView.setText(String.format(Locale.getDefault(), "%.1f", meal.getCarbs()));
+        fpuView.setText(String.format(Locale.getDefault(), "%.1f", meal.getFPUs().getFPU()));
+        eCarbsView.setText(String.format(Locale.getDefault(), "%.1f", meal.getFPUs().getExtendedCarbs()));
         absorptionTimeView.setText(String.valueOf(meal.getFPUs().getAbsorptionTime(absorptionScheme)));
 
         // Set background color of the meal card to distinguish it easier from the food cards
@@ -105,14 +106,11 @@ public class CalcMealActivity extends AppCompatActivity {
 
         // Register floating action button to go back to main activity
         fabCalc = findViewById(R.id.fab_done);
-        fabCalc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CalcMealActivity.this, MainActivity.class);
+        fabCalc.setOnClickListener(view -> {
+            Intent intent = new Intent(CalcMealActivity.this, MainActivity.class);
 
-                // Start activity
-                startActivity(intent);
-            }
+            // Start activity
+            startActivity(intent);
         });
     }
 

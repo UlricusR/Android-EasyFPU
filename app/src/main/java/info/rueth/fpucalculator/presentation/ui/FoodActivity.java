@@ -1,9 +1,7 @@
 package info.rueth.fpucalculator.presentation.ui;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.presentation.viewmodels.FoodViewModel;
 import info.rueth.fpucalculator.usecases.FoodUseCase;
