@@ -15,7 +15,7 @@ public class EditFoodActivity extends FoodActivity {
         useCase = new FoodUpdate(getApplication());
 
         // Fill view model data - we need to set the food name first to enable view model to find the food in the DB
-        viewModel.setId(getIntent().getIntExtra(MainActivity.FOOD_ID, -1));
+        viewModel.setId(getIntent().getIntExtra(FoodListAdapter.FOOD_ID, -1));
         new FoodEdit(getApplication()).execute(viewModel);
 
         // Get data from view model
