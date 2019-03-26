@@ -47,18 +47,30 @@ public class Meal {
         return name;
     }
 
+    /**
+     * @return The calories of the meal in kcal
+     */
     public double getCalories() {
         return calories;
     }
 
+    /**
+     * @return The carbs of the meal in g
+     */
     public double getCarbs() {
         return carbs;
     }
 
+    /**
+     * @return The amount of the meal in g
+     */
     public int getAmount() {
         return amount;
     }
 
+    /**
+     * @return The FPUs of the meal
+     */
     public FPU getFPUs() {
         return fpus;
     }

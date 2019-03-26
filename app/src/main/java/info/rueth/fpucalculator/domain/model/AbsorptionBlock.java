@@ -20,10 +20,16 @@ public class AbsorptionBlock {
         this.absorptionTime = absorptionTime;
     }
 
+    /**
+     * @return The maximum FPU
+     */
     public int getMaxFPU() {
         return maxFPU;
     }
 
+    /**
+     * @return The absorption time
+     */
     public int getAbsorptionTime() {
         return absorptionTime;
     }

@@ -9,6 +9,9 @@ import androidx.room.Query;
 import androidx.room.Update;
 import info.rueth.fpucalculator.domain.model.Food;
 
+/**
+ * The Data Access Object interface for all food items
+ */
 @Dao
 public interface FoodDao {
     @Query("SELECT * FROM food_table ORDER BY name ASC")

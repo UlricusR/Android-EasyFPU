@@ -11,6 +11,9 @@ import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import info.rueth.fpucalculator.domain.model.Food;
 
+/**
+ * The database handler for all food items
+ */
 @Database(entities = {Food.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
 

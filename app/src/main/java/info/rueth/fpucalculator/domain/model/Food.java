@@ -6,6 +6,9 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+/**
+ * Holds a food item and persists it using Room
+ */
 @Entity(tableName = "food_table")
 public class Food {
     @Ignore

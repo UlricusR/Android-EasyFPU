@@ -19,6 +19,9 @@ import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.domain.model.AbsorptionBlock;
 import info.rueth.fpucalculator.domain.model.AbsorptionScheme;
 
+/**
+ * Handles the absorption scheme IO (saving and loading)
+ */
 class AbsorptionSchemeLoader {
     private Context context;
 
@@ -30,6 +33,12 @@ class AbsorptionSchemeLoader {
         this.context = context;
     }
 
+    /**
+     * Loads the absorption scheme either from the user file if available,
+     * otherwise from the default file (res/raw/absorptionscheme_default.json
+     * @return The loaded absorption scheme
+     * @throws IOException In case the file could not be loaded
+     */
     AbsorptionScheme load() throws IOException {
         // Load the absorption scheme
         InputStream inputStream;
@@ -89,6 +98,11 @@ class AbsorptionSchemeLoader {
         return new AbsorptionBlock(maxFPU, absorptionTime);
     }
 
+    /**
+     * Saves the absorption scheme to the user file destination
+     * @param absorptionScheme The absorption scheme to save
+     * @throws IOException In case the file could not be saved
+     */
     void save(AbsorptionScheme absorptionScheme) throws IOException {
         List<AbsorptionBlock> absorptionBlocks = absorptionScheme.getAbsorptionBlocks();
         FileOutputStream outputStream;
@@ -115,6 +129,11 @@ class AbsorptionSchemeLoader {
         writer.endObject();
     }
 
+    /**
+     * Loads the default absorption scheme
+     * @return The default absorption scheme
+     * @throws IOException In case the file could not be loaded
+     */
     public AbsorptionScheme loadDefault() throws IOException {
         InputStream inputStream = context.getResources().openRawResource(R.raw.absorptionscheme_default);
 

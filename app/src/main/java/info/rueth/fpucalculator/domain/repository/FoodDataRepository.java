@@ -11,11 +11,19 @@ import androidx.lifecycle.Transformations;
 import info.rueth.fpucalculator.domain.model.Food;
 import info.rueth.fpucalculator.presentation.viewmodels.FoodViewModel;
 
+/**
+ * Holds a cached copy of all currently available food items and interacts with the database
+ */
 public class FoodDataRepository {
     private FoodDao foodDao;
     private LiveData<List<Food>> allFood;
     private static volatile FoodDataRepository INSTANCE;
 
+    /**
+     * Singleton implementation to retrieve the food items
+     * @param application
+     * @return
+     */
     public static FoodDataRepository getInstance(Application application) {
         if (INSTANCE == null) {
             synchronized (FoodDataRepository.class) {
@@ -33,6 +41,10 @@ public class FoodDataRepository {
         allFood = foodDao.getAll();
     }
 
+    /**
+     * @param favorite Determines whether of not to return all food items or only the favorite ones
+     * @return A LiveData List of the food items
+     */
     public LiveData<List<FoodViewModel>> getAllFood(boolean favorite) {
         return Transformations.map(allFood, newData -> createFoodViewModel(newData, favorite));
     }
@@ -72,6 +84,10 @@ public class FoodDataRepository {
         return viewModel;
     }
 
+    /**
+     * @param foodName The name of the food to find
+     * @return The food matching the name (in case of duplicate names the first one)
+     */
     public Food getFoodByName(String foodName) {
         List<Food> foods = allFood.getValue();
         if (foods == null) return null;
@@ -80,7 +96,11 @@ public class FoodDataRepository {
         }
         return null;
     }
-    
+
+    /**
+     * @param id The id of the food item
+     * @return The food item
+     */
     public Food getFoodByID(int id) {
         List<Food> foods = allFood.getValue();
         if (foods == null) return null;
@@ -90,6 +110,10 @@ public class FoodDataRepository {
         return null;
     }
 
+    /**
+     * @param foodIds The IDs of the food items to return
+     * @return All food items with the specified IDs
+     */
     public List<Food> getFoodByIDs(int[] foodIds) {
         List<Food> foods = new ArrayList<>();
         for (int foodId : foodIds) {
@@ -99,14 +123,25 @@ public class FoodDataRepository {
     }
 
 
+    /**
+     * @param food Inserts a Food into the repository and database
+     */
     public void insert(Food food) {
         new insertAsyncTask(foodDao).execute(food);
     }
 
+    /**
+     * Deletes a food from the repository and database
+     * @param id The ID of the food to delete
+     */
     public void delete(int id) {
         new deleteAsyncTask(foodDao).execute(id);
     }
 
+    /**
+     * Updates the food in the repository/database
+     * @param food The food to update
+     */
     public void update(Food food) {
         new updateAsyncTask(foodDao).execute(food);
     }

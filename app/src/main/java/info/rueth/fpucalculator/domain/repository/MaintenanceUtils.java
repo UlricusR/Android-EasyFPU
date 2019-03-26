@@ -17,6 +17,10 @@ public class MaintenanceUtils {
     private static final String LOG_TAG = "MaintenanceUtils";
     private static final String BACKUP_DIR = "FPU-Calculator";
 
+    /**
+     * Backs up the database
+     * @param context The context called from
+     */
     public static void backupDatabase(Context context) {
         String currentDBPath = context.getDatabasePath(AppDatabase.DB_NAME).getAbsolutePath();
         try {
