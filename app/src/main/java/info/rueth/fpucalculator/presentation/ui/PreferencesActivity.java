@@ -4,13 +4,17 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import info.rueth.fpucalculator.R;
 
-public class PreferencesActivity extends PreferenceActivity {
+public class PreferencesActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.preferences);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.preferences_container, new PreferencesFragment())
+                .commit();
     }
 }
