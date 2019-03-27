@@ -1,6 +1,8 @@
 package info.rueth.fpucalculator.presentation.ui;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,17 +11,21 @@ import android.widget.ToggleButton;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import info.rueth.fpucalculator.R;
+import info.rueth.fpucalculator.domain.repository.DatabaseExportService;
 import info.rueth.fpucalculator.domain.repository.FoodDataRepository;
 import info.rueth.fpucalculator.domain.repository.MaintenanceUtils;
 import info.rueth.fpucalculator.presentation.adapter.FoodListAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_WRITE_PERMISSIONS_ID = 1;
     private FloatingActionButton fabAdd;
     private FloatingActionButton fabMeal;
 
@@ -117,7 +123,19 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_exportdb:
                 // Export database
-                MaintenanceUtils.backupDatabase(getApplicationContext());
+                // First check permissions
+                if (ActivityCompat.checkSelfPermission(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                        PackageManager.PERMISSION_GRANTED) {
+                    // Permission is given, so export
+                    exportDatabase();
+                } else {
+                    // Ask user for permission
+                    ActivityCompat.requestPermissions(
+                            this,
+                            new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            REQUEST_WRITE_PERMISSIONS_ID);
+                }
                 return true;
             case R.id.action_editabsorptionscheme:
                 // Edit absorption scheme
@@ -126,5 +144,28 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);            
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        // Check from where the answer comes
+        if (requestCode == REQUEST_WRITE_PERMISSIONS_ID) {
+            // Check if permissions have been granted
+            if (Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(permissions[0]) &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, so export
+                exportDatabase();
+            } else {
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
+        }
+    }
+
+    private void exportDatabase() {
+        // Initialize export service
+        Intent exportService = new Intent(this, DatabaseExportService.class);
+
+        // Start service
+        startService(exportService);
     }
 }
