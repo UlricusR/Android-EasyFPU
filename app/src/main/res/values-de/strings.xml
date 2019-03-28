@@ -62,4 +62,9 @@
     <string name="menu_edit_food">Bearbeiten</string>
     <string name="menu_favorite_add">Zu Favoriten hinzufügen</string>
     <string name="menu_favorite_remove">Aus Favoriten entfernen</string>
+    <string name="export_notification_channel">FPE-Rechner Datenbank-Export</string>
+    <string name="export_notification_channel_description">Export der FPE-Rechner-Datenbank</string>
+    <string name="export_notification_title">FPE-Rechner Datenbank-Export</string>
+    <string name="export_notification_message">Datenbank wird exportiert</string>
+    <string name="err_directory_not_created">Verzeichnis nicht erstellt:</string>
 </resources>

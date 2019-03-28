@@ -66,4 +66,9 @@
     <string name="menu_favorite_add">Set as favorite</string>
     <string name="menu_favorite_remove">Remove from favorites</string>
     <string name="more_icon" translatable="false">&#8942;</string>
+    <string name="export_notification_channel">FPU Calculator Database Export</string>
+    <string name="export_notification_channel_description">Export of the FPU Calculator database</string>
+    <string name="export_notification_title">FPU Calculator Database Export</string>
+    <string name="export_notification_message">Database is being exported</string>
+    <string name="err_directory_not_created">Directory not created:</string>
 </resources>

@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.domain.repository.DatabaseExportService;
 import info.rueth.fpucalculator.domain.repository.FoodDataRepository;
-import info.rueth.fpucalculator.domain.repository.MaintenanceUtils;
 import info.rueth.fpucalculator.presentation.adapter.FoodListAdapter;
 
 public class MainActivity extends AppCompatActivity {
