@@ -1,4 +1,4 @@
-<androidx.preference.PreferenceScreen
+<PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
@@ -10,15 +10,15 @@
             android:title="@string/preference_maxfpu"
             android:summary="@string/preference_maxfpu_summary"
             android:defaultValue="@string/preference_maxfpu_default"
-            android:digits="0123456789"/>
+            android:inputType="numberDecimal"/>
 
         <EditTextPreference
             android:key="@string/preference_maxabsorptiontime_key"
             android:title="@string/preference_maxabsorptiontime"
             android:summary="@string/preference_maxabsorptiontime_summary"
             android:defaultValue="@string/preference_maxabsorptiontime_default"
-            android:digits="0123456789"/>
+            android:inputType="numberDecimal"/>
 
     </PreferenceCategory>
 
-</androidx.preference.PreferenceScreen>
+</PreferenceScreen>
