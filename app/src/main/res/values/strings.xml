@@ -39,7 +39,7 @@
     <string name="err_absorptionschemefilenotfound">AbsorptionScheme file not found</string>
     <string name="meal">Total Meal</string>
     <string name="title_activity_editfood">Edit Food</string>
-    <string name="backup_complete">Backup completed to</string>
+    <string name="backup_complete">Backup completed</string>
     <string name="backup_failed">Backup failed</string>
     <string name="action_exportdb">Export database</string>
     <string name="backup_cannotwrite">Cannot write to</string>
@@ -71,4 +71,6 @@
     <string name="export_notification_title">FPU Calculator Database Export</string>
     <string name="export_notification_message">Database is being exported</string>
     <string name="err_directory_not_created">Directory not created:</string>
+    <string name="err_filename_missing">Missing file name for database export</string>
+    <string name="err_database_not_found">Database not found</string>
 </resources>

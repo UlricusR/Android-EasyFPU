@@ -1,8 +1,7 @@
 package info.rueth.fpucalculator.presentation.ui;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,10 +10,9 @@ import android.widget.ToggleButton;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import info.rueth.fpucalculator.R;
@@ -25,6 +23,7 @@ import info.rueth.fpucalculator.presentation.adapter.FoodListAdapter;
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_WRITE_PERMISSIONS_ID = 1;
+    private static final int SAF_CREATE_EXPORT_FILE = 200;
     private FloatingActionButton fabAdd;
     private FloatingActionButton fabMeal;
 
@@ -122,19 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_exportdb:
                 // Export database
-                // First check permissions
-                if (ActivityCompat.checkSelfPermission(this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
-                        PackageManager.PERMISSION_GRANTED) {
-                    // Permission is given, so export
-                    exportDatabase();
-                } else {
-                    // Ask user for permission
-                    ActivityCompat.requestPermissions(
-                            this,
-                            new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            REQUEST_WRITE_PERMISSIONS_ID);
-                }
+                selectFileForExport();
                 return true;
             case R.id.action_editabsorptionscheme:
                 // Edit absorption scheme
@@ -146,23 +133,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        // Check from where the answer comes
-        if (requestCode == REQUEST_WRITE_PERMISSIONS_ID) {
-            // Check if permissions have been granted
-            if (Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(permissions[0]) &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, so export
-                exportDatabase();
-            } else {
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-            }
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == RESULT_OK && requestCode == SAF_CREATE_EXPORT_FILE) {
+            // Path to file (as Content Provider URI)
+            Uri fileUri = data.getData();
+            exportDatabase(fileUri);
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-    private void exportDatabase() {
+    private void selectFileForExport() {
+        // Activity to select file for export
+        Intent fileIntent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+
+        // Category to be able to open file
+        fileIntent.addCategory(Intent.CATEGORY_OPENABLE);
+
+        // Set mime type - no special one
+        fileIntent.setType("*/*");
+
+        // Proposed name of file
+        fileIntent.putExtra(Intent.EXTRA_TITLE, "fpu_calculator_database");
+
+        // Start activity
+        startActivityForResult(fileIntent, SAF_CREATE_EXPORT_FILE);
+    }
+
+    private void exportDatabase(final Uri fileUri) {
         // Initialize export service
         Intent exportService = new Intent(this, DatabaseExportService.class);
+
+        // Set export file uri to service
+        exportService.setData(fileUri);
 
         // Start service
         startService(exportService);

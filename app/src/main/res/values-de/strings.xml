@@ -40,7 +40,7 @@
     <string name="err_absorptionschemefilenotfound">Absorptionsschema-Datei nicht gefunden</string>
     <string name="meal">Gesamtmahlzeit</string>
     <string name="title_activity_editfood">Essen bearbeiten</string>
-    <string name="backup_complete">Backup erfolgreich auf</string>
+    <string name="backup_complete">Backup erfolgreich</string>
     <string name="backup_failed">Backup fehlgeschlagen</string>
     <string name="action_exportdb">Exportiere Datenbank</string>
     <string name="backup_cannotwrite">Kann nicht speichern auf</string>
@@ -67,4 +67,6 @@
     <string name="export_notification_title">FPE-Rechner Datenbank-Export</string>
     <string name="export_notification_message">Datenbank wird exportiert</string>
     <string name="err_directory_not_created">Verzeichnis nicht erstellt:</string>
+    <string name="err_filename_missing">Fehlender Dateiname für Datenbankexport</string>
+    <string name="err_database_not_found">Datenbank nicht gefunden</string>
 </resources>

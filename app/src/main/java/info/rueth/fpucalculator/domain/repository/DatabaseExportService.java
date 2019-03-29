@@ -5,14 +5,14 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.nio.channels.FileChannel;
+import java.io.IOException;
+import java.io.OutputStream;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -62,58 +62,64 @@ public class DatabaseExportService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
         // Get system service for notifications
         NotificationManagerCompat notifyManager = NotificationManagerCompat.from(getApplicationContext());
+
         // Create group
         createChannel();
+
         // Pre-fill notification
         NotificationCompat.Builder builder = createNotification();
 
-        // Get DB path
+        // Read file uri from intent and check if it has been set
+        Uri exportFile = intent.getData();
+        if (exportFile == null) {
+            Log.e(LOG_TAG, getString(R.string.err_filename_missing));
+            builder.setContentText(getString(R.string.err_filename_missing));
+            notifyManager.notify(NOTIFICATION_ID, builder.build());
+            return;
+        }
+
+        // Get DB path and define source file
         String currentDBPath = getBaseContext().getDatabasePath(AppDatabase.DB_NAME).getAbsolutePath();
+        File source = new File(currentDBPath);
+
+        // Create output stream
+        OutputStream os = null;
+
         try {
-            // Define source file
-            File source = new File(currentDBPath);
+            // Get input stream
+            FileInputStream src = new FileInputStream(source);
 
-            // Define target directory
-            File target = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), BACKUP_DIR);
+            // Initialize output stream to write data
+            os = getContentResolver().openOutputStream(exportFile);
 
-            // Check if directory exists, otherwise try to create it
-            if (!target.exists()) {
-                // Check if writable
-                if (!target.mkdirs()) {
-                    // Write to log
-                    Log.e(LOG_TAG, getString(R.string.err_directory_not_created) + " " + target.getAbsolutePath());
-
-                    // Notify user
-                    builder.setContentText(getString(R.string.err_directory_not_created) + " " + target.getAbsolutePath());
-                    notifyManager.notify(NOTIFICATION_ID, builder.build());
-
-                    return;
+            // Copy
+            if (source.exists()) {
+                // Transfer bytes from source to output stream
+                byte[] buffer = new byte[1024];
+                int len;
+                while ((len = src.read(buffer)) > 0) {
+                    os.write(buffer, 0, len);
                 }
-            }
-
-            if (target.canWrite()) {
-                // Publish notification
-                notifyManager.notify(NOTIFICATION_ID, builder.build());
-
-                // Get backup file
-                File backupDB = new File(target, AppDatabase.DB_NAME);
-
-                if (source.exists()) {
-                    FileChannel src = new FileInputStream(source).getChannel();
-                    FileChannel dst = new FileOutputStream(backupDB).getChannel();
-                    dst.transferFrom(src, 0, src.size());
-                    src.close();
-                    dst.close();
-                    Log.e(LOG_TAG, getBaseContext().getString(R.string.backup_complete) + " " + target.getAbsolutePath());
-                    builder.setContentText(getBaseContext().getString(R.string.backup_complete) + " " + target.getAbsolutePath());
-                }
+                src.close();
+                Log.e(LOG_TAG, getBaseContext().getString(R.string.backup_complete));
+                builder.setContentText(getBaseContext().getString(R.string.backup_complete));
             } else {
-                Log.e(LOG_TAG, getBaseContext().getString(R.string.backup_cannotwrite) + " " + target.getAbsolutePath());
-                builder.setContentText(getBaseContext().getString(R.string.backup_cannotwrite) + " " + target.getAbsolutePath());
+                Log.e(LOG_TAG, getString(R.string.err_database_not_found));
+                builder.setContentText(getString(R.string.err_database_not_found));
             }
         } catch (Exception e) {
             Log.i(LOG_TAG, getBaseContext().getString(R.string.backup_failed));
             builder.setContentText(getBaseContext().getString(R.string.backup_failed));
+        } finally {
+            try {
+                if (os != null) {
+                    os.flush();
+                    os.close();
+                }
+            } catch (IOException e) {
+                Log.i(LOG_TAG, e.getLocalizedMessage());
+                builder.setContentText(getBaseContext().getString(R.string.backup_failed));
+            }
         }
 
         // Notify user
