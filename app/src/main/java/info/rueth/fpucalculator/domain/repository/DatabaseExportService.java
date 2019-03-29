@@ -51,13 +51,11 @@ public class DatabaseExportService extends IntentService {
 
     private NotificationCompat.Builder createNotification() {
         // Create notification
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), NOTIFICATION_CHANNEL)
+        return new NotificationCompat.Builder(getApplicationContext(), NOTIFICATION_CHANNEL)
                 .setContentTitle(getString(R.string.export_notification_title))
                 .setContentText(getString(R.string.export_notification_message))
                 .setSmallIcon(R.drawable.ic_file_download_black_24dp)
                 .setAutoCancel(true);
-
-        return builder;
     }
 
     @Override
@@ -78,10 +76,19 @@ public class DatabaseExportService extends IntentService {
             // Define target directory
             File target = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), BACKUP_DIR);
 
-            // Check if writable
-            if (!target.mkdirs()) {
-                Log.e(LOG_TAG, getString(R.string.err_directory_not_created) + " " + target.getAbsolutePath());
-                builder.setContentText(getString(R.string.err_directory_not_created) + " " + target.getAbsolutePath());
+            // Check if directory exists, otherwise try to create it
+            if (!target.exists()) {
+                // Check if writable
+                if (!target.mkdirs()) {
+                    // Write to log
+                    Log.e(LOG_TAG, getString(R.string.err_directory_not_created) + " " + target.getAbsolutePath());
+
+                    // Notify user
+                    builder.setContentText(getString(R.string.err_directory_not_created) + " " + target.getAbsolutePath());
+                    notifyManager.notify(NOTIFICATION_ID, builder.build());
+
+                    return;
+                }
             }
 
             if (target.canWrite()) {
@@ -97,6 +104,8 @@ public class DatabaseExportService extends IntentService {
                     dst.transferFrom(src, 0, src.size());
                     src.close();
                     dst.close();
+                    Log.e(LOG_TAG, getBaseContext().getString(R.string.backup_complete) + " " + target.getAbsolutePath());
+                    builder.setContentText(getBaseContext().getString(R.string.backup_complete) + " " + target.getAbsolutePath());
                 }
             } else {
                 Log.e(LOG_TAG, getBaseContext().getString(R.string.backup_cannotwrite) + " " + target.getAbsolutePath());
@@ -107,5 +116,7 @@ public class DatabaseExportService extends IntentService {
             builder.setContentText(getBaseContext().getString(R.string.backup_failed));
         }
 
+        // Notify user
+        notifyManager.notify(NOTIFICATION_ID, builder.build());
     }
 }

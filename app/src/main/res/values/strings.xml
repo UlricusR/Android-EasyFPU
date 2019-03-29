@@ -39,7 +39,7 @@
     <string name="err_absorptionschemefilenotfound">AbsorptionScheme file not found</string>
     <string name="meal">Total Meal</string>
     <string name="title_activity_editfood">Edit Food</string>
-    <string name="backup_complete">Backup Complete</string>
+    <string name="backup_complete">Backup completed to</string>
     <string name="backup_failed">Backup failed</string>
     <string name="action_exportdb">Export database</string>
     <string name="backup_cannotwrite">Cannot write to</string>
