@@ -75,16 +75,10 @@ public class FoodCalcAdapter extends RecyclerView.Adapter<FoodCalcAdapter.FoodVi
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            // On selecting a spinner item, write amount to amount view ...
+            // On selecting a spinner item, write amount to amount view,
+            // storing it in the food and in the repository will be done by TextWatcher of amountView
             TypicalAmount typicalAmount = (TypicalAmount) parent.getItemAtPosition(position);
             amountView.setText(String.valueOf(typicalAmount.getAmount()));
-
-            // ... and store it as amount in the food
-            FoodViewModel food = selectedFood.get(getAdapterPosition());
-            food.setAmount(typicalAmount.getAmount());
-
-            // ... and in the repository
-            new FoodUpdate(mApplication).execute(food);
 
             // If a typical amount (position > 0) is selected, we disable entering text,
             // if custom amount (position == 0) is selected, we enable entering text
