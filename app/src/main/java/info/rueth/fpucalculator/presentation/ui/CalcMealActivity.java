@@ -17,11 +17,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.domain.model.AbsorptionScheme;
-import info.rueth.fpucalculator.domain.model.Food;
-import info.rueth.fpucalculator.domain.model.Meal;
 import info.rueth.fpucalculator.domain.repository.AbsorptionSchemeRepository;
 import info.rueth.fpucalculator.domain.repository.FoodDataRepository;
 import info.rueth.fpucalculator.presentation.adapter.MealCalcAdapter;
+import info.rueth.fpucalculator.presentation.viewmodels.FoodViewModel;
+import info.rueth.fpucalculator.presentation.viewmodels.MealViewModel;
 
 public class CalcMealActivity extends AppCompatActivity {
 
@@ -65,7 +65,7 @@ public class CalcMealActivity extends AppCompatActivity {
 
         // Pass selected food to adapter
         int[] selectedFoodIds = getIntent().getIntArrayExtra(NewMealActivity.INTENT_MEALCALC);
-        List<Food> weightedFood = FoodDataRepository.getInstance(getApplication()).getFoodByIDs(selectedFoodIds);
+        List<FoodViewModel> weightedFood = FoodDataRepository.getInstance(getApplication()).getFoodByIDs(selectedFoodIds);
         adapter.setSelectedFood(weightedFood);
         
         //
@@ -83,7 +83,7 @@ public class CalcMealActivity extends AppCompatActivity {
         absorptionTimeView = findViewById(R.id.calcmeal_absorptiontime);
 
         // Create the meal
-        Meal meal = new Meal(getApplicationContext().getString(R.string.meal), weightedFood);
+        MealViewModel meal = new MealViewModel(getApplicationContext().getString(R.string.meal), weightedFood);
 
         // Set the meal values
         foodnameView.setText(meal.getName());

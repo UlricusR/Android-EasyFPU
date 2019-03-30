@@ -25,6 +25,7 @@ public class FoodUpdate implements FoodUseCase {
         data.setFavorite(viewModel.isFavorite());
         data.setCaloriesPer100g(viewModel.getCaloriesPer100g());
         data.setCarbsPer100g(viewModel.getCarbsPer100g());
+        data.setAmount(viewModel.getAmount());
         data.setAmountSmall(viewModel.getAmountSmall());
         data.setAmountMedium(viewModel.getAmountMedium());
         data.setAmountLarge(viewModel.getAmountLarge());

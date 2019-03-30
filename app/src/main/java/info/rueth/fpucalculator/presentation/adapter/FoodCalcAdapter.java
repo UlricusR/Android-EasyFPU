@@ -1,5 +1,6 @@
 package info.rueth.fpucalculator.presentation.adapter;
 
+import android.app.Application;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,8 +19,9 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import info.rueth.fpucalculator.R;
-import info.rueth.fpucalculator.domain.model.Food;
 import info.rueth.fpucalculator.domain.model.TypicalAmount;
+import info.rueth.fpucalculator.presentation.viewmodels.FoodViewModel;
+import info.rueth.fpucalculator.usecases.FoodUpdate;
 
 public class FoodCalcAdapter extends RecyclerView.Adapter<FoodCalcAdapter.FoodViewHolder> {
     class FoodViewHolder extends RecyclerView.ViewHolder implements AdapterView.OnItemSelectedListener {
@@ -64,7 +66,11 @@ public class FoodCalcAdapter extends RecyclerView.Adapter<FoodCalcAdapter.FoodVi
             typicalAmount.setAmount(amount);
 
             // ... and store it in the food
-            selectedFood.get(getAdapterPosition()).setAmount(amount);
+            FoodViewModel food = selectedFood.get(getAdapterPosition());
+            food.setAmount(amount);
+
+            // ... and in the repository
+            new FoodUpdate(mApplication).execute(food);
         }
 
         @Override
@@ -74,7 +80,11 @@ public class FoodCalcAdapter extends RecyclerView.Adapter<FoodCalcAdapter.FoodVi
             amountView.setText(String.valueOf(typicalAmount.getAmount()));
 
             // ... and store it as amount in the food
-            selectedFood.get(getAdapterPosition()).setAmount(typicalAmount.getAmount());
+            FoodViewModel food = selectedFood.get(getAdapterPosition());
+            food.setAmount(typicalAmount.getAmount());
+
+            // ... and in the repository
+            new FoodUpdate(mApplication).execute(food);
 
             // If a typical amount (position > 0) is selected, we disable entering text,
             // if custom amount (position == 0) is selected, we enable entering text
@@ -93,9 +103,11 @@ public class FoodCalcAdapter extends RecyclerView.Adapter<FoodCalcAdapter.FoodVi
     }
     
     private final LayoutInflater mInflater;
-    private List<Food> selectedFood; // Cached copy of all selected food items
+    private final Application mApplication;
+    private List<FoodViewModel> selectedFood; // Cached copy of all selected food items
     
-    public FoodCalcAdapter(Context context) {
+    public FoodCalcAdapter(Context context, Application application) {
+        mApplication = application;
         mInflater = LayoutInflater.from(context);
     }
     
@@ -111,7 +123,7 @@ public class FoodCalcAdapter extends RecyclerView.Adapter<FoodCalcAdapter.FoodVi
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
         if (selectedFood != null) {
             // Get the current food item
-            Food food = selectedFood.get(position);
+            FoodViewModel food = selectedFood.get(position);
 
             // Set the food name
             holder.foodnameView.setText(food.getName());
@@ -141,11 +153,11 @@ public class FoodCalcAdapter extends RecyclerView.Adapter<FoodCalcAdapter.FoodVi
         }
     }
 
-    public void setSelectedFood(List<Food> selectedFood) {
+    public void setSelectedFood(List<FoodViewModel> selectedFood) {
         this.selectedFood = selectedFood;
     }
 
-    public List<Food> getSelectedFood() {
+    public List<FoodViewModel> getSelectedFood() {
         return selectedFood;
     }
 

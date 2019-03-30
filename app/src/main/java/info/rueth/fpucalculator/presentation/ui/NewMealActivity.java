@@ -28,7 +28,7 @@ public class NewMealActivity extends AppCompatActivity {
 
         // Create recycler view
         RecyclerView recyclerView = findViewById(R.id.recyclerview_newmeal);
-        adapter = new FoodCalcAdapter(this);
+        adapter = new FoodCalcAdapter(this, getApplication());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

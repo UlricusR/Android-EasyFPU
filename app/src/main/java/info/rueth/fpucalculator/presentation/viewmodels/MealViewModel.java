@@ -1,16 +1,18 @@
-package info.rueth.fpucalculator.domain.model;
+package info.rueth.fpucalculator.presentation.viewmodels;
 
 import java.util.List;
+
+import info.rueth.fpucalculator.domain.model.FPU;
 
 /**
  * Represents a meal.
  */
-public class Meal {
-    // Meal name
+public class MealViewModel {
+    // MealViewModel name
     private String name;
 
     // The list of all food of the meal
-    private List<Food> food;
+    private List<FoodViewModel> food;
 
     private double calories = 0;
     private double carbs = 0;
@@ -23,7 +25,7 @@ public class Meal {
      * @param name The name of the meal
      * @param food A list of all food of the meal
      */
-    public Meal(String name, List<Food> food) {
+    public MealViewModel(String name, List<FoodViewModel> food) {
         this.name = name;
         this.food = food;
 

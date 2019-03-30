@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.domain.model.AbsorptionScheme;
-import info.rueth.fpucalculator.domain.model.Food;
+import info.rueth.fpucalculator.presentation.viewmodels.FoodViewModel;
 
 public class MealCalcAdapter extends RecyclerView.Adapter<MealCalcAdapter.FoodViewHolder> {
     class FoodViewHolder extends RecyclerView.ViewHolder {
@@ -41,7 +41,7 @@ public class MealCalcAdapter extends RecyclerView.Adapter<MealCalcAdapter.FoodVi
 
     private final LayoutInflater mInflater;
     private AbsorptionScheme mAbsorptionScheme;
-    private List<Food> selectedFood; // Cached copy of all selected food items
+    private List<FoodViewModel> selectedFood; // Cached copy of all selected food items
 
     public MealCalcAdapter(Context context, AbsorptionScheme absorptionScheme) {
         mInflater = LayoutInflater.from(context);
@@ -60,7 +60,7 @@ public class MealCalcAdapter extends RecyclerView.Adapter<MealCalcAdapter.FoodVi
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
         if (selectedFood != null) {
             // Get the current food item
-            Food food = selectedFood.get(position);
+            FoodViewModel food = selectedFood.get(position);
 
             // Set food name, amount, resulting calories, carbs, FPUs, eCarbs and absorption time
             holder.foodnameView.setText(food.getName());
@@ -77,11 +77,11 @@ public class MealCalcAdapter extends RecyclerView.Adapter<MealCalcAdapter.FoodVi
         }
     }
 
-    public void setSelectedFood(List<Food> selectedFood) {
+    public void setSelectedFood(List<FoodViewModel> selectedFood) {
         this.selectedFood = selectedFood;
     }
 
-    public List<Food> getSelectedFood() {
+    public List<FoodViewModel> getSelectedFood() {
         return selectedFood;
     }
 

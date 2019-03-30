@@ -21,8 +21,8 @@ public class FoodDataRepository {
 
     /**
      * Singleton implementation to retrieve the food items
-     * @param application
-     * @return
+     * @param application The application
+     * @return A unique instance of the Food Data Repository
      */
     public static FoodDataRepository getInstance(Application application) {
         if (INSTANCE == null) {
@@ -88,7 +88,7 @@ public class FoodDataRepository {
      * @param foodName The name of the food to find
      * @return The food matching the name (in case of duplicate names the first one)
      */
-    public Food getFoodByName(String foodName) {
+    private Food getFoodByName(String foodName) {
         List<Food> foods = allFood.getValue();
         if (foods == null) return null;
         for (Food food : foods) {
@@ -114,10 +114,10 @@ public class FoodDataRepository {
      * @param foodIds The IDs of the food items to return
      * @return All food items with the specified IDs
      */
-    public List<Food> getFoodByIDs(int[] foodIds) {
-        List<Food> foods = new ArrayList<>();
+    public List<FoodViewModel> getFoodByIDs(int[] foodIds) {
+        List<FoodViewModel> foods = new ArrayList<>();
         for (int foodId : foodIds) {
-            foods.add(getFoodByID(foodId));
+            foods.add(createViewModel(getFoodByID(foodId)));
         }
         return foods;
     }
