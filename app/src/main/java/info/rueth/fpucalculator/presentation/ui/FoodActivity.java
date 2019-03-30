@@ -3,8 +3,6 @@ package info.rueth.fpucalculator.presentation.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -145,27 +143,5 @@ public abstract class FoodActivity extends AppCompatActivity {
         // De-register save and cancel button listeners
         saveButton.setOnClickListener(null);
         cancelButton.setOnClickListener(null);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                // Start preferences activity
-                startActivity(new Intent(this, PreferencesActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);            
-        }
     }
 }

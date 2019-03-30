@@ -173,7 +173,7 @@ public class Food {
      */
     public FPU getFPU() {
         // 1g carbs has ~4 kcal, so calculate carb portion of calories
-        double carbsCal = amount / 100 * carbsPer100g * 4;
+        double carbsCal = amount / 100f * carbsPer100g * 4;
 
         // The carbs from fat and protein is the remainder
         double calFromFP = getCalories() - carbsCal;
