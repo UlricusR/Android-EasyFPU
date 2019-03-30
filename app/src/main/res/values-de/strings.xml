@@ -69,4 +69,8 @@
     <string name="err_directory_not_created">Verzeichnis nicht erstellt:</string>
     <string name="err_filename_missing">Fehlender Dateiname für Datenbankexport</string>
     <string name="err_database_not_found">Datenbank nicht gefunden</string>
+    <string name="app_descripton">Berechnet Kohlenhydrate, verlängerte Kohlenhydrate (auch bekannt als eCarbs oder Fake Carbs) und die entsprechende Absorptionszeit für ein Essen oder ganze Mahlzeiten.</string>
+    <string name="app_documentation_link">Dokumentation auf rueth.info</string>
+    <string name="app_github_link">Quelltext auf github.com/UlricusR/FPU_Calculator</string>
+    <string name="about_dialog">Über</string>
 </resources>

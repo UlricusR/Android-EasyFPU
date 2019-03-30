@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="@string/app_descripton" />
+
+    <TextView
+        android:id="@+id/about_documentation_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dip"
+        android:textSize="16sp"
+        android:text="@string/app_documentation_link"
+        android:autoLink="web"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/about_github_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dip"
+        android:textSize="16sp"
+        android:text="@string/app_github_link"
+        android:autoLink="web"
+        android:clickable="true"
+        android:focusable="true" />
+
+</LinearLayout>

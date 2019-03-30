@@ -5,12 +5,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -127,6 +129,10 @@ public class MainActivity extends AppCompatActivity {
                 // Edit absorption scheme
                 startActivity(new Intent(this, AbsorptionSchemeActivity.class));
                 return true;
+            case R.id.action_about:
+                // Show about dialog
+                showAboutDialog();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);            
         }
@@ -169,5 +175,17 @@ public class MainActivity extends AppCompatActivity {
 
         // Start service
         startService(exportService);
+    }
+
+    private void showAboutDialog() {
+        // Inflate the about message contents
+        View messageView = getLayoutInflater().inflate(R.layout.about, null, false);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setTitle(R.string.app_name);
+        builder.setView(messageView);
+        builder.create();
+        builder.show();
     }
 }
