@@ -41,7 +41,8 @@
     <string name="title_activity_editfood">Edit Food</string>
     <string name="backup_complete">Backup completed</string>
     <string name="backup_failed">Backup failed</string>
-    <string name="action_exportdb">Export database</string>
+    <string name="action_exportdb_raw">Export raw database</string>
+    <string name="action_exportdb_json">Export database as JSON</string>
     <string name="backup_cannotwrite">Cannot write to</string>
     <string name="button_add">Add</string>
     <string name="button_remove">Remove</string>

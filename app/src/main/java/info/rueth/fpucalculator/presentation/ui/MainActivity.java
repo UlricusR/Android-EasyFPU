@@ -18,14 +18,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import info.rueth.fpucalculator.R;
-import info.rueth.fpucalculator.domain.repository.DatabaseExportService;
+import info.rueth.fpucalculator.domain.repository.DatabaseJsonExportService;
+import info.rueth.fpucalculator.domain.repository.DatabaseRawExportService;
 import info.rueth.fpucalculator.domain.repository.FoodDataRepository;
 import info.rueth.fpucalculator.presentation.adapter.FoodListAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_WRITE_PERMISSIONS_ID = 1;
-    private static final int SAF_CREATE_EXPORT_FILE = 200;
+    private static final int SAF_CREATE_RAW_EXPORT_FILE = 200;
+    private static final int SAF_CREATE_JSON_EXPORT_FILE = 300;
     private FloatingActionButton fabAdd;
     private FloatingActionButton fabMeal;
 
@@ -121,9 +122,17 @@ public class MainActivity extends AppCompatActivity {
                 // Start preferences activity
                 startActivity(new Intent(this, PreferencesActivity.class));
                 return true;
-            case R.id.action_exportdb:
+            case R.id.action_exportdb_raw:
                 // Export database
-                selectFileForExport();
+                Intent rawFileIntent = selectFileForExport("fpu_calculator_database");
+                // Start activity
+                startActivityForResult(rawFileIntent, SAF_CREATE_RAW_EXPORT_FILE);
+                return true;
+            case R.id.action_exportdb_json:
+                // Export database
+                Intent jsonFileIntent = selectFileForExport("fpu_calculator_database.json");
+                // Start activity
+                startActivityForResult(jsonFileIntent, SAF_CREATE_JSON_EXPORT_FILE);
                 return true;
             case R.id.action_editabsorptionscheme:
                 // Edit absorption scheme
@@ -140,16 +149,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == RESULT_OK && requestCode == SAF_CREATE_EXPORT_FILE) {
+        if (resultCode == RESULT_OK && requestCode == SAF_CREATE_RAW_EXPORT_FILE) {
             // Path to file (as Content Provider URI)
             Uri fileUri = data.getData();
-            exportDatabase(fileUri);
+            exportRawDatabase(fileUri);
+        } else if (resultCode == RESULT_OK && requestCode == SAF_CREATE_JSON_EXPORT_FILE) {
+            // Path to file (as Content Provider URI)
+            Uri fileUri = data.getData();
+            exportJsonDatabase(fileUri);
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-    private void selectFileForExport() {
+    private Intent selectFileForExport(String fileDefaultName) {
         // Activity to select file for export
         Intent fileIntent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
 
@@ -160,15 +173,25 @@ public class MainActivity extends AppCompatActivity {
         fileIntent.setType("*/*");
 
         // Proposed name of file
-        fileIntent.putExtra(Intent.EXTRA_TITLE, "fpu_calculator_database");
+        fileIntent.putExtra(Intent.EXTRA_TITLE, fileDefaultName);
 
-        // Start activity
-        startActivityForResult(fileIntent, SAF_CREATE_EXPORT_FILE);
+        return fileIntent;
     }
 
-    private void exportDatabase(final Uri fileUri) {
+    private void exportRawDatabase(final Uri fileUri) {
         // Initialize export service
-        Intent exportService = new Intent(this, DatabaseExportService.class);
+        Intent exportService = new Intent(this, DatabaseRawExportService.class);
+
+        // Set export file uri to service
+        exportService.setData(fileUri);
+
+        // Start service
+        startService(exportService);
+    }
+
+    private void exportJsonDatabase(final Uri fileUri) {
+        // Initialize export service
+        Intent exportService = new Intent(this, DatabaseJsonExportService.class);
 
         // Set export file uri to service
         exportService.setData(fileUri);

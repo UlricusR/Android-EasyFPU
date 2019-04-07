@@ -42,7 +42,8 @@
     <string name="title_activity_editfood">Essen bearbeiten</string>
     <string name="backup_complete">Backup erfolgreich</string>
     <string name="backup_failed">Backup fehlgeschlagen</string>
-    <string name="action_exportdb">Exportiere Datenbank</string>
+    <string name="action_exportdb_raw">Exportiere Rohdatenbank</string>
+    <string name="action_exportdb_json">Exportiere Datenbank als JSON</string>
     <string name="backup_cannotwrite">Kann nicht speichern auf</string>
     <string name="button_add">Hinzufügen</string>
     <string name="button_remove">Löschen</string>

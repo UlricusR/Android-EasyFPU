@@ -47,7 +47,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="info.rueth.fpucalculator.presentation.ui.MainActivity" />
         </activity>
-        <service android:name=".domain.repository.DatabaseExportService" />
+        <service android:name=".domain.repository.DatabaseRawExportService" />
+        <service android:name=".domain.repository.DatabaseJsonExportService" />
     </application>
 
 </manifest>

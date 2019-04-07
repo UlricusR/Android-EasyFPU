@@ -41,6 +41,10 @@ public class FoodDataRepository {
         allFood = foodDao.getAll();
     }
 
+    List<Food> getAllFood() {
+        return allFood.getValue();
+    }
+
     /**
      * @param favorite Determines whether of not to return all food items or only the favorite ones
      * @return A LiveData List of the food items
