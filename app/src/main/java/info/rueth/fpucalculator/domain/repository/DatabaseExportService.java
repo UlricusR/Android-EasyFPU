@@ -22,7 +22,6 @@ import info.rueth.fpucalculator.R;
 public class DatabaseExportService extends IntentService {
 
     private static final String LOG_TAG = "DatabaseExportService";
-    private static final String BACKUP_DIR = "FPU-Calculator";
     private static final String NOTIFICATION_CHANNEL = "Export";
     private static final int NOTIFICATION_ID = 500;
 
@@ -70,6 +69,12 @@ public class DatabaseExportService extends IntentService {
         NotificationCompat.Builder builder = createNotification();
 
         // Read file uri from intent and check if it has been set
+        if (intent == null) {
+            Log.e(LOG_TAG, getString(R.string.err_intentnull));
+            builder.setContentText(getText(R.string.err_intentnull));
+            notifyManager.notify(NOTIFICATION_ID, builder.build());
+            return;
+        }
         Uri exportFile = intent.getData();
         if (exportFile == null) {
             Log.e(LOG_TAG, getString(R.string.err_filename_missing));
@@ -93,7 +98,7 @@ public class DatabaseExportService extends IntentService {
             os = getContentResolver().openOutputStream(exportFile);
 
             // Copy
-            if (source.exists()) {
+            if (source.exists() && os != null) {
                 // Transfer bytes from source to output stream
                 byte[] buffer = new byte[1024];
                 int len;

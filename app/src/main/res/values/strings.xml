@@ -77,4 +77,5 @@
     <string name="app_documentation_link">Documentation on rueth.info</string>
     <string name="app_github_link">Source code on github.com/UlricusR/FPU_Calculator</string>
     <string name="about_dialog">About</string>
+    <string name="err_intentnull">Intent must not be null</string>
 </resources>
