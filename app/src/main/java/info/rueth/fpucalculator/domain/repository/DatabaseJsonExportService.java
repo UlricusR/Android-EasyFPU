@@ -21,6 +21,7 @@ public class DatabaseJsonExportService extends DatabaseExportService {
 
     private static final String LOG_TAG = "DatabaseJsonExportService";
     private static final int NOTIFICATION_ID = 600;
+    private static final String FOOD_ITEMS = "food_items";
     private static final String FOOD_NAME = "name";
     private static final String CALORIES_PER_100G = "calories_per_100g";
     private static final String CARBS_PER_100G = "carbs_per_100g";
@@ -77,11 +78,7 @@ public class DatabaseJsonExportService extends DatabaseExportService {
 
             // Prepare writing data
             writer.setIndent("  ");
-            writer.beginArray();
-            for (Food food : foodData) {
-                writeFood(writer, food);
-            }
-            writer.endArray();
+            writeFoodItems(writer, foodData);
         } catch (Exception e) {
             Log.i(LOG_TAG, getBaseContext().getString(R.string.backup_failed));
             builder.setContentText(getBaseContext().getString(R.string.backup_failed));
@@ -104,6 +101,15 @@ public class DatabaseJsonExportService extends DatabaseExportService {
 
         // Notify user
         notifyManager.notify(NOTIFICATION_ID, builder.build());
+    }
+    
+    private void writeFoodItems() {
+        writer.name(FOOD_ITEMS);
+        writer.beginArray();
+        for (Food food : foodData) {
+            writeFood(writer, food);
+        }
+        writer.endArray();
     }
 
     private void writeFood(JsonWriter writer, Food food) throws IOException {
