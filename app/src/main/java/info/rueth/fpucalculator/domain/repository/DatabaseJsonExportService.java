@@ -103,13 +103,15 @@ public class DatabaseJsonExportService extends DatabaseExportService {
         notifyManager.notify(NOTIFICATION_ID, builder.build());
     }
     
-    private void writeFoodItems() {
+    private void writeFoodItems(JsonWriter writer, List<Food> foodData) {
+        writer.startObject();
         writer.name(FOOD_ITEMS);
         writer.beginArray();
         for (Food food : foodData) {
             writeFood(writer, food);
         }
         writer.endArray();
+        writer.endObject();
     }
 
     private void writeFood(JsonWriter writer, Food food) throws IOException {
