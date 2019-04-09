@@ -49,6 +49,7 @@
         </activity>
         <service android:name=".domain.repository.DatabaseRawExportService" />
         <service android:name=".domain.repository.DatabaseJsonExportService" />
+        <service android:name=".domain.repository.DatabaseJsonImportService" />
     </application>
 
 </manifest>

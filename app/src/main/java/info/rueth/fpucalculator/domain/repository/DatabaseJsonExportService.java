@@ -17,21 +17,22 @@ import androidx.core.app.NotificationManagerCompat;
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.domain.model.Food;
 
-public class DatabaseJsonExportService extends DatabaseExportService {
+public class DatabaseJsonExportService extends ImportExportService {
 
     private static final String LOG_TAG = "DatabaseJsonExportService";
     private static final int NOTIFICATION_ID = 600;
-    private static final String FOOD_ITEMS = "food_items";
-    private static final String FOOD_NAME = "name";
-    private static final String CALORIES_PER_100G = "calories_per_100g";
-    private static final String CARBS_PER_100G = "carbs_per_100g";
-    private static final String AMOUNT_SMALL = "amount_small";
-    private static final String AMOUNT_MEDIUM = "amount_medium";
-    private static final String AMOUNT_LARGE = "amount_large";
-    private static final String COMMENT_SMALL = "comment_small";
-    private static final String COMMENT_MEDIUM = "comment_medium";
-    private static final String COMMENT_LARGE = "comment_large";
-    private static final String FAVORITE = "favorite";
+
+    static final String FOOD_ITEMS = "food_items";
+    static final String FOOD_NAME = "name";
+    static final String CALORIES_PER_100G = "calories_per_100g";
+    static final String CARBS_PER_100G = "carbs_per_100g";
+    static final String AMOUNT_SMALL = "amount_small";
+    static final String AMOUNT_MEDIUM = "amount_medium";
+    static final String AMOUNT_LARGE = "amount_large";
+    static final String COMMENT_SMALL = "comment_small";
+    static final String COMMENT_MEDIUM = "comment_medium";
+    static final String COMMENT_LARGE = "comment_large";
+    static final String FAVORITE = "favorite";
 
     public DatabaseJsonExportService() {
         super("DatabaseJsonExporter");

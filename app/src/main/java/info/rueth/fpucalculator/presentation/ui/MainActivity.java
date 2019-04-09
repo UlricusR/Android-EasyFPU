@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.domain.repository.DatabaseJsonExportService;
+import info.rueth.fpucalculator.domain.repository.DatabaseJsonImportService;
 import info.rueth.fpucalculator.domain.repository.DatabaseRawExportService;
 import info.rueth.fpucalculator.domain.repository.FoodDataRepository;
 import info.rueth.fpucalculator.presentation.adapter.FoodListAdapter;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int SAF_CREATE_RAW_EXPORT_FILE = 200;
     private static final int SAF_CREATE_JSON_EXPORT_FILE = 300;
+    private static final int SAF_CREATE_JSON_IMPORT_FILE = 400;
     private FloatingActionButton fabAdd;
     private FloatingActionButton fabMeal;
 
@@ -130,9 +132,15 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_exportdb_json:
                 // Export database
-                Intent jsonFileIntent = selectFileForExport("fpu_calculator_database.json", "application/json");
+                Intent jsonFileExportIntent = selectFileForExport("fpu_calculator_database.json", "application/json");
                 // Start activity
-                startActivityForResult(jsonFileIntent, SAF_CREATE_JSON_EXPORT_FILE);
+                startActivityForResult(jsonFileExportIntent, SAF_CREATE_JSON_EXPORT_FILE);
+                return true;
+            case R.id.action_importdb_json:
+                // Import database
+                Intent jsonFileImportIntent = selectFileForImport("application/json");
+                // Start activity
+                startActivityForResult(jsonFileImportIntent, SAF_CREATE_JSON_IMPORT_FILE);
                 return true;
             case R.id.action_editabsorptionscheme:
                 // Edit absorption scheme
@@ -157,6 +165,10 @@ public class MainActivity extends AppCompatActivity {
             // Path to file (as Content Provider URI)
             Uri fileUri = data.getData();
             exportJsonDatabase(fileUri);
+        } else if (resultCode == RESULT_OK && data != null && requestCode == SAF_CREATE_JSON_IMPORT_FILE) {
+            // Path to file (as Content Provider URI)
+            Uri fileUri = data.getData();
+            importJsonDatabase(fileUri);
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -169,11 +181,24 @@ public class MainActivity extends AppCompatActivity {
         // Category to be able to open file
         fileIntent.addCategory(Intent.CATEGORY_OPENABLE);
 
-        // Set mime type - no special one
+        // Set mime type
         fileIntent.setType(mimeType);
 
         // Proposed name of file
         fileIntent.putExtra(Intent.EXTRA_TITLE, fileDefaultName);
+
+        return fileIntent;
+    }
+
+    private Intent selectFileForImport(String mimeType) {
+        // Activity to select file for import
+        Intent fileIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+
+        // Category to be able to open file
+        fileIntent.addCategory(Intent.CATEGORY_OPENABLE);
+
+        // Set mime type
+        fileIntent.setType("*/*"); // TODO This should be application/json as passed by mimeType
 
         return fileIntent;
     }
@@ -198,6 +223,17 @@ public class MainActivity extends AppCompatActivity {
 
         // Start service
         startService(exportService);
+    }
+
+    private void importJsonDatabase(final Uri fileUri) {
+        // Initialize import service
+        Intent importService = new Intent(this, DatabaseJsonImportService.class);
+
+        // Set import file uri to service
+        importService.setData(fileUri);
+
+        // Start service
+        startService(importService);
     }
 
     private void showAboutDialog() {

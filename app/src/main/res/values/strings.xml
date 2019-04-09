@@ -79,4 +79,9 @@
     <string name="app_github_link">Source code on github.com/UlricusR/FPU_Calculator</string>
     <string name="about_dialog">About</string>
     <string name="err_intentnull">Intent must not be null</string>
+    <string name="dbimport_dialog_mode_title">Data import</string>
+    <string name="dbimport_dialog_mode_message">Replace existing entries?</string>
+    <string name="dbimport_dialog_mode_button_replace">Replace</string>
+    <string name="dbimport_dialog_mode_button_append">Append</string>
+    <string name="action_importdb_json">Import database from JSON</string>
 </resources>

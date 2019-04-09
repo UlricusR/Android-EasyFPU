@@ -14,7 +14,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import info.rueth.fpucalculator.R;
 
-public class DatabaseRawExportService extends DatabaseExportService {
+public class DatabaseRawExportService extends ImportExportService {
 
     private static final String LOG_TAG = "DatabaseRawExportService";
     private static final int NOTIFICATION_ID = 500;

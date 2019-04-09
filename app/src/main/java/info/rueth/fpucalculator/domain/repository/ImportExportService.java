@@ -9,11 +9,11 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import info.rueth.fpucalculator.R;
 
-public abstract class DatabaseExportService extends IntentService {
+public abstract class ImportExportService extends IntentService {
 
     private static final String NOTIFICATION_CHANNEL = "Export";
 
-    public DatabaseExportService(String name) {
+    public ImportExportService(String name) {
         super(name);
     }
 

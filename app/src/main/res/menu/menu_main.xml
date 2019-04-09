@@ -17,6 +17,11 @@
         android:orderInCategory="250"
         android:title="@string/action_exportdb_json"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_importdb_json"
+        android:orderInCategory="260"
+        android:title="@string/action_importdb_json"
+        app:showAsAction="never" />
     <!--
     <item
         android:id="@+id/action_importdb"
