@@ -31,6 +31,7 @@ public class DatabaseJsonExportService extends DatabaseExportService {
     private static final String COMMENT_SMALL = "comment_small";
     private static final String COMMENT_MEDIUM = "comment_medium";
     private static final String COMMENT_LARGE = "comment_large";
+    private static final String FAVORITE = "favorite";
 
     public DatabaseJsonExportService() {
         super("DatabaseJsonExporter");
@@ -103,8 +104,8 @@ public class DatabaseJsonExportService extends DatabaseExportService {
         notifyManager.notify(NOTIFICATION_ID, builder.build());
     }
     
-    private void writeFoodItems(JsonWriter writer, List<Food> foodData) {
-        writer.startObject();
+    private void writeFoodItems(JsonWriter writer, List<Food> foodData) throws IOException {
+        writer.beginObject();
         writer.name(FOOD_ITEMS);
         writer.beginArray();
         for (Food food : foodData) {
@@ -117,6 +118,7 @@ public class DatabaseJsonExportService extends DatabaseExportService {
     private void writeFood(JsonWriter writer, Food food) throws IOException {
         writer.beginObject();
         writer.name(FOOD_NAME).value(food.getName());
+        writer.name(FAVORITE).value(food.isFavorite());
         writer.name(CALORIES_PER_100G).value(food.getCaloriesPer100g());
         writer.name(CARBS_PER_100G).value(food.getCarbsPer100g());
         writer.name(AMOUNT_SMALL).value(food.getAmountSmall());

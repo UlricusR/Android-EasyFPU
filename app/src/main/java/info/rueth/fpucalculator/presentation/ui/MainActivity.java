@@ -124,13 +124,13 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_exportdb_raw:
                 // Export database
-                Intent rawFileIntent = selectFileForExport("fpu_calculator_database");
+                Intent rawFileIntent = selectFileForExport("fpu_calculator_database", "*/*");
                 // Start activity
                 startActivityForResult(rawFileIntent, SAF_CREATE_RAW_EXPORT_FILE);
                 return true;
             case R.id.action_exportdb_json:
                 // Export database
-                Intent jsonFileIntent = selectFileForExport("fpu_calculator_database.json");
+                Intent jsonFileIntent = selectFileForExport("fpu_calculator_database.json", "application/json");
                 // Start activity
                 startActivityForResult(jsonFileIntent, SAF_CREATE_JSON_EXPORT_FILE);
                 return true;
@@ -149,11 +149,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == RESULT_OK && requestCode == SAF_CREATE_RAW_EXPORT_FILE) {
+        if (resultCode == RESULT_OK && data != null && requestCode == SAF_CREATE_RAW_EXPORT_FILE) {
             // Path to file (as Content Provider URI)
             Uri fileUri = data.getData();
             exportRawDatabase(fileUri);
-        } else if (resultCode == RESULT_OK && requestCode == SAF_CREATE_JSON_EXPORT_FILE) {
+        } else if (resultCode == RESULT_OK && data != null && requestCode == SAF_CREATE_JSON_EXPORT_FILE) {
             // Path to file (as Content Provider URI)
             Uri fileUri = data.getData();
             exportJsonDatabase(fileUri);
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private Intent selectFileForExport(String fileDefaultName) {
+    private Intent selectFileForExport(String fileDefaultName, String mimeType) {
         // Activity to select file for export
         Intent fileIntent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
 
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
         fileIntent.addCategory(Intent.CATEGORY_OPENABLE);
 
         // Set mime type - no special one
-        fileIntent.setType("*/*");
+        fileIntent.setType(mimeType);
 
         // Proposed name of file
         fileIntent.putExtra(Intent.EXTRA_TITLE, fileDefaultName);
