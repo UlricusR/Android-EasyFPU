@@ -39,8 +39,8 @@
     <string name="err_absorptionschemefilenotfound">AbsorptionScheme file not found</string>
     <string name="meal">Total Meal</string>
     <string name="title_activity_editfood">Edit Food</string>
-    <string name="backup_complete">Backup completed</string>
-    <string name="backup_failed">Backup failed</string>
+    <string name="backup_complete">Export completed</string>
+    <string name="backup_failed">Export failed</string>
     <string name="action_exportdb_raw">Export raw database</string>
     <string name="action_exportdb_json">Export database as JSON</string>
     <string name="backup_cannotwrite">Cannot write to</string>
@@ -67,7 +67,7 @@
     <string name="menu_favorite_add">Set as favorite</string>
     <string name="menu_favorite_remove">Remove from favorites</string>
     <string name="more_icon" translatable="false">&#8942;</string>
-    <string name="export_notification_channel">FPU Calculator Database Export</string>
+    <string name="export_notification_channel_title">FPU Calculator Database Export</string>
     <string name="export_notification_channel_description">Export of the FPU Calculator database</string>
     <string name="export_notification_title">FPU Calculator Database Export</string>
     <string name="export_notification_message">Database is being exported</string>
@@ -80,8 +80,14 @@
     <string name="about_dialog">About</string>
     <string name="err_intentnull">Intent must not be null</string>
     <string name="dbimport_dialog_mode_title">Data import</string>
-    <string name="dbimport_dialog_mode_message">Replace existing entries?</string>
+    <string name="dbimport_dialog_mode_message">Replace or append to existing data?</string>
     <string name="dbimport_dialog_mode_button_replace">Replace</string>
     <string name="dbimport_dialog_mode_button_append">Append</string>
     <string name="action_importdb_json">Import database from JSON</string>
+    <string name="import_notification_channel_title">FPU Calculator Database Import</string>
+    <string name="import_notification_channel_description">Import of the FPU Calculator database</string>
+    <string name="import_notification_title">FPU Calculator Database Import</string>
+    <string name="import_notification_message">FPU Calculator data are being imported</string>
+    <string name="import_complete">Import completed</string>
+    <string name="import_failed">Import failed</string>
 </resources>

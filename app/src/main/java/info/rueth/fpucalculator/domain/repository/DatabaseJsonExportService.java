@@ -43,11 +43,22 @@ public class DatabaseJsonExportService extends ImportExportService {
         // Get system service for notifications
         NotificationManagerCompat notifyManager = NotificationManagerCompat.from(getApplicationContext());
 
+        String notificationChannel = "JSONExport";
+
         // Create group
-        createChannel();
+        createChannel(
+                notificationChannel,
+                getString(R.string.export_notification_channel_title),
+                getString(R.string.export_notification_channel_description)
+        );
 
         // Pre-fill notification
-        NotificationCompat.Builder builder = createNotification();
+        NotificationCompat.Builder builder = createNotification(
+                notificationChannel,
+                getString(R.string.export_notification_title),
+                getString(R.string.export_notification_message),
+                R.drawable.ic_file_download_black_24dp
+        );
 
         // Read file uri from intent and check if it has been set
         if (intent == null) {
@@ -81,8 +92,9 @@ public class DatabaseJsonExportService extends ImportExportService {
             // Prepare writing data
             writer.setIndent("  ");
             writeFoodItems(writer, foodData);
+            builder.setContentText(getBaseContext().getString(R.string.backup_complete));
         } catch (Exception e) {
-            Log.i(LOG_TAG, getBaseContext().getString(R.string.backup_failed));
+            Log.e(LOG_TAG, e.getLocalizedMessage());
             builder.setContentText(getBaseContext().getString(R.string.backup_failed));
         } finally {
             try {
@@ -94,9 +106,8 @@ public class DatabaseJsonExportService extends ImportExportService {
                     os.flush();
                     os.close();
                 }
-                builder.setContentText(getBaseContext().getString(R.string.backup_complete));
             } catch (IOException e) {
-                Log.i(LOG_TAG, e.getLocalizedMessage());
+                Log.e(LOG_TAG, e.getLocalizedMessage());
                 builder.setContentText(getBaseContext().getString(R.string.backup_failed));
             }
         }
@@ -126,8 +137,11 @@ public class DatabaseJsonExportService extends ImportExportService {
         writer.name(AMOUNT_MEDIUM).value(food.getAmountMedium());
         writer.name(AMOUNT_LARGE).value(food.getAmountLarge());
         if (food.getCommentSmall() != null) writer.name(COMMENT_SMALL).value(food.getCommentSmall());
+        else writer.name(COMMENT_SMALL).nullValue();
         if (food.getCommentMedium() != null) writer.name(COMMENT_MEDIUM).value(food.getCommentMedium());
+        else writer.name(COMMENT_MEDIUM).nullValue();
         if (food.getCommentLarge() != null) writer.name(COMMENT_LARGE).value(food.getCommentLarge());
+        else writer.name(COMMENT_LARGE).nullValue();
         writer.endObject();
     }
 }

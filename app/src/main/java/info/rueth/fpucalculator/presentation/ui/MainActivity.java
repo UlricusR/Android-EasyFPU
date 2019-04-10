@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private FoodListAdapter adapter;
 
     public static final String INTENT_FOODLIST = "info.rueth.fpucalculator.FoodList";
+    public static final String SERVICE_IMPORTJSON = "info.rueth.fpucalculator.ImportJson";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
         fileIntent.addCategory(Intent.CATEGORY_OPENABLE);
 
         // Set mime type
-        fileIntent.setType("*/*"); // TODO This should be application/json as passed by mimeType
+        fileIntent.setType("*/*"); // Unfortunately no way to specify *.json in Storage Access Framework :-(
 
         return fileIntent;
     }
@@ -232,8 +233,33 @@ public class MainActivity extends AppCompatActivity {
         // Set import file uri to service
         importService.setData(fileUri);
 
-        // Start service
-        startService(importService);
+        // Ask user for replace or append mode
+        android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(this);
+
+        // Set title and message
+        alert.setTitle(R.string.dbimport_dialog_mode_title);
+        alert.setMessage(R.string.dbimport_dialog_mode_message);
+
+        // Set positive button = append
+        alert.setPositiveButton(R.string.dbimport_dialog_mode_button_append, (dialog, which) -> {
+            // Set append mode to true (means to append the data)
+            importService.putExtra(SERVICE_IMPORTJSON, true);
+
+            // Start service
+            startService(importService);
+        });
+
+        // Set negative button = replace
+        alert.setNegativeButton(R.string.dbimport_dialog_mode_button_replace, (dialog, which) -> {
+            // Set append mode to false (means replace the data)
+            importService.putExtra(SERVICE_IMPORTJSON, false);
+
+            // Start service
+            startService(importService);
+        });
+
+        // Show
+        alert.create().show();
     }
 
     private void showAboutDialog() {

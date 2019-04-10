@@ -28,11 +28,22 @@ public class DatabaseRawExportService extends ImportExportService {
         // Get system service for notifications
         NotificationManagerCompat notifyManager = NotificationManagerCompat.from(getApplicationContext());
 
+        String notificationChannel = "RAWExport";
+
         // Create group
-        createChannel();
+        createChannel(
+                notificationChannel,
+                getString(R.string.export_notification_channel_title),
+                getString(R.string.export_notification_channel_description)
+        );
 
         // Pre-fill notification
-        NotificationCompat.Builder builder = createNotification();
+        NotificationCompat.Builder builder = createNotification(
+                notificationChannel,
+                getString(R.string.export_notification_title),
+                getString(R.string.export_notification_message),
+                R.drawable.ic_file_download_black_24dp
+        );
 
         // Read file uri from intent and check if it has been set
         if (intent == null) {

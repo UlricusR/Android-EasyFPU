@@ -40,8 +40,8 @@
     <string name="err_absorptionschemefilenotfound">Absorptionsschema-Datei nicht gefunden</string>
     <string name="meal">Gesamtmahlzeit</string>
     <string name="title_activity_editfood">Essen bearbeiten</string>
-    <string name="backup_complete">Backup erfolgreich</string>
-    <string name="backup_failed">Backup fehlgeschlagen</string>
+    <string name="backup_complete">Export erfolgreich</string>
+    <string name="backup_failed">Export fehlgeschlagen</string>
     <string name="action_exportdb_raw">Exportiere Rohdatenbank</string>
     <string name="action_exportdb_json">Exportiere Datenbank als JSON</string>
     <string name="backup_cannotwrite">Kann nicht speichern auf</string>
@@ -63,7 +63,7 @@
     <string name="menu_edit_food">Bearbeiten</string>
     <string name="menu_favorite_add">Zu Favoriten hinzufügen</string>
     <string name="menu_favorite_remove">Aus Favoriten entfernen</string>
-    <string name="export_notification_channel">FPE-Rechner Datenbank-Export</string>
+    <string name="export_notification_channel_title">FPE-Rechner Datenbank-Export</string>
     <string name="export_notification_channel_description">Export der FPE-Rechner-Datenbank</string>
     <string name="export_notification_title">FPE-Rechner Datenbank-Export</string>
     <string name="export_notification_message">Datenbank wird exportiert</string>
@@ -76,8 +76,14 @@
     <string name="about_dialog">Über</string>
     <string name="err_intentnull">Intent darf nicht null sein</string>
     <string name="dbimport_dialog_mode_title">Datenimport</string>
-    <string name="dbimport_dialog_mode_message">Bestehende Einträge ersetzen?</string>
+    <string name="dbimport_dialog_mode_message">Bestehende Daten ersetzen oder zu bestehenden Daten hinzufügen?</string>
     <string name="dbimport_dialog_mode_button_replace">Ersetzen</string>
     <string name="dbimport_dialog_mode_button_append">Hinzufügen</string>
     <string name="action_importdb_json">Datenbank von JSON-Datei importieren</string>
+    <string name="import_notification_channel_title">FPE-Rechner Datenbank-Import</string>
+    <string name="import_notification_channel_description">Import der FPE-Rechner-Datenbank</string>
+    <string name="import_notification_title">FPE-Rechner Datenbank-Import</string>
+    <string name="import_notification_message">FPE-Datenbank wird importiert</string>
+    <string name="import_complete">Import erfolgreich</string>
+    <string name="import_failed">Import fehlgeschlagen</string>
 </resources>

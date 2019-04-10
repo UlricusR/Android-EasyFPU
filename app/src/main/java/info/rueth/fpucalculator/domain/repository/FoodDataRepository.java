@@ -150,6 +150,13 @@ public class FoodDataRepository {
         new updateAsyncTask(foodDao).execute(food);
     }
 
+    /**
+     * Clears all food items (empties list)
+     */
+    public void deleteAll() {
+        new deleteAllAsyncTask(foodDao).execute();
+    }
+
     private static class insertAsyncTask extends AsyncTask<Food, Void, Void> {
 
         private FoodDao mAsyncTaskDao;
@@ -195,21 +202,18 @@ public class FoodDataRepository {
         }
     }
 
-    private static class findByIdAsyncTask extends AsyncTask<Integer, Void, List<Food>> {
+    private static class deleteAllAsyncTask extends AsyncTask<Void, Void, Void> {
 
         private FoodDao mAsyncTaskDao;
 
-        findByIdAsyncTask(FoodDao dao) {
+        deleteAllAsyncTask(FoodDao dao) {
             mAsyncTaskDao = dao;
         }
 
         @Override
-        protected List<Food> doInBackground(Integer... ids) {
-            int[] foodIds = new int[ids.length];
-            for (int i = 0; i < ids.length; i++) {
-                foodIds[i] = ids[i];
-            }
-            return mAsyncTaskDao.loadAllByIds(foodIds);
+        protected Void doInBackground(Void... params) {
+            mAsyncTaskDao.deleteAll();
+            return null;
         }
     }
 
