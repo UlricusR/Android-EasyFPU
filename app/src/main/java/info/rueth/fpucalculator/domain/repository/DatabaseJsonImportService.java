@@ -70,40 +70,36 @@ public class DatabaseJsonImportService extends ImportExportService {
 
         // Prepare input stream and create JSON reader
         InputStream is =  null;
-        JsonReader reader = null;
 
         try {
             // Initialize input stream to read data
             is = getContentResolver().openInputStream(importFile);
-
-            // Create JSON reader
-            reader = new JsonReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-
-            // Prepare reading data
-            readData(reader, appendData, notifyManager, builder);
         } catch (Exception e) {
             Log.e(LOG_TAG, e.getLocalizedMessage());
-            builder.setContentText(getBaseContext().getString(R.string.import_failed));
-        } finally {
-            try {
-                if (reader != null) reader.close();
-                if (is != null) is.close();
-            } catch (IOException e) {
-                Log.e(LOG_TAG, e.getLocalizedMessage());
-                builder.setContentText(getBaseContext().getString(R.string.import_failed));
-            }
+            builder.setContentText(getBaseContext().getString(R.string.import_failed) + ": " + e.getLocalizedMessage());
+            notifyManager.notify(NOTIFICATION_ID, builder.build());
+            return;
         }
 
-        // Notify user
-        notifyManager.notify(NOTIFICATION_ID, builder.build());
+        // Create JSON reader
+        JsonReader reader = new JsonReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+
+        // Prepare reading data
+        readData(reader, appendData, notifyManager, builder);
+
+        try {
+            reader.close();
+            if (is != null) is.close();
+        } catch (IOException e) {
+            Log.e(LOG_TAG, e.getLocalizedMessage());
+            builder.setContentText(getBaseContext().getString(R.string.import_failed) + ": " + e.getLocalizedMessage());
+            notifyManager.notify(NOTIFICATION_ID, builder.build());
+        }
     }
 
     private void readData(JsonReader reader, boolean appendData, NotificationManagerCompat notifyManager, NotificationCompat.Builder builder) {
         // Get food data repository
         FoodDataRepository repository = FoodDataRepository.getInstance(getApplication());
-
-        // Make a backup copy of existing food in case the import fails
-        List<Food> existingFood = repository.getAllFood();
 
         // Prepare imported food list
         List<Food> importedFood = null;
@@ -127,7 +123,7 @@ public class DatabaseJsonImportService extends ImportExportService {
             importedFood = null;
 
             // Notify user
-            builder.setContentText(getBaseContext().getString(R.string.import_failed));
+            builder.setContentText(getBaseContext().getString(R.string.import_failed) + ": " + e.getLocalizedMessage());
         } finally {
             if (importedFood != null) {
                 // We have imported food, so check if it should be replaced
@@ -138,6 +134,9 @@ public class DatabaseJsonImportService extends ImportExportService {
                     repository.insert(food);
                 }
             }
+
+            // Notify user
+            notifyManager.notify(NOTIFICATION_ID, builder.build());
         }
     }
 
