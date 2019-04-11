@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.presentation.ui.EditFoodActivity;
@@ -196,9 +197,28 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
                     mContext.startActivity(intent);
                     return true;
                 case R.id.menu_delete_food:
-                    FoodViewModel viewModel = getFood(mPosition);
-                    new FoodDelete(mApplication).execute(viewModel);
-                    deleteFood(mPosition);
+                    // Ask user for confirmation
+                    AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
+
+                    // Set title and message
+                    alert.setTitle(R.string.delete_confirm_title);
+                    alert.setMessage(R.string.delete_confirm_message);
+
+                    // Set positive button = delete
+                    alert.setPositiveButton(R.string.button_delete, (dialog, which) -> {
+                        // Delete food
+                        FoodViewModel viewModel = getFood(mPosition);
+                        new FoodDelete(mApplication).execute(viewModel);
+                        deleteFood(mPosition);
+                    });
+
+                    // Set negative button = cancel
+                    alert.setNegativeButton(R.string.button_cancel, (dialog, which) -> {
+                        // Do nothing
+                    });
+
+                    // Show
+                    alert.create().show();
                     return true;
                 default:
                     return false;

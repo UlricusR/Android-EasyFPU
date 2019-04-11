@@ -86,4 +86,7 @@
     <string name="import_notification_message">FPE-Datenbank wird importiert</string>
     <string name="import_complete">Import erfolgreich</string>
     <string name="import_failed">Import fehlgeschlagen</string>
+    <string name="delete_confirm_message">Soll das Essen wirklich gelöscht werden?</string>
+    <string name="delete_confirm_title">Essen löschen</string>
+    <string name="button_delete">Löschen</string>
 </resources>

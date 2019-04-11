@@ -90,4 +90,7 @@
     <string name="import_notification_message">FPU Calculator data are being imported</string>
     <string name="import_complete">Import completed</string>
     <string name="import_failed">Import failed</string>
+    <string name="delete_confirm_message">Really delete food?</string>
+    <string name="delete_confirm_title">Delete food</string>
+    <string name="button_delete">Delete</string>
 </resources>

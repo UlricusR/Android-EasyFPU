@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
         importService.setData(fileUri);
 
         // Ask user for replace or append mode
-        android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(this);
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
         // Set title and message
         alert.setTitle(R.string.dbimport_dialog_mode_title);
