@@ -1,8 +1,10 @@
 package info.rueth.fpucalculator.presentation.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int SAF_CREATE_RAW_EXPORT_FILE = 200;
     private static final int SAF_CREATE_JSON_EXPORT_FILE = 300;
     private static final int SAF_CREATE_JSON_IMPORT_FILE = 400;
+    private static final String ACCEPTED_DISCLAIMER_PREF_NAME = "info.rueth.fpucalculator.disclaimer_accepted";
     private FloatingActionButton fabAdd;
     private FloatingActionButton fabMeal;
 
@@ -42,6 +45,37 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Check if the user opens the app the first time
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!sharedPreferences.getBoolean(ACCEPTED_DISCLAIMER_PREF_NAME, false)) {
+            // The user hasn't accepted the disclaimer yet, so show it
+            // Ask user for replace or append mode
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+            // Set title and message
+            alert.setTitle(R.string.disclaimer_dialog_title);
+            alert.setMessage(R.string.disclaimer_dialog_message);
+
+            // Set positive button = accept
+            alert.setPositiveButton(R.string.disclaimer_dialog_button_accept, (dialog, which) -> {
+                // Store acceptance in shared preferences
+                SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+                sharedPreferencesEditor.putBoolean(ACCEPTED_DISCLAIMER_PREF_NAME, true);
+                sharedPreferencesEditor.apply();
+
+                // Continue with execution
+            });
+
+            // Set negative button = decline
+            alert.setNegativeButton(R.string.disclaimer_dialog_button_decline, (dialog, which) -> {
+                // Stop execution of app
+                this.finish();
+            });
+
+            // Show
+            alert.create().show();
+        }
 
         // Set toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);

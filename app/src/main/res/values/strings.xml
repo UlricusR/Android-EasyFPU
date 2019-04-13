@@ -93,4 +93,8 @@
     <string name="delete_confirm_message">Really delete food?</string>
     <string name="delete_confirm_title">Delete food</string>
     <string name="button_delete">Delete</string>
+    <string name="disclaimer_dialog_title">Disclaimer</string>
+    <string name="disclaimer_dialog_message">Applying the nutrition information calculated by this app in a Diabetes therapy may bear the risk of high or low blood glucose values. Use at your own risk!</string>
+    <string name="disclaimer_dialog_button_accept">Accept</string>
+    <string name="disclaimer_dialog_button_decline">Decline</string>
 </resources>

@@ -89,4 +89,8 @@
     <string name="delete_confirm_message">Soll das Essen wirklich gelöscht werden?</string>
     <string name="delete_confirm_title">Essen löschen</string>
     <string name="button_delete">Löschen</string>
+    <string name="disclaimer_dialog_title">Haftungsausschluss</string>
+    <string name="disclaimer_dialog_message">Die Anwendung der von dieser App berechneten Ernährungsdaten im Rahmen einer Insulintherapie kann zu hohen oder niedrigen Blutzuckerwerten führen. Anwendung auf eigene Gefahr!</string>
+    <string name="disclaimer_dialog_button_accept">Zustimmen</string>
+    <string name="disclaimer_dialog_button_decline">Ablehnen</string>
 </resources>
