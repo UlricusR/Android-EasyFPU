@@ -93,4 +93,7 @@
     <string name="disclaimer_dialog_message">Die Anwendung der von dieser App berechneten Ernährungsdaten im Rahmen einer Insulintherapie kann zu hohen oder niedrigen Blutzuckerwerten führen. Anwendung auf eigene Gefahr!</string>
     <string name="disclaimer_dialog_button_accept">Zustimmen</string>
     <string name="disclaimer_dialog_button_decline">Ablehnen</string>
+    <string name="err_nononnegativeinteger">Eingabe enthält ungültiges Zeichen, nur Ziffern 0 bis 9 erlaubt</string>
+    <string name="err_maxvaluelessthanusedvalue">Maximalwert darf nicht kleiner als der größte genutzte Wert sein</string>
+    <string name="err_cannotcreatepreferences">Fehler beim Erstellen von Einstellungen</string>
 </resources>

@@ -1,4 +1,4 @@
-<PreferenceScreen
+<androidx.preference.PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
@@ -21,4 +21,4 @@
 
     </PreferenceCategory>
 
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>

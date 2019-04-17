@@ -97,4 +97,7 @@
     <string name="disclaimer_dialog_message">Applying the nutrition information calculated by this app in a Diabetes therapy may bear the risk of high or low blood glucose values. Use at your own risk!</string>
     <string name="disclaimer_dialog_button_accept">Accept</string>
     <string name="disclaimer_dialog_button_decline">Decline</string>
+    <string name="err_nononnegativeinteger">Input contains invalid character, only digits 0 to 9 allowed</string>
+    <string name="err_maxvaluelessthanusedvalue">Maximum value cannot be less than largest value in use</string>
+    <string name="err_cannotcreatepreferences">Error creating preferences</string>
 </resources>

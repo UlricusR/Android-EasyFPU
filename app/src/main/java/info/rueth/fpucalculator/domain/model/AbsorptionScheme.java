@@ -44,6 +44,14 @@ public class AbsorptionScheme {
         return mAbsorptionBlocks.get(mAbsorptionBlocks.size() - 1).getAbsorptionTime();
     }
 
+    public int getMaximumAbsorptionTime() {
+        return mAbsorptionBlocks.get(mAbsorptionBlocks.size() - 1).getAbsorptionTime();
+    }
+
+    public int getMaximumFPUs() {
+        return mAbsorptionBlocks.get(mAbsorptionBlocks.size() - 1).getMaxFPU();
+    }
+
     @Override
     public String toString() {
         String returnString = "Absorption Scheme:";
