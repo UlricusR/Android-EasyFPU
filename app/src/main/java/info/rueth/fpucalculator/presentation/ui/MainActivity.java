@@ -24,9 +24,6 @@ import info.rueth.fpucalculator.presentation.adapter.FoodListAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int SAF_CREATE_RAW_EXPORT_FILE = 200;
-    private static final int SAF_CREATE_JSON_EXPORT_FILE = 300;
-    private static final int SAF_CREATE_JSON_IMPORT_FILE = 400;
     private static final String ACCEPTED_DISCLAIMER_PREF_NAME = "info.rueth.fpucalculator.disclaimer_accepted";
     private FloatingActionButton fabAdd;
     private FloatingActionButton fabMeal;
