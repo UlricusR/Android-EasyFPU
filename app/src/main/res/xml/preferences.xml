@@ -21,4 +21,19 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="category_database"
+        android:title="@string/category_database">
+
+        <Preference
+            android:key="@string/preference_dbexport_json_key"
+            android:title="@string/preference_dbexport_json"/>
+        <Preference
+            android:key="@string/preference_dbimport_json_key"
+            android:title="@string/preference_dbimport_json"/>
+        <Preference
+            android:key="@string/preference_dbexport_raw_key"
+            android:title="@string/preference_dbexport_raw"/>
+    </PreferenceCategory>
+
 </androidx.preference.PreferenceScreen>

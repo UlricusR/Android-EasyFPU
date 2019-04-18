@@ -100,4 +100,11 @@
     <string name="err_nononnegativeinteger">Input contains invalid character, only digits 0 to 9 allowed</string>
     <string name="err_maxvaluelessthanusedvalue">Maximum value cannot be less than largest value in use</string>
     <string name="err_cannotcreatepreferences">Error creating preferences</string>
+    <string name="category_database">Database</string>
+    <string name="preference_dbexport_json_key" translatable="false">info.rueth.fpucalculator.preference.dbexport_json</string>
+    <string name="preference_dbexport_json">Export as JSON file</string>
+    <string name="preference_dbimport_json_key" translatable="false">info.rueth.fpucalculator.preference.dbimport_json</string>
+    <string name="preference_dbimport_json">Import as JSON file</string>
+    <string name="preference_dbexport_raw_key" translatable="false">info.rueth.fpucalculator.preference.dbexport_raw</string>
+    <string name="preference_dbexport_raw">Export RAW database</string>
 </resources>

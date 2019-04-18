@@ -96,4 +96,9 @@
     <string name="err_nononnegativeinteger">Eingabe enthält ungültiges Zeichen, nur Ziffern 0 bis 9 erlaubt</string>
     <string name="err_maxvaluelessthanusedvalue">Maximalwert darf nicht kleiner als der größte genutzte Wert sein</string>
     <string name="err_cannotcreatepreferences">Fehler beim Erstellen von Einstellungen</string>
+    <string name="category_database">Datenbank</string>
+    <string name="preference_dbexport_json_key">Als JSON-Datei exportieren</string>
+    <string name="preference_dbexport_json">Als JSON-Datei exportieren</string>
+    <string name="preference_dbimport_json">Von JSON-Datei importieren</string>
+    <string name="preference_dbexport_raw">Roh-Datenbank exportieren</string>
 </resources>
