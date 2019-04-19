@@ -97,4 +97,5 @@
     <string name="preference_dbexport_json">Als JSON-Datei exportieren</string>
     <string name="preference_dbimport_json">Von JSON-Datei importieren</string>
     <string name="preference_dbexport_raw">Roh-Datenbank exportieren</string>
+    <string name="action_search">Suchen</string>
 </resources>

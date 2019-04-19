@@ -1,6 +1,9 @@
 package info.rueth.fpucalculator.presentation.viewmodels;
 
 import androidx.lifecycle.ViewModel;
+
+import java.util.Objects;
+
 import info.rueth.fpucalculator.domain.model.FPU;
 
 public class FoodViewModel extends ViewModel {
@@ -151,5 +154,21 @@ public class FoodViewModel extends ViewModel {
 
         // Create and return the FPU object
         return new FPU(fpus);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FoodViewModel that = (FoodViewModel) o;
+        return id == that.id &&
+                Double.compare(that.caloriesPer100g, caloriesPer100g) == 0 &&
+                Double.compare(that.carbsPer100g, carbsPer100g) == 0 &&
+                name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, caloriesPer100g, carbsPer100g);
     }
 }

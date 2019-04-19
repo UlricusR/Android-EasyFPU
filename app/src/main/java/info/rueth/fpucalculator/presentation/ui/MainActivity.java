@@ -7,11 +7,13 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,13 +24,12 @@ import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.domain.repository.FoodDataRepository;
 import info.rueth.fpucalculator.presentation.adapter.FoodListAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private static final String ACCEPTED_DISCLAIMER_PREF_NAME = "info.rueth.fpucalculator.disclaimer_accepted";
     private FloatingActionButton fabAdd;
     private FloatingActionButton fabMeal;
 
-    private boolean mFavorite;
     private FoodListAdapter adapter;
 
     public static final String INTENT_FOODLIST = "info.rueth.fpucalculator.FoodList";
@@ -74,25 +75,18 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Set favorite to false initially
-        mFavorite = false;
-
         // Create recycler view
         RecyclerView recyclerView = findViewById(R.id.recyclerview_main);
         adapter = new FoodListAdapter(this, getApplication());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Attach data observer, update cached copy of the food items in the adapter
+        FoodDataRepository.getInstance(getApplication()).getAllFoodVM().observe(this, adapter::setAllFood);
+
         // Favorite button
         ToggleButton favoriteButton = findViewById(R.id.button_favorite);
-        favoriteButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            mFavorite = isChecked;
-            FoodDataRepository.getInstance(getApplication()).getAllFood(mFavorite).observe(this, adapter::setAllFood);
-        });
-
-        // Attach data observer
-        // Update the cached copy of the food items in the adapter
-        FoodDataRepository.getInstance(getApplication()).getAllFood(mFavorite).observe(this, adapter::setAllFood);
+        favoriteButton.setOnCheckedChangeListener((buttonView, isChecked) -> adapter.setFavorite(isChecked));
 
         // New food and meal calc FABs
         fabAdd = findViewById(R.id.fab_new);
@@ -139,6 +133,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        // Add onQueryTextListener to search view
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setOnQueryTextListener(this);
+
         return true;
     }
 
@@ -171,5 +172,18 @@ public class MainActivity extends AppCompatActivity {
         builder.setView(messageView);
         builder.create();
         builder.show();
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        // Create the filter logic for the search view
+        adapter.getFilter().filter(newText);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        // Do nothing
+        return false;
     }
 }

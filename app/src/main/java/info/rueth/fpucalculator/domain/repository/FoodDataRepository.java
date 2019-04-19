@@ -3,11 +3,12 @@ package info.rueth.fpucalculator.domain.repository;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Transformations;
 import info.rueth.fpucalculator.domain.model.Food;
 import info.rueth.fpucalculator.presentation.viewmodels.FoodViewModel;
 
@@ -46,26 +47,18 @@ public class FoodDataRepository {
     }
 
     /**
-     * @param favorite Determines whether of not to return all food items or only the favorite ones
      * @return A LiveData List of the food items
      */
-    public LiveData<List<FoodViewModel>> getAllFood(boolean favorite) {
-        return Transformations.map(allFood, newData -> createFoodViewModel(newData, favorite));
+    public LiveData<List<FoodViewModel>> getAllFoodVM() {
+        return Transformations.map(allFood, this::createFoodViewModel);
     }
 
-    private List<FoodViewModel> createFoodViewModel(List<Food> list, boolean favorite) {
+    private List<FoodViewModel> createFoodViewModel(List<Food> list) {
         List<FoodViewModel> foodVM = new ArrayList<>();
         FoodViewModel foodViewModel;
         for (Food item : list) {
-            if (favorite) {
-                if (item.isFavorite()) {
-                    foodViewModel = createViewModel(item);
-                    foodVM.add(foodViewModel);
-                }
-            } else {
-                foodViewModel = createViewModel(item);
-                foodVM.add(foodViewModel);
-            }
+            foodViewModel = createViewModel(item);
+            foodVM.add(foodViewModel);
         }
         return foodVM;
     }

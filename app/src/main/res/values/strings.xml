@@ -104,4 +104,5 @@
     <string name="preference_dbimport_json">Import as JSON file</string>
     <string name="preference_dbexport_raw_key" translatable="false">info.rueth.fpucalculator.preference.dbexport_raw</string>
     <string name="preference_dbexport_raw">Export RAW database</string>
+    <string name="action_search">Search</string>
 </resources>

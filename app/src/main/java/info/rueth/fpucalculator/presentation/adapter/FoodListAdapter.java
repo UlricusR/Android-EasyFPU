@@ -8,22 +8,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckedTextView;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.presentation.ui.EditFoodActivity;
 import info.rueth.fpucalculator.presentation.viewmodels.FoodViewModel;
 import info.rueth.fpucalculator.usecases.FoodDelete;
 import info.rueth.fpucalculator.usecases.FoodUpdate;
 
-public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodViewHolder> {
+public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodViewHolder> implements Filterable {
     class FoodViewHolder extends RecyclerView.ViewHolder {
         private final CheckedTextView foodItemView;
         private final TextView moreIcon;
@@ -52,6 +55,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
     private Application mApplication;
     private LayoutInflater mInflater;
     private List<FoodViewModel> allFood; // Cached copy of all food items
+    private List<FoodViewModel> allFoodFull;
     public static final String FOOD_ID = "info.rueth.fpucalculator.FoodID";
 
     public FoodListAdapter(Context context, Application application) {
@@ -117,6 +121,25 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
 
     public void setAllFood(List<FoodViewModel> allFood) {
         this.allFood = allFood;
+        this.allFoodFull = new ArrayList<>(allFood);
+        notifyDataSetChanged();
+    }
+
+    public void setFavorite(boolean isFavorite) {
+        List<FoodViewModel> newAllFood = new ArrayList<>();
+        if (!isFavorite) {
+            // Favorite button is not pressed, so display all food
+            newAllFood.addAll(allFoodFull);
+        } else {
+            // Favorite button is pressed, so only add favorites
+            for (FoodViewModel item : allFoodFull) {
+                if (item.isFavorite()) newAllFood.add(item);
+            }
+        }
+
+        // Set new allFood
+        this.allFood.clear();
+        this.allFood.addAll(newAllFood);
         notifyDataSetChanged();
     }
 
@@ -131,7 +154,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
     }
 
     public boolean isAtLeastOneSelected() {
-        for (FoodViewModel food : allFood) {
+        for (FoodViewModel food : allFoodFull) {
             if (food.isSelected()) return true;
         }
         return false;
@@ -139,7 +162,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
 
     private ArrayList<FoodViewModel> getSelectedFood() {
         ArrayList<FoodViewModel> selectedFood = new ArrayList<>();
-        for (FoodViewModel food : allFood) {
+        for (FoodViewModel food : allFoodFull) {
             if (food.isSelected()) selectedFood.add(food);
         }
         return selectedFood;
@@ -162,6 +185,42 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
             return allFood.size();
         else return 0;
     }
+
+    @Override
+    public Filter getFilter() {
+        return foodFilter;
+    }
+
+    private Filter foodFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<FoodViewModel> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(allFoodFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (FoodViewModel item : allFoodFull) {
+                    if (item.getName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            allFood.clear();
+            allFood.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     class OnMenuItemClicked implements PopupMenu.OnMenuItemClickListener {
 
