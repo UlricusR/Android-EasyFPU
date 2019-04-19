@@ -5,12 +5,13 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.io.IOException;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.io.IOException;
+
 import info.rueth.fpucalculator.R;
 import info.rueth.fpucalculator.domain.repository.AbsorptionSchemeRepository;
 import info.rueth.fpucalculator.presentation.adapter.AbsorptionBlockAdapter;
@@ -76,7 +77,7 @@ public class AbsorptionSchemeActivity extends AppCompatActivity implements IAddA
             try {
                 AbsorptionSchemeRepository.getInstance(getApplicationContext()).reset().observe(this, adapter::setAbsorptionBlocks);
                 Toast.makeText(getApplicationContext(), R.string.hint_absorptionscheme_reset, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(AbsorptionSchemeActivity.this, MainActivity.class);
+                Intent intent = new Intent(AbsorptionSchemeActivity.this, PreferencesActivity.class);
                 startActivity(intent);
             } catch (IOException e) {
                 Toast.makeText(getApplicationContext(), R.string.err_absorptionschemefilenotfound, Toast.LENGTH_SHORT).show();
@@ -93,14 +94,14 @@ public class AbsorptionSchemeActivity extends AppCompatActivity implements IAddA
             }
 
             // Go back to main activity
-            Intent intent = new Intent(AbsorptionSchemeActivity.this, MainActivity.class);
+            Intent intent = new Intent(AbsorptionSchemeActivity.this, PreferencesActivity.class);
             startActivity(intent);
         });
 
         // Set onClickListener to cancel button
         buttonCancel.setOnClickListener(view -> {
             // Return to main activity without saving
-            Intent intent = new Intent(AbsorptionSchemeActivity.this, MainActivity.class);
+            Intent intent = new Intent(AbsorptionSchemeActivity.this, PreferencesActivity.class);
             startActivity(intent);
         });
     }

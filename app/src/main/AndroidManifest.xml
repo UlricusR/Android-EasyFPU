@@ -21,24 +21,19 @@
         </activity>
         <activity
             android:name=".presentation.ui.NewFoodActivity"
-            android:label="@string/title_activity_newfood">
-        </activity>
+            android:label="@string/title_activity_newfood"></activity>
         <activity
             android:name=".presentation.ui.EditFoodActivity"
-            android:label="@string/title_activity_editfood">
-        </activity>
+            android:label="@string/title_activity_editfood"></activity>
         <activity
             android:name=".presentation.ui.NewMealActivity"
-            android:label="@string/title_activity_newmeal">
-        </activity>
+            android:label="@string/title_activity_newmeal"></activity>
         <activity
             android:name=".presentation.ui.CalcMealActivity"
-            android:label="@string/title_activity_calcmeal">
-        </activity>
+            android:label="@string/title_activity_calcmeal"></activity>
         <activity
             android:name=".presentation.ui.AbsorptionSchemeActivity"
-            android:label="@string/action_editabsorptionscheme">
-        </activity>
+            android:label="@string/action_editabsorptionscheme"></activity>
         <activity
             android:name=".presentation.ui.PreferencesActivity"
             android:label="@string/title_activity_preferences"

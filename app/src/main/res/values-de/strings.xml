@@ -42,9 +42,6 @@
     <string name="title_activity_editfood">Essen bearbeiten</string>
     <string name="backup_complete">Export erfolgreich</string>
     <string name="backup_failed">Export fehlgeschlagen</string>
-    <string name="action_exportdb_raw">Exportiere Rohdatenbank</string>
-    <string name="action_exportdb_json">Exportiere Datenbank als JSON</string>
-    <string name="backup_cannotwrite">Kann nicht speichern auf</string>
     <string name="button_add">Hinzufügen</string>
     <string name="button_remove">Löschen</string>
     <string name="action_editabsorptionscheme">Absorptionsschema bearbeiten</string>
@@ -55,6 +52,7 @@
     <string name="dialog_title_newabsorptionblock">Neuer Absorptionsblock</string>
     <string name="dialog_message_newabsorptionblock">Absorptionszeit in Relation zu maximalen FPEs eingeben</string>
     <string name="category_absorptionscheme">Absorptionsschema</string>
+    <string name="preference_absorptionscheme_edit">Absorptionsschema bearbeiten</string>
     <string name="preference_maxfpu">Maximale FPE</string>
     <string name="preference_maxfpu_summary">Die maximale Anzahl an Fett-Protein-Einheiten, die im Absorptionsschema ausgewählt werden kann</string>
     <string name="preference_maxabsorptiontime">Maximale Absorptionszeit</string>
@@ -67,7 +65,6 @@
     <string name="export_notification_channel_description">Export der FPE-Rechner-Datenbank</string>
     <string name="export_notification_title">FPE-Rechner Datenbank-Export</string>
     <string name="export_notification_message">Datenbank wird exportiert</string>
-    <string name="err_directory_not_created">Verzeichnis nicht erstellt:</string>
     <string name="err_filename_missing">Fehlender Dateiname für Datenbankexport</string>
     <string name="err_database_not_found">Datenbank nicht gefunden</string>
     <string name="app_descripton">Berechnet Kohlenhydrate, verlängerte Kohlenhydrate (auch bekannt als eCarbs oder Fake Carbs) und die entsprechende Absorptionszeit für ein Essen oder ganze Mahlzeiten.</string>
@@ -79,7 +76,6 @@
     <string name="dbimport_dialog_mode_message">Bestehende Daten ersetzen oder zu bestehenden Daten hinzufügen?</string>
     <string name="dbimport_dialog_mode_button_replace">Ersetzen</string>
     <string name="dbimport_dialog_mode_button_append">Hinzufügen</string>
-    <string name="action_importdb_json">Datenbank von JSON-Datei importieren</string>
     <string name="import_notification_channel_title">FPE-Rechner Datenbank-Import</string>
     <string name="import_notification_channel_description">Import der FPE-Rechner-Datenbank</string>
     <string name="import_notification_title">FPE-Rechner Datenbank-Import</string>

@@ -152,10 +152,6 @@ public class MainActivity extends AppCompatActivity {
                 // Start preferences activity
                 startActivity(new Intent(this, PreferencesActivity.class));
                 return true;
-            case R.id.action_editabsorptionscheme:
-                // Edit absorption scheme
-                startActivity(new Intent(this, AbsorptionSchemeActivity.class));
-                return true;
             case R.id.action_about:
                 // Show about dialog
                 showAboutDialog();

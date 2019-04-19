@@ -41,9 +41,6 @@
     <string name="title_activity_editfood">Edit Food</string>
     <string name="backup_complete">Export completed</string>
     <string name="backup_failed">Export failed</string>
-    <string name="action_exportdb_raw">Export raw database</string>
-    <string name="action_exportdb_json">Export database as JSON</string>
-    <string name="backup_cannotwrite">Cannot write to</string>
     <string name="button_add">Add</string>
     <string name="button_remove">Remove</string>
     <string name="action_editabsorptionscheme">Edit absorption scheme</string>
@@ -53,6 +50,8 @@
     <string name="err_newabsorptionblock_absorptiontime">Cannot add absorption block: Absorption time does not fit to existing values</string>
     <string name="dialog_title_newabsorptionblock">New absorption block</string>
     <string name="dialog_message_newabsorptionblock">Enter the absorption time related to the maximum FPUs</string>
+    <string name="preference_absorptionscheme_edit_key" translatable="false">info.rueth.fpucalculator.preference.editabsorptionscheme</string>
+    <string name="preference_absorptionscheme_edit">Edit absorption scheme</string>
     <string name="category_absorptionscheme">Absorption Scheme</string>
     <string name="preference_maxfpu_key" translatable="false">info.rueth.fpucalculator.preference.maxfpu</string>
     <string name="preference_maxfpu">Maximum FPUs</string>
@@ -71,7 +70,6 @@
     <string name="export_notification_channel_description">Export of the FPU Calculator database</string>
     <string name="export_notification_title">FPU Calculator Database Export</string>
     <string name="export_notification_message">Database is being exported</string>
-    <string name="err_directory_not_created">Directory not created:</string>
     <string name="err_filename_missing">Missing file name for database export</string>
     <string name="err_database_not_found">Database not found</string>
     <string name="app_descripton">Calculates carbs, extended carbs (aka. eCarbs or Fake Carbs) and the matching absorption time for individual food or a whole meal.</string>
@@ -83,7 +81,6 @@
     <string name="dbimport_dialog_mode_message">Replace or append to existing data?</string>
     <string name="dbimport_dialog_mode_button_replace">Replace</string>
     <string name="dbimport_dialog_mode_button_append">Append</string>
-    <string name="action_importdb_json">Import database from JSON</string>
     <string name="import_notification_channel_title">FPU Calculator Database Import</string>
     <string name="import_notification_channel_description">Import of the FPU Calculator database</string>
     <string name="import_notification_title">FPU Calculator Database Import</string>

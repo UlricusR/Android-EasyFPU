@@ -34,6 +34,14 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences, rootKey);
 
+        // Add onClickListener for editing absorption scheme
+        Preference editAbsorptionSchemePref = findPreference(getString(R.string.preference_absorptionscheme_edit_key));
+        editAbsorptionSchemePref.setOnPreferenceClickListener(preference -> {
+            // Edit absorption scheme
+            startActivity(new Intent(getContext(), AbsorptionSchemeActivity.class));
+            return true;
+        });
+
         // Add text watcher to avoid that the user enters other than numeric values;
         // this is a workaround because androidx.preference.PreferenceScreen
         // currently ignores android:inputType="numberDecimal" (seems to be a bug)

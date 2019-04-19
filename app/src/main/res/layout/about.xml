@@ -12,7 +12,6 @@
         android:text="@string/app_descripton" />
 
     <TextView
-        android:id="@+id/about_documentation_link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="20dip"
@@ -23,7 +22,6 @@
         android:focusable="true" />
 
     <TextView
-        android:id="@+id/about_github_link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="20dip"

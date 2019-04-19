@@ -5,6 +5,10 @@
         android:key="category_absorptionscheme"
         android:title="@string/category_absorptionscheme">
 
+        <Preference
+            android:key="@string/preference_absorptionscheme_edit_key"
+            android:title="@string/preference_absorptionscheme_edit" />
+
         <EditTextPreference
             android:key="@string/preference_maxfpu_key"
             android:title="@string/preference_maxfpu"
@@ -34,6 +38,7 @@
         <Preference
             android:key="@string/preference_dbexport_raw_key"
             android:title="@string/preference_dbexport_raw"/>
+
     </PreferenceCategory>
 
 </androidx.preference.PreferenceScreen>
