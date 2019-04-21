@@ -87,7 +87,12 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Attach data observer, update cached copy of the food items in the adapter
-        FoodDataRepository.getInstance(getApplication()).getAllFoodVM().observe(this, foodViewModels -> adapter.setAllFood(foodViewModels, favoriteButton.isChecked()));
+        FoodDataRepository.getInstance(getApplication()).getAllFoodVM().observe(this, foodViewModels -> {
+            adapter.setAllFood(foodViewModels, favoriteButton.isChecked()));
+            
+            // Add filter if already initialized
+            if (searchView != null) onQueryTextChange(searchView.getQuery().toString());
+        }
 
         // New food and meal calc FABs
         fabAdd = findViewById(R.id.fab_new);
