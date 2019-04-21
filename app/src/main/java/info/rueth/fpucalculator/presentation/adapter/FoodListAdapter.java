@@ -54,8 +54,9 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
     private Context mContext;
     private Application mApplication;
     private LayoutInflater mInflater;
-    private List<FoodViewModel> allFood; // Cached copy of all food items
-    private List<FoodViewModel> allFoodFull;
+    private List<FoodViewModel> allFood; // Actually shown food items (filtered, starred, etc.)
+    private List<FoodViewModel> allFoodFull; // Cached copy of all food items from the repository
+    private boolean favorite;
     public static final String FOOD_ID = "info.rueth.fpucalculator.FoodID";
 
     public FoodListAdapter(Context context, Application application) {
@@ -119,22 +120,37 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
         });
     }
 
-    public void setAllFood(List<FoodViewModel> allFood) {
+    /**
+     * Only called when repository data have changed
+     * @param allFood All food items from the repository
+     * @param isFavorite Whether or not the favorite button is active
+     */
+    public void setAllFood(List<FoodViewModel> allFood, boolean isFavorite) {
         this.allFood = allFood;
         this.allFoodFull = new ArrayList<>(allFood);
+        this.favorite = isFavorite;
+        setFavorite(isFavorite);
         notifyDataSetChanged();
     }
 
+    /**
+     * Reduces the food items list to the favorites or vice versa
+     * @param isFavorite Whether or not only favorites should be displayed
+     */
     public void setFavorite(boolean isFavorite) {
+        this.favorite = isFavorite;
+
+        // Check for loaded data to avoid NullPointerException, as data loading happens on a background threat
+        if (allFoodFull == null) return;
+
+        // Data has been loaded, so continue
         List<FoodViewModel> newAllFood = new ArrayList<>();
         if (!isFavorite) {
             // Favorite button is not pressed, so display all food
             newAllFood.addAll(allFoodFull);
         } else {
             // Favorite button is pressed, so only add favorites
-            for (FoodViewModel item : allFoodFull) {
-                if (item.isFavorite()) newAllFood.add(item);
-            }
+            createFavoriteList(newAllFood);
         }
 
         // Set new allFood
@@ -143,14 +159,14 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
         notifyDataSetChanged();
     }
 
-    private FoodViewModel getFood(int position) {
-        return allFood.get(position);
+    private void createFavoriteList(List<FoodViewModel> newFoodList) {
+        for (FoodViewModel item : allFoodFull) {
+            if (item.isFavorite()) newFoodList.add(item);
+        }
     }
 
-    private void deleteFood(int position) {
-        allFood.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, getItemCount());
+    private FoodViewModel getFood(int position) {
+        return allFood.get(position);
     }
 
     public boolean isAtLeastOneSelected() {
@@ -197,11 +213,25 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
             List<FoodViewModel> filteredList = new ArrayList<>();
 
             if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(allFoodFull);
+                // The list is not filtered
+                if (!favorite) {
+                    // The list neither is filtered nor starred, so add full food
+                    filteredList.addAll(allFoodFull);
+                } else {
+                    // The list is not filtered, but starred
+                    createFavoriteList(filteredList);
+                }
             } else {
+                // The list is filtered
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                for (FoodViewModel item : allFoodFull) {
+                // Create a base list, either the full list or the favorite list
+                List<FoodViewModel> baseList = new ArrayList<>();
+                if (favorite) createFavoriteList(baseList);
+                else baseList.addAll(allFoodFull);
+
+                // Now filter based on the baseList
+                for (FoodViewModel item : baseList) {
                     if (item.getName().toLowerCase().contains(filterPattern)) {
                         filteredList.add(item);
                     }
@@ -222,6 +252,9 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
         }
     };
 
+    /**
+     * The inner class representing the context menu of the food items
+     */
     class OnMenuItemClicked implements PopupMenu.OnMenuItemClickListener {
 
         private final int mPosition;
@@ -268,7 +301,6 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
                         // Delete food
                         FoodViewModel viewModel = getFood(mPosition);
                         new FoodDelete(mApplication).execute(viewModel);
-                        deleteFood(mPosition);
                     });
 
                     // Set negative button = cancel

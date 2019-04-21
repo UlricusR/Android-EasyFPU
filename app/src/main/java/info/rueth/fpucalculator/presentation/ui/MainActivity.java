@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private static final String ACCEPTED_DISCLAIMER_PREF_NAME = "info.rueth.fpucalculator.disclaimer_accepted";
     private FloatingActionButton fabAdd;
     private FloatingActionButton fabMeal;
+    private ToggleButton favoriteButton;
+    private SearchView searchView;
 
     private FoodListAdapter adapter;
 
@@ -75,6 +77,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Initiate favorite button and set to non-checked
+        favoriteButton = findViewById(R.id.button_favorite);
+
         // Create recycler view
         RecyclerView recyclerView = findViewById(R.id.recyclerview_main);
         adapter = new FoodListAdapter(this, getApplication());
@@ -82,11 +87,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Attach data observer, update cached copy of the food items in the adapter
-        FoodDataRepository.getInstance(getApplication()).getAllFoodVM().observe(this, adapter::setAllFood);
-
-        // Favorite button
-        ToggleButton favoriteButton = findViewById(R.id.button_favorite);
-        favoriteButton.setOnCheckedChangeListener((buttonView, isChecked) -> adapter.setFavorite(isChecked));
+        FoodDataRepository.getInstance(getApplication()).getAllFoodVM().observe(this, foodViewModels -> adapter.setAllFood(foodViewModels, favoriteButton.isChecked()));
 
         // New food and meal calc FABs
         fabAdd = findViewById(R.id.fab_new);
@@ -118,6 +119,21 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 startActivity(intent);
             }
         });
+
+        // Add onCheckedChangeListener to favorite button
+        favoriteButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            // Set to correct favorite state
+            adapter.setFavorite(isChecked);
+
+            // Add filter if already initialized
+            if (searchView != null) onQueryTextChange(searchView.getQuery().toString());
+        });
+
+        // Set food list to right state
+        adapter.setFavorite(favoriteButton.isChecked());
+
+        // Get the search query if already initialized
+        if (searchView != null) onQueryTextChange(searchView.getQuery().toString());
     }
 
     @Override
@@ -127,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         // De-register FAB onClick listeners
         fabAdd.setOnClickListener(null);
         fabMeal.setOnClickListener(null);
+        favoriteButton.setOnCheckedChangeListener(null);
     }
 
     @Override
@@ -136,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         // Add onQueryTextListener to search view
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView = (SearchView) searchItem.getActionView();
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
         searchView.setOnQueryTextListener(this);
 
