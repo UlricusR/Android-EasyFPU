@@ -128,14 +128,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         // Add onCheckedChangeListener to favorite button
         favoriteButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
             // Set to correct favorite state
-            adapter.setFavorite(isChecked);
+            adapter.setShowFavoritesOnly(isChecked);
 
             // Add filter if already initialized
             if (searchView != null) onQueryTextChange(searchView.getQuery().toString());
         });
 
         // Set food list to right state
-        adapter.setFavorite(favoriteButton.isChecked());
+        adapter.setShowFavoritesOnly(favoriteButton.isChecked());
 
         // Get the search query if already initialized
         if (searchView != null) onQueryTextChange(searchView.getQuery().toString());

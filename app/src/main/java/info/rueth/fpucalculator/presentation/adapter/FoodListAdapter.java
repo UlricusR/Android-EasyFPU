@@ -56,7 +56,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
     private LayoutInflater mInflater;
     private List<FoodViewModel> allFood; // Actually shown food items (filtered, starred, etc.)
     private List<FoodViewModel> allFoodFull; // Cached copy of all food items from the repository
-    private boolean favorite;
+    private boolean showFavoritesOnly;
     public static final String FOOD_ID = "info.rueth.fpucalculator.FoodID";
 
     public FoodListAdapter(Context context, Application application) {
@@ -105,7 +105,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
             // Inflate the menu
             menu.inflate(R.menu.context_menu_foodlist);
 
-            // Set the correct text to the favorite menu item
+            // Set the correct text to the showFavoritesOnly menu item
             if (allFood.get(position).isFavorite()) {
                 menu.getMenu().findItem(R.id.menu_favorite).setTitle(R.string.menu_favorite_remove);
             } else {
@@ -123,29 +123,29 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
     /**
      * Only called when repository data have changed
      * @param allFood All food items from the repository
-     * @param isFavorite Whether or not the favorite button is active
+     * @param showFavoritesOnly Whether or not the showFavoritesOnly button is active
      */
-    public void setAllFood(List<FoodViewModel> allFood, boolean isFavorite) {
+    public void setAllFood(List<FoodViewModel> allFood, boolean showFavoritesOnly) {
         this.allFood = allFood;
         this.allFoodFull = new ArrayList<>(allFood);
-        this.favorite = isFavorite;
-        setFavorite(isFavorite);
+        this.showFavoritesOnly = showFavoritesOnly;
+        setShowFavoritesOnly(showFavoritesOnly);
         notifyDataSetChanged();
     }
 
     /**
      * Reduces the food items list to the favorites or vice versa
-     * @param isFavorite Whether or not only favorites should be displayed
+     * @param showFavoritesOnly Whether or not only favorites should be displayed
      */
-    public void setFavorite(boolean isFavorite) {
-        this.favorite = isFavorite;
+    public void setShowFavoritesOnly(boolean showFavoritesOnly) {
+        this.showFavoritesOnly = showFavoritesOnly;
 
         // Check for loaded data to avoid NullPointerException, as data loading happens on a background threat
         if (allFoodFull == null) return;
 
         // Data has been loaded, so continue
         List<FoodViewModel> newAllFood = new ArrayList<>();
-        if (!isFavorite) {
+        if (!showFavoritesOnly) {
             // Favorite button is not pressed, so display all food
             newAllFood.addAll(allFoodFull);
         } else {
@@ -214,7 +214,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
 
             if (constraint == null || constraint.length() == 0) {
                 // The list is not filtered
-                if (!favorite) {
+                if (!showFavoritesOnly) {
                     // The list neither is filtered nor starred, so add full food
                     filteredList.addAll(allFoodFull);
                 } else {
@@ -225,9 +225,9 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
                 // The list is filtered
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                // Create a base list, either the full list or the favorite list
+                // Create a base list, either the full list or the showFavoritesOnly list
                 List<FoodViewModel> baseList = new ArrayList<>();
-                if (favorite) createFavoriteList(baseList);
+                if (showFavoritesOnly) createFavoriteList(baseList);
                 else baseList.addAll(allFoodFull);
 
                 // Now filter based on the baseList
@@ -269,14 +269,14 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
                 case R.id.menu_favorite:
                     FoodViewModel food = allFood.get(mPosition);
                     if (food.isFavorite()) {
-                        // The food is already a favorite, so remove
+                        // The food is already a showFavoritesOnly, so remove
                         food.setFavorite(false);
-                        // Change the menu item text to adding it back as favorite
+                        // Change the menu item text to adding it back as showFavoritesOnly
                         item.setTitle(R.string.menu_favorite_add);
                     } else {
-                        // The food is no favorite, so make it one
+                        // The food is no showFavoritesOnly, so make it one
                         food.setFavorite(true);
-                        // Change the menu item text to removing it as favorite
+                        // Change the menu item text to removing it as showFavoritesOnly
                         item.setTitle(R.string.menu_favorite_remove);
                     }
                     // Update food in repository
