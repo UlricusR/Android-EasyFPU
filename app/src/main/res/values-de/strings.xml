@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FPE-Rechner</string>
+    <string name="app_name">EasyFPE</string>
     <string name="action_settings">Einstellungen</string>
     <string name="foodname_label">Name:</string>
     <string name="favorite_label">Favorit:</string>

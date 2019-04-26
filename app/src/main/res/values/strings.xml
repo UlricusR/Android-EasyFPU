@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FPU Calculator</string>
+    <string name="app_name">EasyFPU</string>
     <string name="action_settings">Settings</string>
     <string name="foodname_label">Name:</string>
     <string name="favorite_label">Favorite:</string>
