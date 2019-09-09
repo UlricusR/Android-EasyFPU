@@ -8,12 +8,7 @@ import info.rueth.fpucalculator.domain.model.FPU;
  * Represents a meal.
  */
 public class MealViewModel {
-    // MealViewModel name
     private String name;
-
-    // The list of all food of the meal
-    private List<FoodViewModel> food;
-
     private double calories = 0;
     private double carbs = 0;
     private int amount = 0;
@@ -27,7 +22,6 @@ public class MealViewModel {
      */
     public MealViewModel(String name, List<FoodViewModel> food) {
         this.name = name;
-        this.food = food;
 
         double tempFPUs = 0;
 

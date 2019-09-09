@@ -21,14 +21,4 @@
         android:clickable="true"
         android:focusable="true" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="20dip"
-        android:textSize="16sp"
-        android:text="@string/app_github_link"
-        android:autoLink="web"
-        android:clickable="true"
-        android:focusable="true" />
-
 </LinearLayout>
