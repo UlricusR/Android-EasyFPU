@@ -174,7 +174,7 @@ public class DatabaseJsonImportService extends ImportExportService {
                     food.setCaloriesPer100g(reader.nextInt());
                     break;
                 case DatabaseJsonExportService.CARBS_PER_100G:
-                    food.setCarbsPer100g(reader.nextInt());
+                    food.setCarbsPer100g(reader.nextDouble());
                     break;
                 case DatabaseJsonExportService.AMOUNT_SMALL:
                     food.setAmountSmall(reader.nextInt());
