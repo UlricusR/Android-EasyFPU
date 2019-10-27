@@ -6,8 +6,8 @@ android {
         applicationId "info.rueth.fpucalculator"
         minSdkVersion 24
         targetSdkVersion 28
-        versionCode 1
-        versionName "v1.0"
+        versionCode 2
+        versionName "v1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
