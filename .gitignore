@@ -123,3 +123,4 @@ gradle-app.setting
 ### Others ###
 .DS_Store
 *.xlsx
+app/release/app-release.aab
