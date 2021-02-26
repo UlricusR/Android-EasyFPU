@@ -73,7 +73,7 @@
     <string name="err_filename_missing">Missing file name for database export</string>
     <string name="err_database_not_found">Database not found</string>
     <string name="app_descripton">Calculates carbs, extended carbs (aka. eCarbs or Fake Carbs) and the matching absorption time for individual food or a whole meal.</string>
-    <string name="app_documentation_link">Documentation on rueth.info</string>
+    <string name="app_documentation_link">Documentation and privacy on rueth.info</string>
     <string name="about_dialog">About</string>
     <string name="err_intentnull">Intent must not be null</string>
     <string name="dbimport_dialog_mode_title">Data import</string>
