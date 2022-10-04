@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
     defaultConfig {
         applicationId "info.rueth.fpucalculator"
-        minSdkVersion 24
-        targetSdkVersion 29
+        minSdkVersion 29
+        targetSdkVersion 33
         versionCode 3
         versionName "v1.1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -28,16 +28,17 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'info.rueth.fpucalculator'
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.3.0-beta01'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'com.google.android.material:material:1.4.0-alpha01'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.4.0-alpha04'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0-alpha04'
+    implementation 'androidx.appcompat:appcompat:1.6.0-rc01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.material:material:1.8.0-alpha01'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.5.0-alpha04'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0-alpha07'
     // Room components
     implementation "androidx.room:room-runtime:$rootProject.roomVersion"
     annotationProcessor "androidx.room:room-compiler:$rootProject.roomVersion"
@@ -45,6 +46,6 @@ dependencies {
     // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
-    implementation 'androidx.recyclerview:recyclerview:1.2.0-beta02'
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.recyclerview:recyclerview:1.3.0-rc01'
+    implementation 'androidx.preference:preference:1.2.0'
 }
