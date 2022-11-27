@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+         <loc>https://ulricusr.github.io/iOS-Android/</loc>
+         <lastmod>2022-11-27</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://ulricusr.github.io/iOS-Android/"/>
+         
+         
+    </url>
+    <url>
+         <loc>https://ulricusr.github.io/iOS-Android/manual/</loc>
+         <lastmod>2022-11-27</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://ulricusr.github.io/iOS-Android/en/manual/"/>
+         <xhtml:link rel="alternate" hreflang="de" href="https://ulricusr.github.io/iOS-Android/de/manual/"/>
+         
+    </url>
+</urlset>

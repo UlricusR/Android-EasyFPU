@@ -1,0 +1,712 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="https://ulricusr.github.io/iOS-Android/de/manual/" rel="canonical"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
+<title>Benutzerhandbuch - EasyFPE für Android</title>
+<link href="../../assets/stylesheets/main.472b142f.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.08040f6c.min.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="" data-md-color-primary="red" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#benutzerhandbuch">
+          Zum Inhalt
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Kopfzeile" class="md-header__inner md-grid">
+<a aria-label="EasyFPE für Android" class="md-header__button md-logo" data-md-component="logo" href="https://ulricusr.github.io/de" title="EasyFPE für Android">
+<img alt="logo" src="../../assets/images/logo_white_small.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            EasyFPE für Android
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Benutzerhandbuch
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="red" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="red" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+</form>
+<div class="md-header__option">
+<div class="md-select">
+<button aria-label="Sprache wechseln" class="md-header__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"></path></svg>
+</button>
+<div class="md-select__inner">
+<ul class="md-select__list">
+<li class="md-select__item">
+<a class="md-select__link" href="../../manual/" hreflang="en">
+                    English
+                  </a>
+</li>
+<li class="md-select__item">
+<a class="md-select__link" href="./" hreflang="de">
+                    Deutsch
+                  </a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Suche" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Suche" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Suche" class="md-search__options">
+<button aria-label="Zurücksetzen" class="md-search__icon md-icon" tabindex="-1" title="Zurücksetzen" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Suche wird initialisiert
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/UlricusR/iOS-Android" title="Zum Repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="EasyFPE für Android" class="md-nav__button md-logo" data-md-component="logo" href="https://ulricusr.github.io/de" title="EasyFPE für Android">
+<img alt="logo" src="../../assets/images/logo_white_small.png"/>
+</a>
+    EasyFPE für Android
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/UlricusR/iOS-Android" title="Zum Repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../">
+        Was ist EasyFPE?
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Benutzerhandbuch
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Benutzerhandbuch
+      </a>
+<nav aria-label="Inhaltsverzeichnis" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#installieren">
+    Installieren
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#der-hauptbildschirm-mit-der-essensliste">
+    Der Hauptbildschirm mit der Essensliste
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#anlegen-von-essen">
+    Anlegen von Essen
+  </a>
+<nav aria-label="Anlegen von Essen" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#option-1-manueller-eintrag">
+    Option 1: Manueller Eintrag
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#option-2-suche-in-der-lebensmitteldatenbank">
+    Option 2: Suche in der Lebensmitteldatenbank
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#option-3-scannen-des-barcodes">
+    Option 3: Scannen des Barcodes
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#zusammenstellen-einer-mahlzeit">
+    Zusammenstellen einer Mahlzeit
+  </a>
+<nav aria-label="Zusammenstellen einer Mahlzeit" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#auswahl-von-essen">
+    Auswahl von Essen
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#die-zusammenfassung-der-mahlzeit">
+    Die Zusammenfassung der Mahlzeit
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#die-details-der-mahlzeit">
+    Die Details der Mahlzeit
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#export-nach-apple-health">
+    Export nach Apple Health
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#eigene-rezepte-verwalten">
+    Eigene Rezepte verwalten
+  </a>
+<nav aria-label="Eigene Rezepte verwalten" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schritt-1-zutaten-anlegen">
+    Schritt 1: Zutaten anlegen
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schritt-2-zutaten-eines-rezepts-auswahlen">
+    Schritt 2: Zutaten eines Rezepts auswählen
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schritt-3-name-gesamtgewicht-und-anzahl-der-portionen-festlegen">
+    Schritt 3: Name, Gesamtgewicht und Anzahl der Portionen festlegen
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schritt-4-speichern-des-produkts">
+    Schritt 4: Speichern des Produkts
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schritt-5-bearbeiten-eines-rezepts">
+    Schritt 5: Bearbeiten eines Rezepts
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#das-haupt-und-das-kontextmenu">
+    Das Haupt- und das Kontextmenü
+  </a>
+<nav aria-label="Das Haupt- und das Kontextmenü" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#das-hauptmenu">
+    Das Hauptmenü
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#das-kontextmenu">
+    Das Kontextmenü
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#das-absorptionsschema-und-weitere-einstellungen">
+    Das Absorptionsschema und weitere Einstellungen
+  </a>
+<nav aria-label="Das Absorptionsschema und weitere Einstellungen" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#absorptionsschema-fur-kohlenhydrate-aus-zucker">
+    Absorptionsschema für Kohlenhydrate aus Zucker
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#absorptionsschema-fur-regulare-kohlenhydrate">
+    Absorptionsschema für reguläre Kohlenhydrate
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#absorptionsschema-fur-verlangerte-kohlenhydrate">
+    Absorptionsschema für verlängerte Kohlenhydrate
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hinweisdauer-zwischen-exporten-nach-apple-health">
+    Hinweisdauer zwischen Exporten nach Apple Health
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#beispieldaten">
+    Beispieldaten
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Inhaltsverzeichnis" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Inhaltsverzeichnis
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#installieren">
+    Installieren
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#der-hauptbildschirm-mit-der-essensliste">
+    Der Hauptbildschirm mit der Essensliste
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#anlegen-von-essen">
+    Anlegen von Essen
+  </a>
+<nav aria-label="Anlegen von Essen" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#option-1-manueller-eintrag">
+    Option 1: Manueller Eintrag
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#option-2-suche-in-der-lebensmitteldatenbank">
+    Option 2: Suche in der Lebensmitteldatenbank
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#option-3-scannen-des-barcodes">
+    Option 3: Scannen des Barcodes
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#zusammenstellen-einer-mahlzeit">
+    Zusammenstellen einer Mahlzeit
+  </a>
+<nav aria-label="Zusammenstellen einer Mahlzeit" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#auswahl-von-essen">
+    Auswahl von Essen
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#die-zusammenfassung-der-mahlzeit">
+    Die Zusammenfassung der Mahlzeit
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#die-details-der-mahlzeit">
+    Die Details der Mahlzeit
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#export-nach-apple-health">
+    Export nach Apple Health
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#eigene-rezepte-verwalten">
+    Eigene Rezepte verwalten
+  </a>
+<nav aria-label="Eigene Rezepte verwalten" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schritt-1-zutaten-anlegen">
+    Schritt 1: Zutaten anlegen
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schritt-2-zutaten-eines-rezepts-auswahlen">
+    Schritt 2: Zutaten eines Rezepts auswählen
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schritt-3-name-gesamtgewicht-und-anzahl-der-portionen-festlegen">
+    Schritt 3: Name, Gesamtgewicht und Anzahl der Portionen festlegen
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schritt-4-speichern-des-produkts">
+    Schritt 4: Speichern des Produkts
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schritt-5-bearbeiten-eines-rezepts">
+    Schritt 5: Bearbeiten eines Rezepts
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#das-haupt-und-das-kontextmenu">
+    Das Haupt- und das Kontextmenü
+  </a>
+<nav aria-label="Das Haupt- und das Kontextmenü" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#das-hauptmenu">
+    Das Hauptmenü
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#das-kontextmenu">
+    Das Kontextmenü
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#das-absorptionsschema-und-weitere-einstellungen">
+    Das Absorptionsschema und weitere Einstellungen
+  </a>
+<nav aria-label="Das Absorptionsschema und weitere Einstellungen" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#absorptionsschema-fur-kohlenhydrate-aus-zucker">
+    Absorptionsschema für Kohlenhydrate aus Zucker
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#absorptionsschema-fur-regulare-kohlenhydrate">
+    Absorptionsschema für reguläre Kohlenhydrate
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#absorptionsschema-fur-verlangerte-kohlenhydrate">
+    Absorptionsschema für verlängerte Kohlenhydrate
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hinweisdauer-zwischen-exporten-nach-apple-health">
+    Hinweisdauer zwischen Exporten nach Apple Health
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#beispieldaten">
+    Beispieldaten
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/UlricusR/iOS-Android/edit/site-sources/docs/manual.de.md" title="Seite editieren">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
+</a>
+<h1 id="benutzerhandbuch">Benutzerhandbuch</h1>
+<h2 id="installieren">Installieren</h2>
+<p>Die App ist im Apple App Store verfügbar:</p>
+<p><a href="https://apps.apple.com/de/app/easyfpu/id1529949520" target="_blank"><img alt="Apple App Store" class="off-glb" src="assets/images/appstore.png"/></a></p>
+<h2 id="der-hauptbildschirm-mit-der-essensliste">Der Hauptbildschirm mit der Essensliste</h2>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/01_FoodList.png"><img _="," align="right" alt="Die Essensliste" src="assets/images/01_FoodList.png" style="width:100px"/></a></p>
+<p>Der Hauptbildschirm erscheint beim Öffnen der App und enthält eine Liste mit Essen. Diese ist beim allerersten Öffnen zunächst leer - nach einem Update wird die vorhandene Liste mit Essen übernommen.</p>
+<p>In dieser App ist mit einem Essen eine einzelne Komponente einer Mahlzeit gemeint, die in sich „homogen“ ist. Mehrere Essen können dann zu einer Mahlzeit zusammengestellt werden. So bestünde z.B. die Mahlzeit Schnitzel mit Pommes und Ketchup aus drei Essen, nämlich dem Schnitzel, den Pommes und dem Ketchup.</p>
+<p>Die Essensliste auf dem Hauptbildschirm ist alphabetisch sortiert. Es empfiehlt sich, jedem Essen einen eindeutigen Namen zu geben und nicht zweimal denselben Namen zu verwenden, auch wenn das möglich ist (es wird von der App nicht verhindert).</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/02_FoodList-filtered.png"><img _="," align="left" alt="Die gefilterte Essensliste" src="assets/images/02_FoodList-filtered.png" style="width:100px"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/02_FoodList-search.png"><img _="," align="left" alt="Die Suche in der Essensliste" src="assets/images/02_FoodList-search.png" style="width:100px"/></a></p>
+<p>Klickt man auf den kleinen Stern rechts über der Essensliste, werden nur die Essen angezeigt, die als Favoriten markiert wurden. Außerdem kann man über das Suchfeld nach Essen suchen (beliebige Suche innerhalb der Essensnamen).</p>
+<p>Langes Drücken eines Essens öffnet den Dialog zur Bearbeitung des Essens.</p>
+<p>Durch Wischen nach links kann ein Essen aus der Liste gelöscht werden.</p>
+<h2 id="anlegen-von-essen">Anlegen von Essen</h2>
+<p>Zum Anlegen von neuem Essen tippt man auf das große, grüne Plus-Symbol in der oberen rechten Ecke. Es gibt drei Möglichkeiten um Anlegen von neuem Essen.</p>
+<h3 id="option-1-manueller-eintrag">Option 1: Manueller Eintrag</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/10_FoodEdit.png"><img _="," align="right" alt="Neues Essen anlegen / Essen bearbeiten" src="assets/images/10_FoodEdit.png" style="width:100px"/></a></p>
+<p>Es öffnet sich ein Dialog zur Eingabe der notwendigen Daten:</p>
+<ul>
+<li>Name (Pflichtfeld): Der Name des Essens</li>
+<li>Lieblingsessen: Auswahl, ob das Essen in der Liste der Lieblingsessen angezeigt wird</li>
+<li>Kalorien pro 100g (Pflichtfeld): Die Kalorien des Essens pro 100g in kcal</li>
+<li>Kohlenhydrate pro 100g (Pflichtfeld): Die Kohlenhydrate des Essens pro 100g in Gramm</li>
+<li>Davon Zucker pro 100g (Pflichtfeld): Die Menge an Kohlenhydraten aus Zucker pro 100g als Teilmenge der Kohlenhydrate</li>
+</ul>
+<p>Außerdem können optional noch beliebig viele typische Mengen des Essens hinzugefügt werden, jeweils versehen mit einem Kommentar. Man bestätigt die Eingabe durch Antippen des kleinen grünen Plus-Symbols.</p>
+<p>Die typischen Mengen werden später bei der Auswahl des Essens im Berechnungsdialog angezeigt. Die Eingabe der typischen Menge ist besonders bei vorher bekannten Mengen nützlich (z.B. abgepacktes Essen oder „4 Stück“ ChickenMcNuggets) und erleichtert die spätere Nutzung der App insbesondere für Kinder.</p>
+<p>Nach dem Abspeichern erscheint das neu angelegte Essen in der Essensliste (alphabetisch sortiert) am Hauptbildschirm.</p>
+<h3 id="option-2-suche-in-der-lebensmitteldatenbank">Option 2: Suche in der Lebensmitteldatenbank</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/03_FoodSearch-results.png"><img _="," align="left" alt="Die Ergebnisliste der Suche" src="assets/images/03_FoodSearch-results.png" style="width:100px"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/03_FoodSearch-details.png"><img _="," align="left" alt="Die Detailansicht der Suche / des Scans" src="assets/images/03_FoodSearch-details.png" style="width:100px"/></a></p>
+<p>Seit Version 2.0.0 kann ein Essen in einer Lebensmitteldatenbank gesucht werden. Geben Sie dazu den Suchbegriff in das Namensfeld ein und tippen Sie anschließend auf das Such-Symbol.</p>
+<p>Derzeit ist nur eine Lebensmitteldatenbank angebunden, nämlich <a href="https://world.openfoodfacts.org/" target="blank">OpenFoodFacts</a>. OpenFoodFacts ist eine offene Lebensmitteldatenbank, d.h. jeder kann beitragen. Das bedeutet, dass dort auch falsche Nährwerte eingetragen sein können. Überprüfen Sie daher bitte immer, ob die in der Datenbank gefundenen Nährwerte auch den tatsächlichen Nährwerten entsprechen. Nutzen Sie hierzu das Detailanzeigefenster, wo Sie auch Produktbilder finden, in die Sie hineinzoomen können.</p>
+<h3 id="option-3-scannen-des-barcodes">Option 3: Scannen des Barcodes</h3>
+<p>Tippen Sie zum Scannen eines Barcodes auf das Scan-Symbol neben dem Such-Symbol und richten Sie dann die Kamera Ihres Geräts auf den Barcode des Produkts. Wird das Produkt in der Datenbank gefunden, wird Ihnen das Detailanzeigefenster angezeigt, wo Sie entscheiden können, ob das Produkt übernommen wird oder nicht.</p>
+<p>Sollte kein Scan möglich sein, wischen Sie das Kamerafenster einfach von oben nach unten weg.</p>
+<h2 id="zusammenstellen-einer-mahlzeit">Zusammenstellen einer Mahlzeit</h2>
+<h3 id="auswahl-von-essen">Auswahl von Essen</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/03_FoodSelect.png"><img _="," align="right" alt="Gegessene Menge eingeben oder auswählen" src="assets/images/03_FoodSelect.png" style="width:100px"/></a></p>
+<p>Eine Mahlzeit besteht aus mindestens einem Essen. Zum Berechnen der Mahlzeit wählt man also aus der Essensliste zunächst ein Essen aus. Es erscheint ein Dialog zur Eingabe der Essensmenge.</p>
+<p>Wurden beim Anlegen des Essens typische Mengen festgelegt, kann nun eine typische Menge gewählt oder immer auch eine eigene Mengenangabe gemacht werden. Alternativ stehen grüne Knöpfe zur Verfügung, die ihren abgebildeten Wert zur bereits eingestellten Menge addieren. Die hier eingegegebene Menge sollte der tatsächlich gegessenen Menge des Essens in Gramm entsprechen.</p>
+<p>Außerdem besteht die Möglichkeit, die aktuell eingegebene Menge als neue typische Menge abzuspeichern. Dazu tippt man auf "Zu typischen Mengen hinzufügen", gibt man einen Kommentar ein und bestätigt mit dem grünen Plus-Symbol. Die Pflege oder Änderung von typischen Mengen geschieht im Dialog zum Bearbeiten von Essen.</p>
+<p>Diesen Vorgang wiederholt man optional für weitere Essensbestandteile seiner Mahlzeit.</p>
+<h3 id="die-zusammenfassung-der-mahlzeit">Die Zusammenfassung der Mahlzeit</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/04_MealSummary.png"><img _="," align="left" alt="Die Zusammenfassung der Kohlenhydrate aus Zucker" src="assets/images/04_MealSummary.png" style="width:100px"/></a></p>
+<p>Haben Sie mindestens ein Essen ausgewählt, erscheint ein Schwebefenster. Wenn Sie dieses ganz öffnen durch "Hochwischen", werden Ihnen die drei Arten von Kohlenhydraten - Zucker, reguläre und verlängerte Kohlenhydrate - als Zusammenfassung angezeigt:</p>
+<ul>
+<li>Rotes Zuckerwürfelsymbol: Kohlenhydrate aus Zucker werden in der Regel am schnellsten absorbiert. Sie können die entsprechenden Parameter in den Einstellungen anpassen.</li>
+<li>Grünes Hasensymbol: Reguläre Kohlenhydrate werden langsamer als Zucker absorbiert. Auch diese Parameter können Sie in den Einstellungen anpassen.</li>
+<li>Blaues Schildkrötensymbol: Verlängerte Kohlenhydrate (im Englischen auch bekannt unter e-Carbs oder Fake Carbs) stammen nicht aus Kohlenhydraten, sondern aus Fett und Proteinen. Daher werden sie viel später und viel länger absorbiert.</li>
+</ul>
+<p>Sie können an dieser Stelle auch den Spritz-Ess-Abstand einstellen.</p>
+<p>Durch Antippen des roten Kreuzes in der Zusammenfassung der Mahlzeit können Sie die Mahlzeit zurücksetzen, d.h. alle Essensbestandteile sowie der "Mahlzeit beginnt in x Minuten"-Parameter werden auf Null gesetzt.</p>
+<h3 id="die-details-der-mahlzeit">Die Details der Mahlzeit</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/08_MealDetails_full.png"><img _="," align="right" alt="Die Details des Essens inkl. Zusatzinformation" src="assets/images/08_MealDetails_full.png" style="width:100px"/></a></p>
+<p>Tippen Sie auf das Pfeil-Icon in der Zusammenfassung, öffnet sich die Ansicht mit den Details der Mahlzeit. Hier können Sie nochmal die Bestandteile Ihrer Mahlzeit anzeigen lassen.</p>
+<h2 id="export-nach-apple-health">Export nach Apple Health</h2>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/09_HealthExport.png"><img _="," align="left" alt="Die Vorschau des Exports nach Apple Health" src="assets/images/09_HealthExport.png" style="width:100px"/></a></p>
+<p>Durch Tippen des Export-Knopfes (ein Rechteck mit Pfeil nach oben) können Sie die berechneten Kohlenhydrate, aber auch die Kalorien der Mahlzeit nach Apple Health exportieren.</p>
+<p>Durch An- oder Abwählen der Schalter wählen Sie aus, welche Daten exportiert werden.</p>
+<p>Außerdem können Sie den "Mahlzeit beginnt in x-Minuten"-Parameter einstellen, was in der Regel der Spritz-Ess-Abstand ist.</p>
+<p>Für die Kohlenhydrate wird eine Vorschau erstellt, die zeigt, zu welchem Zeitpunkt welcher Kohlenhydratanteil welcher Art exportiert werden wird. In rot werden die Kohlenhydrate aus Zucker dargestellt, in grün die regulären Kohlenhydrate und in blau die verlängerten Kohlenhydrate.</p>
+<p>In wievielen kleinen Teilmengen die jeweiligen Kohlenhydrate über die Zeitspanne der Absorptionszeit verteilt werden, regelt man mit den jeweiligen Intervall-Parametern in den Einstellungen.</p>
+<div class="admonition warning">
+<p class="admonition-title">Wichtige Hinweise für Looper</p>
+<p>Dieses Feature kann sehr nützlich für Typ 1-Diabetiker sein, die ihre Insulintherapie über Loop steuern. Loop liest, wenn Sie dies in den Einstellungen von Apple Health erlauben, die von EasyFPE exportierten Kohlenhydratdaten und passt den Insulinbedarf entsprechend an. Geben Sie die Mahlzeit auf keinen Fall erneut in Loop ein, denn das könnte zu doppelten Einträgen und einer Unterzuckerung führen.</p>
+<p>Wenn Sie die Kohlenhydrate einer Mahlzeit jedoch versehentlich doppelt exportieren, kann das zur Unterzuckerung oder sogar schweren Unterzuckerung führen.</p>
+<p>Zwei Sicherheitsmechanismen versuchen das zu verhindern:</p>
+<ul>
+<li>Bevor Daten nach Apple Health exportiert werden, überprüft EasyFPE den Zeitpunkt des letzten Datenexports. Liegt dieser innerhalb einer Zeitspanne x, wird eine Warnung angezeigt und Sie müssen den Export explizit ein zweites Mal bestätigen. Die Zeitspanne x kann in den Einstellungen konfiguriert werden. Voreinstellung ist 15 Minuten.</li>
+<li>Als zweite Bestätigung vor dem Export werden Sie gebeten, sich zu authentifizieren - abhängig von den iOS-Einstellungen per FaceID, TouchID oder Code.</li>
+</ul>
+</div>
+<h2 id="eigene-rezepte-verwalten">Eigene Rezepte verwalten</h2>
+<p>Seit Version 2.0.0 ist es möglich, eigene Rezepte in EasyFPE zu verwalten. Das soll hier anhand eines Beispiels gezeigt werden - wir backen gemeinsam einen Marmorkuchen.</p>
+<h3 id="schritt-1-zutaten-anlegen">Schritt 1: Zutaten anlegen</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/06_IngredientList.png"><img _="," align="right" alt="Die Liste der Zutaten" src="assets/images/06_IngredientList.png" style="width:100px"/></a></p>
+<p>Um ein Rezept abbilden zu können, benötigt man zunächst all seine Zutaten in der Zutatenliste. Die Zutatenliste befindet sich im Reiter "Zutaten" rechts neben den Produkten. Zutaten können mittels Kontextmenü (langes Drücken) zwischen der Produkt- und der Zutatenliste verschoben werden.</p>
+<p>Das Anlegen von Zutaten funktioniert identisch wie das <a href="#anlegen-von-essen">Anlegen von Produkten</a> - per manueller Eingabe, per Suche in einer Essensdatenbank oder per Scan eines Barcodes. Der einzige Unterschied besteht in der Auswahl der Kategorie "Zutat" statt "Produkt".</p>
+<h3 id="schritt-2-zutaten-eines-rezepts-auswahlen">Schritt 2: Zutaten eines Rezepts auswählen</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/07_ComposedProduct-min.png"><img _="," align="left" alt='Das "weggewischte" Schwebefenster' src="assets/images/07_ComposedProduct-min.png" style="width:100px"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/07_ComposedProduct-half.png"><img _="," align="left" alt="Das Schwebefenster mit der Zusammenfassung des Rezepts" src="assets/images/07_ComposedProduct-half.png" style="width:100px"/></a></p>
+<p>Genauso wie auf der Produktliste wählt man nun alle Zutaten eines Rezepts per Antippen aus. Im Gegensatz zum Zusammenstellen einer Mahlzeit erscheint nun aber nicht das Schwebefenster mit der Zusammenfassung der Mahlzeit, sondern ein Schwebefenster mit der Zusammenfassung des Rezepts. Dies kann man zunächst einmal nach unten "wegwischen", so dass die gesamte Zutatenliste gut zugänglich ist.</p>
+<p>Gibt man eine Menge falsch ein, tippt man einfach ein zweites Mal auf die ausgewählte Zutat, wodurch diese aus dem Rezept entfernt wird. Anschließend fügt man dieselbe Zutat mit korrigierter Menge wieder hinzu.</p>
+<h3 id="schritt-3-name-gesamtgewicht-und-anzahl-der-portionen-festlegen">Schritt 3: Name, Gesamtgewicht und Anzahl der Portionen festlegen</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/07_ComposedProduct-full.png"><img _="," align="right" alt="Eingabe eines Namens, des Gesamtgewichts und der Anzahl der Portionen" src="assets/images/07_ComposedProduct-full.png" style="width:100px"/></a></p>
+<p>Für den nächsten wichtigen Schritt öffnet man das Schwebefenster komplett mit einem Wisch von unten nach oben. Folgende Daten sind einzugeben:</p>
+<ul>
+<li>Der Name des Rezepts, z.B. "Marmorkuchen mit Schokoglasur"</li>
+<li>Das Gesamtgewicht des fertigen Produkts - die ist wichtig für die korrekte Berechnung der Nährwerte pro 100g</li>
+<li>Falls die automatische Erstellung von typischen Mengen ausgewählt ist, muss noch die Anzahl der Portionen eingegeben werden, die aus dem fertigen Produkt (möglichst gleichmäßig) geschnitten wird</li>
+</ul>
+<h3 id="schritt-4-speichern-des-produkts">Schritt 4: Speichern des Produkts</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/07_ComposedProduct-confirmweight.png"><img _="," align="left" alt="Abweichende Mengen müssen bestätigt werden" src="assets/images/07_ComposedProduct-confirmweight.png" style="width:100px"/></a></p>
+<p>Zum Speichern des fertigen Produkts tippt man auf "Speichern". Damit wird das Produkt - genauso wie fertige Produkte auch - in der Liste der Produkte abgelegt. Sollte das Gesamtgewicht des zusammengestellten Produkts von der Summe seiner Zutaten abweichen, muss dies noch bestätigt werden.</p>
+<h3 id="schritt-5-bearbeiten-eines-rezepts">Schritt 5: Bearbeiten eines Rezepts</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/08_Product-context.png"><img _="," align="right" alt="Das Kontextmenü eines Produkts" src="assets/images/08_Product-context.png" style="width:100px"/></a></p>
+<p>Will man ein Rezept bearbeiten, so wählt man es in der Produktliste mittels langem Tippen aus (Kontextmenü). Will man es anpassen, ohne das Originalrezept zu verändern, muss man vorher "Duplizieren" wählen, ansonsten wird das Originalrezept überschrieben.</p>
+<h2 id="das-haupt-und-das-kontextmenu">Das Haupt- und das Kontextmenü</h2>
+<h3 id="das-hauptmenu">Das Hauptmenü</h3>
+<p>Öffnet man das Hauptmenü mittels der drei vertikalen Striche in der oberen linken Ecke der App, hat man folgende Auswahlmöglichkeiten:</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/11_Menu.png"><img _="," align="left" alt="Das Hauptmenü" src="assets/images/11_Menu.png" style="width:100px"/></a></p>
+<ul>
+<li>Einstellungen: Öffnet den Dialog zum Bearbeiten der Absorptionsschemata und weiterer Einstellungen</li>
+<li>Importieren (Format: JSON): Importiert die Datenbank aus einer JSON-Datei - Sie können im Anschluss wählen, ob Sie die bestehende Essensliste ersetzen oder ergänzen wollen</li>
+<li>Exportieren (Format: JSON): Export der Essensliste zwecks Backup oder Austausch mit anderen</li>
+<li>Über: Infos über die App</li>
+<li>Haftungsausschluss: Zeigt den Haftungsausschluss an</li>
+<li>Hilfe im Web: Der Link zu dieser Dokumentation</li>
+</ul>
+<p>Zum Schließen des Hauptmenüs tippt man auf das Kreuz-Symbol oder wischt man das Menü nach links weg.</p>
+<h3 id="das-kontextmenu">Das Kontextmenü</h3>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/08_Product-context.png"><img _="," align="right" alt="Das Kontextmenü eines Produkts" src="assets/images/08_Product-context.png" style="width:100px"/></a></p>
+<p>Das Kontextmenü jedes Produkts oder jeder Zutat öffnet sich durch langes Drücken. Folgende Aktionen stehen zur Verfügung:</p>
+<ul>
+<li>Bearbeiten: Öffnet den Dialog zum Bearbeiten eines Produkts oder Rezepts</li>
+<li>Duplizieren: Dupliziert das Produkt oder die Zutat - es wird der gleiche Name verwendet, aber "- Kopie" angehängt</li>
+<li>Teilen: Hiermit können Sie das Produkt oder die Zutat via AirDrop, iMessage, WhatsApp, Mail, etc. mit anderen EasyFPE-Nutzern teilen</li>
+<li>Zu Zutaten / Produkten verschieben: Verschiebt ein Produkt in die Zutatenliste bzw. umgekehrt</li>
+<li>Löschen: Löscht das Produkt bzw. die Zutat</li>
+</ul>
+<h2 id="das-absorptionsschema-und-weitere-einstellungen">Das Absorptionsschema und weitere Einstellungen</h2>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/12_Settings.png"><img _="," align="left" alt="Absorptionsschemata und Einstellungen bearbeiten" src="assets/images/12_Settings.png" style="width:100px"/></a></p>
+<p>In den Einstellungen können Sie die Absorptionsschemata für Kohlenhydrate aus Zucker, reguläre Kohlenhydrate und verlängerte Kohlenhydrate bearbeiten.</p>
+<p>Jedes dieser Absorptionsschemata hat drei Parameter:</p>
+<ul>
+<li>Verzögerung: Die Zeit, die Ihr Körper benötigt, um die jeweiligen Kohlenhydrate zu verdauen, d.h. nach dieser Zeit wirken diese Kohlenhydrate auf Ihren Blutzucker.</li>
+<li>Absorptionszeit: Die Dauer, in der diese Kohlenhydrate auf Ihren Blutzucker wirken, nachdem sie (nach der Verzögerung) begonnen haben (dieser Parameter kann nur für Zucker und reguläre Kohlenhydrate eingegeben werden, für verlängerte Kohlenhydrate wird er berechnet).</li>
+<li>Intervall: Dieser Parameter wird lediglich für den Export der Kohlenhydrate nach Apple Health benötigt. Die Gesamtmenge der jeweiligen Kohlenhydrate wird für den Export gleichmäßig in diesem Abstand über die Absorptionszeit verteilt. Beispiel: Bei einer 3-stündigen (=180min) Absorptionszeit und einem 10-Minuten-Intervall wird eine Kohlenhydratmenge von 36g auf 18 Teile zu je 2g verteilt: 36g / (180min / 10min).</li>
+</ul>
+<h3 id="absorptionsschema-fur-kohlenhydrate-aus-zucker">Absorptionsschema für Kohlenhydrate aus Zucker</h3>
+<p>Sie können auswählen, ob Kohlenhydrate aus Zucker getrennt von regulären Kohlenhydraten ausgewiesen werden sollen. Sollten Sie dies nicht nutzen, werden Kohlenhydrate aus Zucker wie reguläre Kohlenhydrate behandelt.</p>
+<p>Kohlenhydrate aus Zucker werden in der Regel relativ schnell absorbert. Die Voreinstellung ist 2 Stunden mit keiner Verzögerung (sofortige Wirkung).</p>
+<h3 id="absorptionsschema-fur-regulare-kohlenhydrate">Absorptionsschema für reguläre Kohlenhydrate</h3>
+<p>Sollten Sie die separate Behandlung von Kohlenhydraten aus Zucker ausgewählt haben, werden diese von den regulären Kohlenhydraten abgezogen.</p>
+<p>Reguläre Kohlenhydrate werden in der Regel langsamer absorbiert als die aus Zucker. Die Voreinstellung ist 3 Stunden mit einer Verzögerung von 5 Minuten.</p>
+<h3 id="absorptionsschema-fur-verlangerte-kohlenhydrate">Absorptionsschema für verlängerte Kohlenhydrate</h3>
+<p>Verlängerte Kohlenhydrate sind eigentlich gar keine Kohlenhydrate, sondern Fett-Protein-Einheiten (FPE), sie wirken jedoch sehr ähnlich auf den Blutzucker. Da sie aus Fett und Proteinen stammen, die zunächst vom Körper verdaut werden müssen, beginnt ihre Wirkung eher spät (Voreinstellung ist 90 Minuten).</p>
+<p>Das Absorptionsschema legt fest, welche Absorptionszeit bei einer gegebenen Anzahl an FPE ausgegeben wird. Das voreingestellte Absorptionsschema entspricht den heutigen Erkenntnissen der Ernährungswissenschaft und ist wie folgt angelegt:</p>
+<ul>
+<li>1 FPE (= 10g verlängerte Kohlenhydrate): 3 Stunden Absorptionszeit</li>
+<li>2 FPE (= 20g verlängerte Kohlenhydrate): 4 Stunden Absorptionszeit</li>
+<li>3 FPE (= 30g verlängerte Kohlenhydrate): 5 Stunden Absorptionszeit</li>
+<li>4 FPE (= 40g verlängerte Kohlenhydrate): 6 Stunden Absorptionszeit</li>
+<li>6 FPE (= 60g verlängerte Kohlenhydrate) und mehr: 8 Stunden Absorptionszeit</li>
+</ul>
+<p>Dieses Absorptionsschema kann auch bearbeitet werden.</p>
+<p>Da jeder Körper anders auf Fett-Protein-Einheiten reagiert, ist es wichtig, dass Sie ihren eigenen Kohlenhydrate-pro-FPE-Faktor herausfinden und hier einstellen. Voreinstellung ist 10g Kohlenhydrate pro FPE, für Kinder rate ich jedoch zu deutlich niedrigeren Faktoren.</p>
+<p>Die Berechnungslogik der App geht wie folgt vor:</p>
+<p>Schritt 1: Berechnung der Gesamtkalorien, z.B. bei 72g ChickenMcNuggets (249 kcal pro 100g): 72g * 249 kcal / 100g = 179 kcal</p>
+<p>Schritt 2: Berechnung der Kalorien, die durch Kohlenhydrate verursacht werden (4 kcal pro 1 g Kohlenhydrate), z.B. bei 72g ChickenMcNuggets (17g Kohlenhydrate pro 100g): 72g * 17gKH / 100g * 4 kcal/gKH = 49 kcal</p>
+<p>Schritt 3: Abzug der Kalorien aus Kohlenhydraten von den Gesamtkalorien; die sich ergebenden Kalorien stammen dann aus Fett und Proteinen, im obigen Beispiel: 179 kcal - 49 kcal = 130 kcal</p>
+<p>Schritt 4: Da 100 kcal einer FPE entsprechen, ergeben sich im Beispiel 1,3 FPE, was bei einem Kohlenhydrate-pro-FPE-Faktor von 10 dann 13,0 g verlängerter Kohlenhydrate entsprechen würde.</p>
+<p>Schritt 5: Die FPE werden gerundet, im Beispiel auf 1 FPE, und damit die Absorptionszeit nachgeschlagen, im Beispiel 3 Stunden.</p>
+<p>Eine Änderung des Absorptionsschemas wird nur ernährungswissenschaftlich erfahrenen Personen empfohlen. Alle Absorptionsdaten können auf die Voreinstellungen zurückgesetzt werden.</p>
+<h3 id="hinweisdauer-zwischen-exporten-nach-apple-health">Hinweisdauer zwischen Exporten nach Apple Health</h3>
+<p>Um zu vermeiden, dass Kohlenhydrate aus Mahlzeiten versehentlich mehrfach hintereinander nach Apple Health exportiert werden und damit ggf. die Insulinmenge Ihres Loop-Systems erhöhen, wird Sie EasyFPE darauf hinweisen, wenn Sie innerhalb einer gegebenen Zeitspanne nach dem letzten Export einen erneuten Export vornehmen. Diese Zeitspanne kann hier eingestellt werden. Voreinstellung ist 15 Minuten.</p>
+<h2 id="beispieldaten">Beispieldaten</h2>
+<p><a href="assets/fpu_calculator_database.json">Diese JSON-Datei</a> können Sie herunterladen und als Beispieldaten nutzen. Importieren Sie die Datei über den Menüpunkt "JSON-Import".</p>
+<p>Ich empfehle jedoch dringend, Ihre eigenen Essen anzulegen, da auch die typischen Mengen von Person zu Person unterschiedlich sind.</p>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Zurück zum Seitenanfang
+          </a>
+</main>
+<footer class="md-footer">
+<nav aria-label="Fußzeile" class="md-footer__inner md-grid">
+<a aria-label="Zurück: Was ist EasyFPE?" class="md-footer__link md-footer__link--prev" href="../" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Zurück
+              </span>
+              Was ist EasyFPE?
+            </div>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "In Zwischenablage kopiert", "clipboard.copy": "In Zwischenablage kopieren", "search.config.lang": "de", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Suche", "search.result.more.one": "1 weiteres Suchergebnis auf dieser Seite", "search.result.more.other": "# weitere Suchergebnisse auf dieser Seite", "search.result.none": "Keine Suchergebnisse", "search.result.one": "1 Suchergebnis", "search.result.other": "# Suchergebnisse", "search.result.placeholder": "Suchbegriff eingeben", "search.result.term.missing": "Es fehlt", "select.version.title": "Version ausw\u00e4hlen"}}</script>
+<script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
