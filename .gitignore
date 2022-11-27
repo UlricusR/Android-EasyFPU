@@ -1,0 +1,8 @@
+venv/
+.DS_Store
+.gradle
+.idea
+site/
+DataStructure.xlsx
+local.properties
+FPU_Calculator.iml

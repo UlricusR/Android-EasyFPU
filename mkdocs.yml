@@ -1,0 +1,63 @@
+site_name: EasyFPU for Android
+site_url: https://ulricusr.github.io/iOS-Android
+repo_url: https://github.com/UlricusR/iOS-Android
+edit_uri: edit/site-sources/docs/
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: red
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: red
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font: false # To avoid utilization of Google fonts
+  logo: assets/images/logo_white_small.png
+  favicon: assets/images/favicon.png
+  features:
+    - navigation.top
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/UlricusR
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/ulrichrueth/
+
+nav:
+  - 'index.md'
+  - 'manual.md'
+
+plugins:
+  - i18n:
+      default_language: en
+      languages:
+        en:
+          name: English
+          site_name: EasyFPU for Android
+          homepage: https://ulricusr.github.io/en
+        de:
+          name: Deutsch
+          site_name: EasyFPE für Android
+          homepage: https://ulricusr.github.io/de
+  - search
+  - glightbox
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
