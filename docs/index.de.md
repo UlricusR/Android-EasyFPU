@@ -2,7 +2,7 @@
 
 ![EasyFPE-App-Icon](assets/images/pizza_small.png){ align=left }
 
-EasyFPE ist eine iOS-App - hauptsächlich für Typ 1-Diabetiker - zum einfachen Berechnen von Kohlenhydraten aus Zucker, regulären Kohlenhydraten und Fett-Protein-Einheiten (FPE) bzw. verzögerten Kohlenhydraten (auch bekannt als e-Carbs oder Fake Carbs) - synchronisiert zwischen allen Ihren iOS-Geräten via iCloud (optional).
+EasyFPE ist eine Android-App - hauptsächlich für Typ 1-Diabetiker - zum einfachen Berechnen von Kohlenhydraten, Fett-Protein-Einheiten (FPE) bzw. verzögerten Kohlenhydraten (auch bekannt als e-Carbs oder Fake Carbs) und dazugehöriger Absorptionszeit. 
 
 ## Haftungsausschluss
 
@@ -36,31 +36,31 @@ Die Motivation zum Programmieren von EasyFPE war, insbesondere Kindern mit Typ 1
 
 Das Errechnen von Kohlenhydraten erfolgt quasi nebenbei, ist jedoch bei vielen Typ 1-Diabetikern schon in Fleisch und Blut übergegangen und kann mit vielen anderen Apps auch erledigt werden. Mahlzeiten mit einem hohen Fett- oder Proteinanteil führen jedoch sehr oft zu einem späten Blutzuckeranstieg. Diesem kann in der heutigen Pumpentherapie mit einem verzögerten Bolus entgegengewirkt werden. Allerdings ist die Berechnung der abzugebenden Einheiten und der Abgabedauer nicht trivial. Genau dies erledigt diese App.
 
-Das Konzept hierfür ist absichtlich sehr einfach: Der Nutzer wählt ein oder mehrere Essen aus einer Liste aus und gibt deren Menge ein - wahlweise auch eine von beliebig vielen vordefinierten typischen Mengen. Damit berechnet die App die FPE.
+Das Konzept hierfür ist absichtlich sehr einfach: Der Nutzer wählt ein oder mehrere Essen aus einer Liste aus und gibt deren Menge ein - wahlweise auch eine von bis zu drei vordefinierten typischen Mengen. Damit berechnet die App die FPE.
 
 Als Nutzer (bzw. als Eltern von Kindern mit Typ 1-Diabetes) muss man allerdings vorab etwas Zeit in das Anlegen von Essen investieren. Die Essensliste ist mit Absicht bei Erstinstallation komplett leer, da jeder sein eigenes typisches Essen hat ([Beispieldaten](manual.md#beispieldaten) können heruntergeladen werden). Es kann sich allerdings darauf beschränkt werden, nur Essen anzulegen, welches eben einen hohen Fett- oder Proteinanteil hat, z.B. Pizza, Bratwurst, McDonalds-Essen, usw.
 
-EasyFPE gibt es auch für Android, wobei die iOS-Variante die neuere ist mit deutlich mehr Features, da ich sie selbst bei mir in der Familie im Rahmen einer Insulintherapie nutze. Ob ich Android dereinst wieder auf den gleichen Stand bringen werde, kann ich nicht versprechen.
+EasyFPE gibt es auch für iOS, wobei die iOS-Variante die neuere ist mit [deutlich mehr Features](https://ulricusr.github.io/de/#feature-ubersicht), da ich sie selbst bei mir in der Familie im Rahmen einer Insulintherapie nutze.
 
 ## Datenschutzerklärung
 
 !!! note "Hinweis"
 
-    Dieser Abschnitt beinhaltet die Datenschutzerklärung der iOS-App. Die Datenschutzerklärung der Webseite finden [an dieser Stelle](https://ulricusr.github.io/de/legal/).
+    Dieser Abschnitt beinhaltet die Datenschutzerklärung der Android-App. Die Datenschutzerklärung der Webseite finden [an dieser Stelle](https://ulricusr.github.io/de/legal/).
 
-Die iOS-App EasyFPE speichert keinerlei persönliche Informationen und nutzt auch keinen Drittanbieter-Service, der dies tut.
+Die Android-App EasyFPE speichert keinerlei persönliche Informationen und nutzt auch keinen Drittanbieter-Service, der dies tut.
 
-Die Essensliste wird auf Ihrem Smartphone gespeichert und über iCloud mit Ihren anderen Geräten synchronisiert, sofern Sie in Ihrem persönlichen iCloud-Account eingeloggt sind. Diese Liste enthält keinerlei persönliche Informationen.
+Die Essensliste wird auf Ihrem Smartphone gespeichert und enthält keinerlei persönliche Informationen.
 
 ## Probleme und Wünsche
 
-[Diese Probleme und Wünsche](https://github.com/UlricusR/iOS-EasyFPU/issues){:target="_blank"} sind mir bekannt und werden in künftigen Versionen angegangen. Sollten Sie über neue Probleme stolpern, die mir noch nicht bekannt sind, oder Wünsche und Anregungen zur Verbesserung der App haben, können Sie unter gleichem Link ein Issue öffnen.
+[Diese Probleme](https://github.com/UlricusR/Android-EasyFPU/issues){:target="_blank"} sind mir bekannt. Sollten Sie über neue Probleme stolpern, die mir noch nicht bekannt sind, können Sie unter gleichem Link ein Issue öffnen.
 
-Da ich EasyFPE in meiner Freizeit entwickle, bitte ich um Ihr Verständnis, dass ich keine detaillierte Releaseplanung vorweisen kann.
+Da ich EasyFPE für Android nicht mehr weiterentwickle, werden nur Fehler behoben.
 
 ## Unterstützung
 
-Sollten Sie die App mitentwickeln wollen, herzlich gerne - es ist alles Open Source und auf [GitHub](https://github.com/UlricusR/iOS-EasyFPU){:target="_blank"} verfügbar.
+Sollten Sie die App weiterentwickeln wollen, herzlich gerne - es ist alles Open Source und auf [GitHub](https://github.com/UlricusR/Android-EasyFPU){:target="_blank"} verfügbar.
 
 Ansonsten freue ich mich natürlich über jeden spendierten Kaffee...
 

@@ -2,7 +2,7 @@
 
 ![EasyFPU app icon](assets/images/pizza_small.png){ align=left }
 
-EasyFPU is an iOS app - mainly for Type 1 Diabetes patients - to ease the calculation of carbs, fat-protein-units (FPUs) (aka extended carbs, e-carbs or fake carbs) and their matching absorption time - synchronized across all your iOS devices via iCloud (optional).
+EasyFPU is an Android app - mainly for Type 1 Diabetes patients - to ease the calculation of carbs, fat-protein-units (FPUs) (aka extended carbs, e-carbs or fake carbs) and their matching absorption time.
 
 ## Disclaimer
 
@@ -28,31 +28,31 @@ The motivation to program EasyFPU was to ease the calculation of Fat-Protein-Uni
 
 Although carbs are calculated as well, this can be done by many apps today. However, meals with a high portion of fat or protein lead to a late increase in blood glucose. Modern pump therapies can counter this by a delayed bolus. The calculation of the amount of FPUs and the corresponding absorption time is not trivial - and this is exactly what this app is doing.
 
-The concept is simple: The user picks one or more food items from a list and enters their amount - optionally he can pick a pre-defined typical amounts. With this information the app will calculate FPUs.
+The concept is simple: The user picks one or more food items from a list and enters their amount - optionally he can pick one of max. three pre-defined typical amounts. With this information the app will calculate FPUs.
 
 Before being able to use the app, the user (or the user’s parents) need to invest a bit of time and effort to define the food items. The food list is deliberately empty when first installing the app, as every user has his own preferred food ([sample data](manual.md#sample-data) can be downloaded). You may limit your food list to food with a high fat or protein portion, like pizza, McDonals food, etc.
 
-EasyFPU is also available for Android. The iOS version is the newer one with more features, as I'm using it myself as part of an insulin therapy within my family. Whether I'll ever be updating the Android version, I cannot tell - it's a spare time activity!
+EasyFPU is also available for iOS. The iOS version is the newer one [with more features](https://ulricusr.github.io/#feature-overview), as I'm using it myself as part of an insulin therapy within my family.
 
 ## Privacy Policy
 
 !!! note
 
-    This section contains the privacy policy of the iOS app. The privacy policy of this website can be [found here](https://ulricusr.github.io/legal/).
+    This section contains the privacy policy of the Android app. The privacy policy of this website can be [found here](https://ulricusr.github.io/legal/).
 
-The iOS App EasyFPU doesn't store any personal data, nor does it use any third party service that might store personal data.
+The Android App EasyFPU doesn't store any personal data, nor does it use any third party service that might store personal data.
 
-The food list is stored locally on your smartphone and synchronized with your other iOS devices via iCloud, if you're logged into your personal iCloud account. It does not contain any personal data.
+The food list is stored locally on your smartphone and does not contain any personal data.
 
 ## Issues and Requests
 
-[These issues and requests](https://github.com/UlricusR/iOS-EasyFPU/issues){:target="_blank"} are known and will be addressed in future versions. Should you stumble over new issues or have any other suggestion, please submit an issue via the same link.
+[These issues](https://github.com/UlricusR/iOS-EasyFPU/issues){:target="_blank"} are known to me. Should you stumble over new issues, please submit an it via the same link.
 
-As I'm developing EasyFPU in my spare time, please understand that I won't provide a detailed release planning.
+As I'm not further developing EasyFPU for Android, I will only fix issues.
 
 ## Contribute
 
-If you want to join me developing EasyFPU, you're welcome! It's all Open Source and on [GitHub](https://github.com/UlricusR/iOS-EasyFPU){:target="_blank"}.
+If you want to take over and further develop EasyFPU for Android, you're welcome! It's all Open Source and on [GitHub](https://github.com/UlricusR/Android-EasyFPU){:target="_blank"}.
 
 Otherwise, just buy me a coffee - appreciated!
 
