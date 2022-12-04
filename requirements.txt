@@ -1,4 +1,4 @@
 mkdocs>=1.2.2
 mkdocs-material>=7.1.11
-mkdocs-static-i18n @ https://github.com/UlricusR/mkdocs-static-i18n/archive/refs/tags/0.52.zip
+mkdocs-static-i18n @ https://github.com/UlricusR/mkdocs-static-i18n/archive/refs/tags/0.53.zip
 mkdocs-glightbox>=0.3.0
