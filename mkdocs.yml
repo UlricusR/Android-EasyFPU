@@ -1,6 +1,6 @@
 site_name: EasyFPU for Android
-site_url: https://ulricusr.github.io/iOS-Android
-repo_url: https://github.com/UlricusR/iOS-Android
+site_url: https://ulricusr.github.io/Android-EasyFPU
+repo_url: https://github.com/UlricusR/Android-EasyFPU
 edit_uri: edit/site-sources/docs/
 
 theme:
