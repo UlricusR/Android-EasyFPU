@@ -5,8 +5,6 @@ edit_uri: edit/site-sources/docs/
 
 theme:
   name: material
-  features:
-    - navigation.tabs
   palette:
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
@@ -26,8 +24,6 @@ theme:
   font: false # To avoid utilization of Google fonts
   logo: assets/images/logo_white_small.png
   favicon: assets/images/favicon.png
-  features:
-    - navigation.top
 
 extra:
   social:
