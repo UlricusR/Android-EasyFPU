@@ -46,7 +46,7 @@ The food list is stored locally on your smartphone and does not contain any pers
 
 ## Issues and Requests
 
-[These issues](https://github.com/UlricusR/iOS-EasyFPU/issues){:target="_blank"} are known to me. Should you stumble over new issues, please submit an it via the same link.
+[These issues](https://github.com/UlricusR/iOS-EasyFPU/issues){:target="_blank"} are known to me. Should you stumble over a new issue, please submit it via the same link.
 
 As I'm not further developing EasyFPU for Android, I will only fix issues.
 
