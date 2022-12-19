@@ -1,5 +1,5 @@
 site_name: EasyFPU for Android
-site_url: https://ulricusr.github.io/Android-EasyFPU
+site_url: https://www.rueth.info/Android-EasyFPU
 repo_url: https://github.com/UlricusR/Android-EasyFPU
 edit_uri: edit/site-sources/docs/
 
@@ -43,11 +43,11 @@ plugins:
         en:
           name: English
           site_name: EasyFPU for Android
-          homepage: https://ulricusr.github.io/en
+          homepage: https://www.rueth.info/en
         de:
           name: Deutsch
           site_name: EasyFPE für Android
-          homepage: https://ulricusr.github.io/de
+          homepage: https://www.rueth.info/de
   - search
   - glightbox
 

@@ -40,13 +40,13 @@ Das Konzept hierfür ist absichtlich sehr einfach: Der Nutzer wählt ein oder me
 
 Als Nutzer (bzw. als Eltern von Kindern mit Typ 1-Diabetes) muss man allerdings vorab etwas Zeit in das Anlegen von Essen investieren. Die Essensliste ist mit Absicht bei Erstinstallation komplett leer, da jeder sein eigenes typisches Essen hat ([Beispieldaten](manual.md#beispieldaten) können heruntergeladen werden). Es kann sich allerdings darauf beschränkt werden, nur Essen anzulegen, welches eben einen hohen Fett- oder Proteinanteil hat, z.B. Pizza, Bratwurst, McDonalds-Essen, usw.
 
-EasyFPE gibt es auch für iOS, wobei die iOS-Variante die neuere ist mit [deutlich mehr Features](https://ulricusr.github.io/de/#feature-ubersicht), da ich sie selbst bei mir in der Familie im Rahmen einer Insulintherapie nutze.
+EasyFPE gibt es auch für iOS, wobei die iOS-Variante die neuere ist mit [deutlich mehr Features](https://www.rueth.info/de/#feature-ubersicht), da ich sie selbst bei mir in der Familie im Rahmen einer Insulintherapie nutze.
 
 ## Datenschutzerklärung
 
 !!! note "Hinweis"
 
-    Dieser Abschnitt beinhaltet die Datenschutzerklärung der Android-App. Die Datenschutzerklärung der Webseite finden [an dieser Stelle](https://ulricusr.github.io/de/legal/).
+    Dieser Abschnitt beinhaltet die Datenschutzerklärung der Android-App. Die Datenschutzerklärung der Webseite finden [an dieser Stelle](https://www.rueth.info/de/legal/).
 
 Die Android-App EasyFPE speichert keinerlei persönliche Informationen und nutzt auch keinen Drittanbieter-Service, der dies tut.
 
