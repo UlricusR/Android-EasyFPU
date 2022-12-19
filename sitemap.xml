@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
-         <loc>https://ulricusr.github.io/Android-EasyFPU/</loc>
-         <lastmod>2022-12-17</lastmod>
+         <loc>https://www.rueth.info/Android-EasyFPU/</loc>
+         <lastmod>2022-12-19</lastmod>
          <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://ulricusr.github.io/Android-EasyFPU/"/>
+         <xhtml:link rel="alternate" hreflang="en" href="https://www.rueth.info/Android-EasyFPU/"/>
          
          
     </url>
     <url>
-         <loc>https://ulricusr.github.io/Android-EasyFPU/manual/</loc>
-         <lastmod>2022-12-17</lastmod>
+         <loc>https://www.rueth.info/Android-EasyFPU/manual/</loc>
+         <lastmod>2022-12-19</lastmod>
          <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://ulricusr.github.io/Android-EasyFPU/en/manual/"/>
-         <xhtml:link rel="alternate" hreflang="de" href="https://ulricusr.github.io/Android-EasyFPU/de/manual/"/>
+         <xhtml:link rel="alternate" hreflang="en" href="https://www.rueth.info/Android-EasyFPU/en/manual/"/>
+         <xhtml:link rel="alternate" hreflang="de" href="https://www.rueth.info/Android-EasyFPU/de/manual/"/>
          
     </url>
 </urlset>
