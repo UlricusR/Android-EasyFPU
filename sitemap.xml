@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
-         <loc>https://www.rueth.info/Android-EasyFPU/</loc>
-         <lastmod>2022-12-19</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://www.rueth.info/Android-EasyFPU/"/>
-         
-         
+        <loc>https://www.rueth.info/Android-EasyFPU/</loc>
+        <lastmod>2023-09-09</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.rueth.info/Android-EasyFPU/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://www.rueth.info/Android-EasyFPU/dede/"/>
     </url>
     <url>
-         <loc>https://www.rueth.info/Android-EasyFPU/manual/</loc>
-         <lastmod>2022-12-19</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="https://www.rueth.info/Android-EasyFPU/en/manual/"/>
-         <xhtml:link rel="alternate" hreflang="de" href="https://www.rueth.info/Android-EasyFPU/de/manual/"/>
-         
+        <loc>https://www.rueth.info/Android-EasyFPU/manual/</loc>
+        <lastmod>2023-09-09</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.rueth.info/Android-EasyFPU/manual/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://www.rueth.info/Android-EasyFPU/dede/manual/"/>
+    </url>
+    <url>
+        <loc>https://www.rueth.info/Android-EasyFPU/de/de/</loc>
+        <lastmod>2023-09-09</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://www.rueth.info/Android-EasyFPU/de/de/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.rueth.info/Android-EasyFPU/de"/>
+    </url>
+    <url>
+        <loc>https://www.rueth.info/Android-EasyFPU/de/de/manual/</loc>
+        <lastmod>2023-09-09</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="de" href="https://www.rueth.info/Android-EasyFPU/de/de/manual/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.rueth.info/Android-EasyFPU/demanual/"/>
     </url>
 </urlset>
